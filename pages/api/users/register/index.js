@@ -1,16 +1,17 @@
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import connectDB from "../../utils/database";
-import bcrypt from bcrypt;
 
 import users from "../../models/users";
 
-const handler =async(req,res)=>{
+const handler = async (req, res) => {
   connectDB();
-  if(req.method==="POST"){
-    const { firstName, lastName, email, adress, telephone, password } = req.body;
+  if (req.method === "POST") {
+    const { firstName, lastName, email, adress, telephone, password } =
+      req.body;
     const existEmail = await users.findOne({ email });
     const existPhone = await users.findOne({ telephone });
-  
+
     if (!existEmail || !existPhone) {
       const newUser = new users({
         firstName: firstName,
@@ -36,5 +37,5 @@ const handler =async(req,res)=>{
       });
     }
   }
-}
+};
 export default handler;

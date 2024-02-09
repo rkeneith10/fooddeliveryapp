@@ -1,12 +1,12 @@
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import connectDB from "../../utils/database";
-import bcrypt from bcrypt;
 
 import users from "../../models/users";
 
-const handler =async(req,res)=>{
+const handler = async (req, res) => {
   connectDB();
-  if(req.method==="POST"){
+  if (req.method === "POST") {
     const { email, password } = req.body;
     const user = await users.findOne({ email: email });
     if (!user) {
@@ -34,5 +34,5 @@ const handler =async(req,res)=>{
       }
     }
   }
-}
+};
 export default handler;
