@@ -4,6 +4,7 @@ import connectDB from "../utils/database";
 const handler = async (req, res) => {
   connectDB();
   if (req.method === "POST") {
+    const { restaurant_name, adress, telephone } = req.body;
     const restaurantExist = await restaurants.findOne({ restaurant_name });
 
     if (!restaurantExist) {
