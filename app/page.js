@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <div>FOOD APP DELIVERY</div>
+      <div className="items-center justify-center">FOOD APP DELIVERY</div>
     </>
   );
 }
