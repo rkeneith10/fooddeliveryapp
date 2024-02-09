@@ -22,7 +22,7 @@ const handler =async(req,res)=>{
           msg: "Wrong Password",
         });
       } else {
-        const token = jwt.sign({ id: user._id }, secretKey, {
+        const token = jwt.sign({ id: user._id }, process.env.SECRET_KET, {
           expiresIn: "1h",
         });
         res.setHeader("x-access-token", token).status(201).json({
