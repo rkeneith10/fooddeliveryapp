@@ -67,7 +67,7 @@ const Home = () => {
               <div key={cat._id}>
                 <CategoryComponent
                   category={cat.category}
-                  cloudinary_id={cat.cloudinary_id}
+                  imageUrl={cat.imageUrl}
                 />
               </div>
             ))}
