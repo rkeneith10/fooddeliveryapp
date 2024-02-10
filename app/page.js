@@ -54,7 +54,7 @@ const Home = () => {
             <br />
           </div>
         </div>
-        <div className="p-10 ">
+        <div className="p-10 bg-gray-100">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
               <div className="w-1/4 text-center mb-4">
@@ -68,7 +68,7 @@ const Home = () => {
             {isloading ? (
               <div className="grid lg:grid-cols-5 gap-4">
                 {[...Array(5)].map((_, index) => (
-                  <div key={index} className="mb-2">
+                  <div key={index} className="mb-2 shadow-md">
                     <Skeleton className="h-[220px] lg:w-[400px] w-full" />
                   </div>
                 ))}
