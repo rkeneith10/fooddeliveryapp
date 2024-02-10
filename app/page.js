@@ -1,4 +1,5 @@
 "use client";
+import CategoryComponent from "@/components/categoryComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
