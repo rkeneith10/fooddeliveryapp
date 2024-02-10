@@ -54,7 +54,7 @@ const Home = () => {
             <br />
           </div>
         </div>
-        <div className="p-10">
+        <div className="p-10 bg-gray-200">
           <div className="text-md font-semibold text-xl text-center">
             Popular Categories
           </div>
