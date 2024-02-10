@@ -7,12 +7,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 
 const Home = () => {
-  const [isloading, setisLoading] = useState(false);
+  const [isloading, setisLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      setisLoading(true);
+      //setisLoading(true);
       try {
         const response = await axios.get(
           "https://fooddelivery-kappa.vercel.app/api/categories"
