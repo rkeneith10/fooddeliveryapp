@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 // import Skeleton from "react-loading-skeleton";
-import CategoryComponent from "@/components/categoryComponent";
 import "react-loading-skeleton/dist/skeleton.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 
@@ -65,10 +64,11 @@ const Home = () => {
 
             {categories.map((cat) => (
               <div key={cat._id}>
-                <CategoryComponent
+                <p>{cat.category}</p>
+                {/* <CategoryComponent
                   category={cat.category}
                   imageUrl={cat.imageUrl}
-                />
+                /> */}
               </div>
             ))}
           </div>
