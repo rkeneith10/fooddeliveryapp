@@ -58,7 +58,7 @@ const Home = () => {
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
               <div className="py-90">
-                <Skeleton className="h-5" />
+                <Skeleton className="h-10" />
               </div>
             ) : (
               <span>Popular Categories</span>
