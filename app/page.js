@@ -57,7 +57,7 @@ const Home = () => {
         <div className="p-10 bg-gray-200">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
-              <div className="py-50">
+              <div className="py-90">
                 <Skeleton className="h-5" />
               </div>
             ) : (
@@ -65,7 +65,7 @@ const Home = () => {
             )}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-            {isloading && (
+            {isloading ? (
               <div>
                 {[...Array(5)].map((_, index) => {
                   <div key={index} className="mb-2">
@@ -73,16 +73,16 @@ const Home = () => {
                   </div>;
                 })}
               </div>
+            ) : (
+              categories.map((cat) => (
+                <div key={cat._id}>
+                  <CategoryComponent
+                    category={cat.category}
+                    imageUrl={cat.imageUrl}
+                  />
+                </div>
+              ))
             )}
-
-            {categories.map((cat) => (
-              <div key={cat._id}>
-                <CategoryComponent
-                  category={cat.category}
-                  imageUrl={cat.imageUrl}
-                />
-              </div>
-            ))}
           </div>
         </div>
       </div>
