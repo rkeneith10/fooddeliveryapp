@@ -75,7 +75,6 @@ const Home = () => {
 
             {categories.map((cat) => (
               <div key={cat._id}>
-                {/* <p>{cat.category}</p> */}
                 <CategoryComponent
                   category={cat.category}
                   imageUrl={cat.imageUrl}
