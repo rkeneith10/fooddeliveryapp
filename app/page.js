@@ -3,7 +3,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import CategoryComponent from "../components/categoryComponent";
 import BackImage1 from "../public/images/foodapp.PNG";
 
 const Home = () => {
@@ -54,7 +53,7 @@ const Home = () => {
             <br />
           </div>
         </div>
-        <div className="p-10 bg-gray-200">
+        <div className="p-10 ">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
               <div className="py-90">
@@ -67,16 +66,15 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
             {isloading ? (
               <div>
-                {[...Array(5)].map((_, index) => {
+                {[...Array(5)].map((_, index) => (
                   <div key={index} className="mb-2">
-                    <Skeleton className="h-[220px] w-[200px]" />
-                  </div>;
-                })}
+                    <Skeleton className="h-[220px] w-[400px]" />
+                  </div>
+                ))}
               </div>
             ) : (
               categories.map((cat) => (
                 <div key={cat._id}>
-                  {/* <p>{cat.category}</p> */}
                   <CategoryComponent
                     category={cat.category}
                     imageUrl={cat.imageUrl}
