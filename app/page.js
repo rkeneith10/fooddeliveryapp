@@ -57,7 +57,9 @@ const Home = () => {
         <div className="p-10 bg-gray-200">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
-              <Skeleton className="h-5" />
+              <div className="py-50">
+                <Skeleton className="h-5" />
+              </div>
             ) : (
               <span>Popular Categories</span>
             )}
@@ -67,7 +69,7 @@ const Home = () => {
               <div>
                 {[...Array(5)].map((_, index) => {
                   <div key={index} className="mb-2">
-                    <Skeleton className="h-[220px] " />
+                    <Skeleton className="h-[220px] w-[180px]" />
                   </div>;
                 })}
               </div>
