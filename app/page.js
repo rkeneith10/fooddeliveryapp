@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      //setisLoading(true);
+      setisLoading(true);
       try {
         const response = await axios.get(
           "https://fooddelivery-kappa.vercel.app/api/categories"
@@ -69,13 +69,14 @@ const Home = () => {
               <div>
                 {[...Array(5)].map((_, index) => {
                   <div key={index} className="mb-2">
-                    <Skeleton className="h-[220px] w-[180px]" />
+                    <Skeleton className="h-[220px] w-[200px]" />
                   </div>;
                 })}
               </div>
             ) : (
               categories.map((cat) => (
                 <div key={cat._id}>
+                  {/* <p>{cat.category}</p> */}
                   <CategoryComponent
                     category={cat.category}
                     imageUrl={cat.imageUrl}
