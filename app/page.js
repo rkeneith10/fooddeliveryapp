@@ -57,7 +57,7 @@ const Home = () => {
         <div className="p-10 ">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
-              <div className="w-full border pl-[200px] pr-[200px] text-center mb-4">
+              <div className="w-1/4 text-center mb-4">
                 <Skeleton className="h-10" />
               </div>
             ) : (
