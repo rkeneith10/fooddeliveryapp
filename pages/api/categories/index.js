@@ -1,5 +1,5 @@
 import multer from "multer";
-import category_menu from "../models/category_menu";
+import category from "../models/category_menu";
 import cloudinary from "../utils/cloudinaryConfig";
 import connectDB from "../utils/database";
 
@@ -17,25 +17,26 @@ const upload = multer({
 
 const handler = async (req, res) => {
   await connectDB();
-  if (req.method === "POST") {
-    const { category_name } = req.body;
-    const categoryExist = await category_menu.findOne({ category_name });
 
-    await new Promise((resolve, reject) => {
-      upload(req, res, (err) => {
-        if (err) reject(err);
-        resolve();
+  switch (req.method) {
+    case "POST":
+      await new Promise((resolve, reject) => {
+        upload(req, res, (err) => {
+          if (err) reject(err);
+          resolve();
+        });
       });
-    });
 
-    if (!req.file) {
-      return res.status(400).json({
-        error: "No file found",
+      if (!req.file) {
+        return res.status(400).json({
+          error: "No file found",
+        });
+      }
+
+      const categoyExist = await category.findOne({
+        category: req.body.category,
       });
-    }
-
-    if (!categoryExist) {
-      try {
+      if (!categoyExist) {
         const result = await cloudinary.v2.uploader
           .upload_stream(
             { resource_type: "auto", folder: "FoodApp" },
@@ -45,33 +46,53 @@ const handler = async (req, res) => {
                   msg: "Not uploading to cloudinary",
                 });
               }
-              const category = new category_menu({
-                category_name: category_name,
+
+              const newCategory = new category({
+                category: req.body.category,
                 imageUrl: result.secure_url,
                 cloudinary_id: result.public_id,
               });
 
-              await category.save();
+              await newCategory.save();
+
               res.status(200).json({
-                //Category: categoryExist,
-                msg: "Category saved sucessfully",
+                msg: "Upload to cloudinary && save to mongoDB",
+                data: newCategory,
               });
             }
           )
           .end(req.file.buffer);
-      } catch (cloudinaryError) {
+      } else {
+        res
+          .status(400)
+          .json({ success: false, message: "Category already exist" });
+      }
+
+      break;
+
+    case "GET":
+      try {
+        const allCategories = await category.find({}).sort({ _id: -1 });
+
+        res.status(200).json({
+          success: true,
+          all: allCategories,
+        });
+      } catch (error) {
+        console.error(error);
         res.status(500).json({
-          error: "Not uploading to cloudinary",
+          error: "Internal server error",
         });
       }
-    } else {
-      res.status(400).json({
-        msg: "Category already exist",
+
+      break;
+
+    default:
+      res.status(405).json({
+        success: false,
+        message: "Method Not Allowed",
       });
-    }
-  } else if (req.method === "GET") {
-    const allCategories = await category_menu.find().sort({ category_name: 1 });
-    res.status(200).json(allCategories);
   }
 };
+
 export default handler;

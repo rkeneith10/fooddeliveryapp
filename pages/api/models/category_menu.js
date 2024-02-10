@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
+const categorySchema = new mongoose.Schema({
+  category: { type: String, require: true },
 
-const schemaCategory = new mongoose.Schema({
-  category_name: {
+  imageUrl: { type: String, require: true },
+  cloudinary_id: {
     type: String,
   },
-  imageUrl: {
-    type: String,
-  },
-  cloudinary_id: { type: String },
 });
 
-const category_menu = mongoose.model("category_menu", schemaCategory);
-export default category_menu;
+const categories =
+  mongoose.models.categories || mongoose.model("categories", categorySchema);
+export default categories;
