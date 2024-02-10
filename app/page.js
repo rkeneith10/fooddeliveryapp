@@ -57,19 +57,19 @@ const Home = () => {
         <div className="p-10 ">
           <div className="text-md font-semibold text-xl text-center">
             {isloading ? (
-              <div className="py-90">
+              <div className="w-full border pl-100 pr-100 border-red-100 text-center">
                 <Skeleton className="h-10" />
               </div>
             ) : (
               <span>Popular Categories</span>
             )}
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             {isloading ? (
-              <div>
+              <div className="grid lg:grid-cols-5 gap-4">
                 {[...Array(5)].map((_, index) => (
                   <div key={index} className="mb-2">
-                    <Skeleton className="h-[220px] w-[400px]" />
+                    <Skeleton className="h-[220px] lg:w-[400px] w-full" />
                   </div>
                 ))}
               </div>
