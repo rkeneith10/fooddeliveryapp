@@ -56,7 +56,7 @@ const handler = async (req, res) => {
 
             res.status(200).json({
               msg: "Upload to cloudinary && save to mongoDB",
-              data: newCategory,
+              data: newrestaurants,
             });
           }
         )

@@ -5,7 +5,7 @@ export async function getStaticProps() {
     "https://fooddelivery-kappa.vercel.app/api/categories"
   );
   try {
-    const responseData = response.json();
+    const responseData = await response.json();
     return {
       props: {
         categories: responseData.all,
