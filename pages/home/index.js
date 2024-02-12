@@ -1,4 +1,6 @@
-import CategoryComponent from "@/components/categoryComponent";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import "tailwindcss/tailwind.css";
 import BackImage1 from "../../public/images/foodapp.PNG";
 export async function getStaticProps() {
   const response = await fetch(
@@ -25,10 +27,11 @@ export default function index({ categories }) {
   return (
     <>
       <div>
+        <Navbar />
         <div
           id="top"
           className="h-[400px]  max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
-          style={{ backgroundImage: `url(${BackImage1})` }}
+          style={{ backgroundImage: `url(${BackImage1.src})` }}
         >
           <div className="max-w-sceen">
             <h1 className="text-3xl  text-white font-bold ">
@@ -59,6 +62,7 @@ export default function index({ categories }) {
             ))}
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
