@@ -7,7 +7,7 @@ export default function CategoryComponent({ imageUrl, category }) {
         <CldImage src={imageUrl} className="w-full h-[160px] rounded-lg" />
       </div>
       <div className="px-6 py-4">
-        <div className="font-medium text-xl mb-1 text-center">{category}</div>
+        <div className="font-medium text-xl mb-1 text-center">{category}es</div>
       </div>
     </div>
   );
