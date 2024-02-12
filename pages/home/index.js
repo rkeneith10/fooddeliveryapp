@@ -13,6 +13,7 @@ export async function getStaticProps() {
       props: {
         categories: responseData.all,
       },
+      revalidate: 3600,
     };
   } catch (error) {
     console.log("erroe fetch data", error);
@@ -20,6 +21,7 @@ export async function getStaticProps() {
       props: {
         categories: [],
       },
+      revalidate: 3600,
     };
   }
 }

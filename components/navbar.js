@@ -33,14 +33,41 @@ export default function navbar() {
           <li className="mr-4 lg:mr-8 cursor-pointer">
             <Link href="/">Restaurants</Link>
           </li>
-          <li className="mr-4 lg:mr-8 cursor-pointer">
-            <Link href="/">About</Link>
-          </li>{" "}
-          {/* <li className="mr-4 lg:mr-8 cursor-pointer">
-            <Link href="/">Services</Link>
-          </li> */}
+
           <li className="mr-4 lg:mr-8 cursor-pointer">
             <Link href="/">Contact</Link>
+          </li>
+
+          <li className="mr-4 lg:mr-8 cursor-pointer relative">
+            <div onClick={toggleMenu}>
+              Account
+              <svg
+                className="w-4 h-4 ml-2 inline"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 0 1 1.414-1.414L10 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            {isDropDown && (
+              <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
+                <Link href="/login">
+                  <a className="block px-4 py-2 text-gray-800 hover:bg-gray-300">
+                    Login
+                  </a>
+                </Link>
+                <Link href="/register">
+                  <a className="block px-4 py-2 text-gray-800 hover:bg-gray-300">
+                    Register
+                  </a>
+                </Link>
+              </div>
+            )}
           </li>
         </ul>
         <div className="pl-[80px]   md:pr-10">
@@ -77,11 +104,6 @@ export default function navbar() {
               <li className="py-5 mt-[-30px] cursor-pointer">
                 <Link href="/" onClick={handleSmalleNavigation}>
                   Restaurants
-                </Link>
-              </li>
-              <li className="py-5 mt-[-30px] cursor-pointer">
-                <Link href="/" onClick={handleSmalleNavigation}>
-                  About
                 </Link>
               </li>
 
