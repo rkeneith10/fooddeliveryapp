@@ -13,6 +13,9 @@ const schemaRestaurant = new mongoose.Schema({
   imageUrl: {
     type: String,
   },
+  cloudinary_id: {
+    type: String,
+  },
   menus: {
     type: [{}],
   },

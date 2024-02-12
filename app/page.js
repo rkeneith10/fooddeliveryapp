@@ -1,4 +1,3 @@
-"use client";
 import CategoryComponent from "@/components/categoryComponent";
 import axios from "axios";
 import BackImage1 from "../public/images/foodapp.PNG";
