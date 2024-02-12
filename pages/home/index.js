@@ -1,3 +1,4 @@
+import CategoryComponent from "@/components/categoryComponent";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import "tailwindcss/tailwind.css";
