@@ -7,10 +7,10 @@ export async function getStaticProps() {
     const categoriesResponse = await axios.get(
       "https://fooddelivery-kappa.vercel.app/api/categories"
     );
-    const categoriesData = categoriesResponse.data.all;
+    const categoriesData = categoriesResponse.data;
     return {
       props: {
-        categories: categoriesData,
+        categories: categoriesData.all,
       },
     };
   } catch (error) {
