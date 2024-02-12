@@ -1,29 +1,37 @@
+"use client";
 import CategoryComponent from "@/components/categoryComponent";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 
-export async function getStaticProps() {
-  try {
-    const categoriesResponse = await axios.get(
-      "https://fooddelivery-kappa.vercel.app/api/categories"
-    );
-    const categoriesData = categoriesResponse.data;
-    return {
-      props: {
-        categories: categoriesData.all,
-      },
-    };
-  } catch (error) {
-    console.log("Error fetching data:", error);
-    return {
-      props: {
-        categories: [],
-      },
-    };
-  }
-}
+const Home = () => {
+  const [isloading, setisLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
-const Home = ({ categories }) => {
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setisLoading(true);
+      try {
+        const response = await axios.get(
+          "https://fooddelivery-kappa.vercel.app/api/categories"
+        );
+        const responseData = response.data;
+
+        if (responseData.success) {
+          console.log(responseData.all);
+          setCategories(responseData.all);
+        } else {
+          console.error("Failed to fetch data");
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+      }
+    };
+    fetchCategories();
+    setisLoading(false);
+  }, []);
   return (
     <>
       <div>
@@ -48,17 +56,33 @@ const Home = ({ categories }) => {
         </div>
         <div className="p-10 bg-gray-100">
           <div className="text-md font-semibold text-center">
-            <span>Popular Categories</span>
+            {isloading ? (
+              <div className="w-1/4 text-center mb-4">
+                <Skeleton className="h-10" />
+              </div>
+            ) : (
+              <span>Popular Categories</span>
+            )}
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
-            {categories.map((cat) => (
-              <div key={cat._id}>
-                <CategoryComponent
-                  category={cat.category}
-                  imageUrl={cat.imageUrl}
-                />
+            {isloading ? (
+              <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+                {categories.map((ct) => (
+                  <div key={ct._id} className="mb-2 shadow-md">
+                    <Skeleton height={220} width={"100%"} />
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              categories.map((cat) => (
+                <div key={cat._id}>
+                  <CategoryComponent
+                    category={cat.category}
+                    imageUrl={cat.imageUrl}
+                  />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
