@@ -22,6 +22,7 @@ export async function getStaticProps() {
 export default function index({ categorie }) {
   return (
     <div>
+      fetch data
       {categorie.map((ct) => (
         <p>{ct.category}</p>
       ))}
