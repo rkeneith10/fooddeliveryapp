@@ -18,7 +18,7 @@ export async function getStaticProps() {
     return {
       props: {
         categories: responseData.all,
-        restaurants: response1.all,
+        restaurants: responseData1.all,
       },
       revalidate: 3600,
     };
