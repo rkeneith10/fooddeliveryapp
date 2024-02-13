@@ -12,6 +12,16 @@ export default function navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
   };
@@ -40,7 +50,10 @@ export default function navbar() {
           </li>
 
           <li className="mr-4 lg:mr-8 cursor-pointer relative">
-            <div onClick={toggleMenu}>
+            <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               Account
               <svg
                 className="w-4 h-4 ml-2 inline"
@@ -55,7 +68,7 @@ export default function navbar() {
                 />
               </svg>
             </div>
-            {isDropDown && (
+            {isHovered && (
               <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
                 <li>
                   <Link
