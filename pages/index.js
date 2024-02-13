@@ -1,17 +1,24 @@
 import CategoryComponent from "@/components/categoryComponent";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import RestaurantComponent from "@/components/restaurantsComponent";
 import "tailwindcss/tailwind.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 export async function getStaticProps() {
   const response = await fetch(
     "https://fooddelivery-kappa.vercel.app/api/categories"
   );
+
+  const response1 = await fetch(
+    "https://fooddelivery-kappa.vercel.app/api/restaurants"
+  );
   try {
     const responseData = await response.json();
+    const responseData1 = await response1.json();
     return {
       props: {
         categories: responseData.all,
+        restaurants: response1.all,
       },
       revalidate: 3600,
     };
@@ -20,13 +27,14 @@ export async function getStaticProps() {
     return {
       props: {
         categories: [],
+        restaurants: [],
       },
       revalidate: 3600,
     };
   }
 }
 
-export default function index({ categories }) {
+export default function index({ categories, restaurants }) {
   return (
     <>
       <div>
@@ -60,6 +68,25 @@ export default function index({ categories }) {
                 <CategoryComponent
                   category={cat.category}
                   imageUrl={cat.imageUrl}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <br />
+
+        <div className="p-10 bg-gray-100">
+          <div className="text-md font-semibold text-center">
+            <span>Nearby Restaurants</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {restaurants.map((resto) => (
+              <div key={resto._id}>
+                <RestaurantComponent
+                  restaurant_name={resto.restaurant_name}
+                  telephone={resto.telephone}
+                  imageUrl={resto.imageUrl}
+                  adress={resto.adress}
                 />
               </div>
             ))}
