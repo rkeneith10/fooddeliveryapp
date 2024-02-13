@@ -62,7 +62,7 @@ export default function index({ categories, restaurants }) {
           <div className="text-xl font-semibold text-center mb-3">
             <span>Popular Categories</span>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-1">
             {categories.map((cat) => (
               <div key={cat._id}>
                 <CategoryComponent
