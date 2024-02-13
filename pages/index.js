@@ -2,7 +2,7 @@ import CategoryComponent from "@/components/categoryComponent";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import "tailwindcss/tailwind.css";
-import BackImage1 from "../../public/images/foodapp.PNG";
+import BackImage1 from "../public/images/foodapp.PNG";
 export async function getStaticProps() {
   const response = await fetch(
     "https://fooddelivery-kappa.vercel.app/api/categories"

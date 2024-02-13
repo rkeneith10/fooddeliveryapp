@@ -1,6 +1,7 @@
 "use client";
 import {
   Bars3Icon,
+  ChevronDownIcon,
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -56,16 +57,22 @@ export default function navbar() {
             </div>
             {isDropDown && (
               <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
-                <Link href="/login">
-                  <a className="block px-4 py-2 text-gray-800 hover:bg-gray-300">
+                <li>
+                  <Link
+                    href="../login"
+                    className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                  >
                     Login
-                  </a>
-                </Link>
-                <Link href="/register">
-                  <a className="block px-4 py-2 text-gray-800 hover:bg-gray-300">
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="../register"
+                    className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                  >
                     Register
-                  </a>
-                </Link>
+                  </Link>
+                </li>
               </div>
             )}
           </li>
@@ -109,14 +116,34 @@ export default function navbar() {
 
               <li className="py-5 mt-[-30px] cursor-pointer">
                 <Link href="/" onClick={handleSmalleNavigation}>
-                  Services
+                  Contact
                 </Link>
               </li>
 
-              <li className="py-5 mt-[-30px] cursor-pointer">
-                <Link href="/" onClick={handleSmalleNavigation}>
-                  Contact
-                </Link>
+              <li className="py-5 mt-[-30px] cursor-pointer relative">
+                <button
+                  onClick={toggleMenu}
+                  className="flex items-center justify-center"
+                >
+                  Account
+                  <ChevronDownIcon className="h-5 w-5 ml-1" />
+                </button>
+                {isDropDown && (
+                  <div className="absolute top-0 mt-12 w-full bg-white rounded-lg shadow-lg">
+                    <Link
+                      href="../login"
+                      className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="../register"
+                      className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                )}
               </li>
             </ul>
           </div>
