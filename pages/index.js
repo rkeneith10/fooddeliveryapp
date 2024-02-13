@@ -59,7 +59,7 @@ export default function index({ categories, restaurants }) {
           </div>
         </div>
         <div className="p-10 bg-gray-100">
-          <div className="text-md font-semibold text-center">
+          <div className="text-xl font-semibold text-center mb-3">
             <span>Popular Categories</span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
@@ -73,10 +73,9 @@ export default function index({ categories, restaurants }) {
             ))}
           </div>
         </div>
-        <br />
 
-        <div className="p-10 bg-gray-100">
-          <div className="text-md font-semibold text-center">
+        <div className="p-10 bg-gray-50">
+          <div className="text-xl font-semibold text-center mb-3">
             <span>Nearby Restaurants</span>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
