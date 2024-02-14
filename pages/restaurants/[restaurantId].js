@@ -2,7 +2,9 @@ const restaurantDetails = ({ restaurantDetails }) => {
   if (!restaurantDetails) {
     return <div>Loading...</div>;
   }
+  console.log(restaurantDetails);
   const { restaurant } = restaurantDetails;
+  console.log(restaurant);
   return (
     <div>
       <p>{restaurant.restaurant_name}</p>
