@@ -18,7 +18,7 @@ function RestaurantDetail() {
 
       try {
         const response = await axios.get(
-          `https://fooddelivery-kappa.vercel.app/api/restaurants/${restaurantId}`
+          `https://fooddelivery-kappa.vercel.app/api/restaurants/65ca734b1e1c04ca6b04af5f`
         );
 
         setData(response.data);
