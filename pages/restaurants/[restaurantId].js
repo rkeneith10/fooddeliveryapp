@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
 
   try {
     const response = await fetch(
-      `https://fooddelivery-kappa.vercel.app/api/restaurantdetails?restauantId=${restaurantId}`
+      `https://fooddelivery-kappa.vercel.app/api/restaurantdetails?restaurantId=${restaurantId}`
     );
     const restaurantDetails = await response.json();
     return {
