@@ -2,6 +2,7 @@ import CategoryComponent from "@/components/categoryComponent";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import RestaurantComponent from "@/components/restaurantsComponent";
+import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 export async function getStaticProps() {
