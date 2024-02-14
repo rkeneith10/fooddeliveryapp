@@ -2,6 +2,7 @@ const restaurantDetails = ({ restaurantDetails }) => {
   if (!restaurantDetails) {
     return <div>Loading...</div>;
   }
+  const { restaurant } = restaurantDetails;
   return (
     <div>
       <p>{restaurant.restaurant_name}</p>
