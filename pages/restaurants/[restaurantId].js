@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 function RestaurantDetail() {
@@ -18,7 +18,7 @@ function RestaurantDetail() {
 
       try {
         const response = await axios.get(
-          `https://fooddelivery-kappa.vercel.app/api/restaurants/65ca734b1e1c04ca6b04af5f`
+          `https://fooddelivery-kappa.vercel.app/api/restaurants/${restaurantId}`
         );
 
         setData(response.data);
