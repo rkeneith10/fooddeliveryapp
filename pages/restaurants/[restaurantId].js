@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function RestaurantDetail() {
   const router = useRouter();
-  const { restaurantId } = router.query;
+  const { restaurantId } = router.query || {};
 
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
