@@ -33,7 +33,10 @@ const handler = async (req, res) => {
     // Return the restaurant details
     return res.status(200).json({
       success: true,
-      restaurant: restaurantDetails,
+      restaurantDetails: {
+        // Add the restaurantDetails key
+        restaurant: restaurantDetails,
+      },
     });
   } catch (error) {
     console.error("Error fetching restaurant details:", error);

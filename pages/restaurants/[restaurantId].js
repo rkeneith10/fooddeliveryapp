@@ -5,6 +5,7 @@ const restaurantDetails = ({ restaurantDetails }) => {
   console.log(restaurantDetails);
   const { restaurant } = restaurantDetails;
   console.log(restaurant);
+  s;
   return (
     <div>
       <p>{restaurant.restaurant_name}</p>
