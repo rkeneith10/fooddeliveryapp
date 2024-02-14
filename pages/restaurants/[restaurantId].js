@@ -1,7 +1,7 @@
-const restaurantDetails = ({ restaurantDetails }) => {
+const restaurantDetails = ({ restaurant }) => {
   return (
     <div>
-      {restaurantDetails.map((restodetail) => (
+      {restaurant.map((restodetail) => (
         <p>{restodetail.restaurat_name}</p>
       ))}
     </div>
