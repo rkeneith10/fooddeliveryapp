@@ -7,7 +7,6 @@ const restaurantDetails = ({ restaurantDetails }) => {
   console.log(restaurant);
   return (
     <div>
-      <p>{restaurant.restaurant_name}</p>
       <p>{restaurant.telephone}</p>
 
       <p>{restaurant.adress}</p>
