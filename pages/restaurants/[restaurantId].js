@@ -2,7 +2,9 @@ const restaurantDetails = ({ restaurant }) => {
   return (
     <div>
       {restaurant.map((restodetail) => (
-        <p>{restodetail.restaurat_name}</p>
+        <div key={restodetail._id}>
+          <p>{restodetail.restaurat_name}</p>
+        </div>
       ))}
     </div>
   );
