@@ -1,11 +1,13 @@
-const restaurantDetails = ({ restaurant }) => {
+const restaurantDetails = ({ restaurantDetails }) => {
+  if (!restaurantDetails) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
-      {restaurant.map((restodetail) => (
-        <div key={restodetail._id}>
-          <p>{restodetail.restaurat_name}</p>
-        </div>
-      ))}
+      <p>{restaurant.restaurant_name}</p>
+      <p>{restaurant.telephone}</p>
+
+      <p>{restaurant.adress}</p>
     </div>
   );
 };
