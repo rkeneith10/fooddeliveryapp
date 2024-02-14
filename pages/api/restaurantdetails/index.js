@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import restaurants from "../models/restaurants";
 import connectDB from "../utils/database";
 
@@ -18,7 +19,7 @@ const handler = async (req, res) => {
 
   try {
     const restaurantDetails = await restaurants.findOne({
-      _id: new Object(restaurantId),
+      _id: ObjectId(restaurantId),
     });
 
     if (!restaurantDetails) {
