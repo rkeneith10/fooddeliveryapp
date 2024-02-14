@@ -23,7 +23,7 @@ export async function getStaticProps() {
       revalidate: 3600,
     };
   } catch (error) {
-    console.log("erroe fetch data", error);
+    console.log("Error fetch data", error);
     return {
       props: {
         categories: [],
@@ -81,12 +81,14 @@ export default function index({ categories, restaurants }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {restaurants.map((resto) => (
               <div key={resto._id}>
-                <RestaurantComponent
-                  restaurant_name={resto.restaurant_name}
-                  telephone={resto.telephone}
-                  imageUrl={resto.imageUrl}
-                  adress={resto.adress}
-                />
+                <Link href={`/restaurants/${resto._id}`}>
+                  <RestaurantComponent
+                    restaurant_name={resto.restaurant_name}
+                    telephone={resto.telephone}
+                    imageUrl={resto.imageUrl}
+                    adress={resto.adress}
+                  />
+                </Link>
               </div>
             ))}
           </div>
