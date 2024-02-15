@@ -33,7 +33,7 @@ function RestaurantDetail() {
     };
 
     fetchData();
-  }, [restaurantId]); // Re-fetch on postId change
+  }, []); // Re-fetch on postId change
 
   if (error) {
     return <p>Error loading post: {error}</p>;
