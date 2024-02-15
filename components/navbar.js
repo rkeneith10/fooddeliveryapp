@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-export default function navbar() {
+export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
 

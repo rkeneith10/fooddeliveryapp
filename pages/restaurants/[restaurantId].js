@@ -1,7 +1,10 @@
 "use client";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import "tailwindcss/tailwind.css";
 
 function RestaurantDetail() {
   const router = useRouter();
@@ -46,9 +49,36 @@ function RestaurantDetail() {
 
   return (
     <div>
-      <h1>{data.restaurant_name}</h1>
-      <p>{data.adress}</p>
-      {/* ... display other fields */}
+      <Navbar />
+      {isLoading ? (
+        <p>Loading</p>
+      ) : (
+        <>
+          <div
+            id="top"
+            className="h-[220px]  max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
+            style={{ backgroundImage: `url(${data.imageUrl})` }}
+          >
+            <div className="max-w-sceen">
+              <h1 className="text-3xl  text-white font-bold ">
+                {data.restaurant_name}
+              </h1>
+              <br />
+              <h4 className="text-xl   text-white font-normal ">
+                {data.adress}
+              </h4>
+              <br />
+            </div>
+          </div>
+
+          {data.menus.length === 0 ? (
+            <div className="bg-gray-100">This restaurabt has no menu yet</div>
+          ) : (
+            data.menus.map((dt) => <p>{dt.menuItem}</p>)
+          )}
+        </>
+      )}
+      <Footer />
     </div>
   );
 }
