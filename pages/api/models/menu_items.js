@@ -18,7 +18,7 @@ const schemaMenu_item = new mongoose.Schema({
   price: {
     type: Number,
   },
-  imageURL: {
+  imageUrl: {
     type: String,
   },
   cloudinary_id: {
