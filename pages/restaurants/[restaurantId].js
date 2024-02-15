@@ -44,7 +44,12 @@ function RestaurantDetail({ data, error }) {
           This restaurant currently has no menu available.
         </div>
       ) : (
-        data.menus.map((dt) => <p>{dt.menuItem}</p>)
+        data.menus.map((dt) => (
+          <>
+            <p>{dt.item_name}</p>
+            <p>{dt.description}</p>
+          </>
+        ))
       )}
       <Footer />
     </div>
