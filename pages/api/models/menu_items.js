@@ -21,6 +21,9 @@ const schemaMenu_item = new mongoose.Schema({
   imageURL: {
     type: String,
   },
+  cloudinary_id: {
+    type: String,
+  },
 });
 
 const menu_items =
