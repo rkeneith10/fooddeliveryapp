@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import axios from "axios";
+import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
 function RestaurantDetail({ data, error }) {
@@ -14,6 +15,11 @@ function RestaurantDetail({ data, error }) {
 
   return (
     <div>
+      <Head>
+        <title>{data.restaurant_name}</title>
+        <meta name="description" content={data.restaurant_name} />
+        {/* Add other meta tags here */}
+      </Head>
       <Navbar />
       <div
         id="top"
