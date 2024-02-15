@@ -46,8 +46,11 @@ function RestaurantDetail({ data, error }) {
       ) : (
         data.menus.map((dt) => (
           <>
-            <p>{dt.item_name}</p>
-            <p>{dt.description}</p>
+            <div className="p-5 bg-gray-100">
+              {" "}
+              <p>{dt.item_name}</p>
+              <p>{dt.description}</p>
+            </div>
           </>
         ))
       )}
