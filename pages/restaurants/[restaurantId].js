@@ -72,7 +72,9 @@ function RestaurantDetail() {
           </div>
 
           {data.menus.length === 0 ? (
-            <div className="bg-gray-100">This restaurabt has no menu yet</div>
+            <div className="bg-gray-100 p-4 text-center">
+              This restaurant currently has no menu available.
+            </div>
           ) : (
             data.menus.map((dt) => <p>{dt.menuItem}</p>)
           )}
