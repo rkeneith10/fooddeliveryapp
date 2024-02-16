@@ -4,7 +4,7 @@ import connectDB from "../utils/database";
 
 const handler = async (req, res) => {
   await connectDB();
-  if (req.method === "GET") {
+  if (req.method === "POST") {
     try {
       const { menuItemId } = req.body;
 
