@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   await connectDB();
   if (req.method === "GET") {
     try {
-      const { menuItemId } = req.params;
+      const { menuItemId } = req.query;
 
       if (!menuItemId || !isValidObjectId(menuItemId)) {
         return res.status(400).json({ error: "Invalid menuItem  ID" });
@@ -32,8 +32,6 @@ const handler = async (req, res) => {
       console.error(error); // Log for debugging
       return res.status(500).json({ error: "Internal server error" });
     }
-  } else {
-    return res.status(405).json({ error: "Method Not Allowed" }); // 405 Method Not Allowed
   }
 };
 
