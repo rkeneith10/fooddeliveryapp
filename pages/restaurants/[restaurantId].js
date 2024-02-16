@@ -3,12 +3,18 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import axios from "axios";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import BackgoundImg from "../../public/images/resto.JPG";
 
 function RestaurantDetail({ data, error }) {
   const [activeCategory, setActiveCategory] = useState(null);
+
+  useEffect(() => {
+    if (data && data.menus.length > 0) {
+      setActiveCategory(data.menus[0].category);
+    }
+  }, [data]);
   if (error) {
     return <p>Error loading post: {error}</p>;
   }
@@ -65,9 +71,7 @@ function RestaurantDetail({ data, error }) {
           {categoriesWithMenus.map((category, index) => (
             <button
               key={index}
-              onClick={() =>
-                setActiveCategory(category === activeCategory ? null : category)
-              }
+              onClick={() => setActiveCategory(category)}
               className={`p-2 rounded ${
                 category === activeCategory
                   ? "bg-blue-500 text-white"
