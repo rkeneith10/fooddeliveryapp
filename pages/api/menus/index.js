@@ -69,7 +69,7 @@ const handler = async (req, res) => {
   } else if (req.method === "GET") {
     const response = await menu_item.find({});
     if (response) {
-      res.status(200).json({ data: response });
+      res.status(200).json({ success: true, all: response });
     }
   }
 };
