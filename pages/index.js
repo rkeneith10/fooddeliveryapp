@@ -1,6 +1,6 @@
 import CategoryComponent from "@/components/categoryComponent";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+// import Footer from "@/components/footer";
+// import Navbar from "@/components/navbar";
 import RestaurantComponent from "@/components/restaurantsComponent";
 import Head from "next/head";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function index({ categories, restaurants }) {
           />
           {/* Add other meta tags here */}
         </Head>
-        <Navbar />
+        {/* <Navbar /> */}
         <div
           id="top"
           className="h-[400px]  max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
@@ -103,7 +103,7 @@ export default function index({ categories, restaurants }) {
             ))}
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
