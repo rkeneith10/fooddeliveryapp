@@ -31,7 +31,7 @@ export async function getServerSideProps({ context }) {
 
   try {
     const response = await axios.get(
-      `https://fooddelivery-kappa.vercel.app/api/menus?menuItemId=${menuItemId}`
+      `https://fooddelivery-kappa.vercel.app/api/menus/${menuItemId}`
     );
 
     data = response.data;
