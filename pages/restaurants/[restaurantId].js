@@ -68,7 +68,7 @@ function RestaurantDetail({ data, error }) {
           This restaurant currently has no menu available.
         </div>
       ) : (
-        <div className="flex overflow-x-auto space-x-4 p-4 bg-gray-200">
+        <div className="flex overflow-x-auto space-x-4 p-4 ">
           {categoriesWithMenus.map((category, index) => (
             <button
               key={index}
@@ -76,7 +76,7 @@ function RestaurantDetail({ data, error }) {
               className={`p-2 rounded ${
                 category === activeCategory
                   ? "bg-[#4CAF50] text-white"
-                  : "bg-white text-[#4CAF50]"
+                  : "bg-gray-300 text-[#4CAF50]"
               }`}
             >
               {category}
@@ -88,7 +88,7 @@ function RestaurantDetail({ data, error }) {
       {activeCategory && (
         <div>
           {/* <h2>{activeCategory}</h2> */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
             {data.menus
               .filter((menu) => menu.category === activeCategory)
               .map((menu, menuIndex) => (
