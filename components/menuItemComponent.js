@@ -7,7 +7,7 @@ export default function MenuItemComponent({
   price,
 }) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-1 mb-2 h-[250px]">
+    <div className="bg-white rounded-lg shadow-md p-1 mb-2">
       <CldImage
         src={imageUrl}
         alt={item_name}
