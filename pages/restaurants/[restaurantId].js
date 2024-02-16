@@ -95,7 +95,7 @@ function RestaurantDetail({ data, error }) {
               {data.menus
                 .filter((menu) => menu.category === activeCategory)
                 .map((menu, menuIndex) => (
-                  <div key={menuIndex} className="p-4 ">
+                  <div key={menuIndex} className="p-8 ">
                     <MenuItemComponent
                       item_name={menu.item_name}
                       imageUrl={menu.imageUrl}
