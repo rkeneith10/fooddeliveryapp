@@ -25,7 +25,7 @@ function RestaurantDetail({ data, error }) {
         id="top"
         className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative"
         style={{
-          backgroundImage: `url(${data.imageUrl})`,
+          backgroundImage: `url(${data.imageUrl.src})`,
         }}
       >
         {/* Overlay to improve text readability */}
