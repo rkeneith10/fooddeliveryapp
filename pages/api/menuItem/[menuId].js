@@ -4,9 +4,9 @@ import connectDB from "../utils/database";
 
 const handler = async (req, res) => {
   await connectDB();
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     try {
-      const { menuItemId } = req.body;
+      const { menuItemId } = req.params;
 
       if (!menuItemId || !isValidObjectId(menuItemId)) {
         return res.status(400).json({ error: "Invalid menuItem  ID" });
