@@ -1,35 +1,43 @@
-import menuItems from "../models/menu_items";
+import menu_item from "../models/menu_items";
 import connectDB from "../utils/database";
 
 const handler = async (req, res) => {
-  // Connect to the database
   await connectDB();
   if (req.method === "GET") {
     try {
-      const { menuItemId } = req.query;
-      // if (!menuItemId || !isValidObjectId(menuItemId)) {
-      //   return res.status(400).json({ error: "Invalid menuItem ID" });
-      // }
+      const menuItemId = req.query.menuItemId;
 
-      const detailmenuItem = await menuItems.findOne({ _id: menuItemId });
-      if (!detailmenuItem) {
+      // Validation de l'ID
+      if (
+        !menuItemId ||
+        menuItemId.length !== 24 ||
+        !/^[0-9a-fA-F]{24}$/.test(menuItemId)
+      ) {
+        return res.status(400).json({ error: "Invalid menuItem ID" });
+      }
+
+      const detailMenuItem = await menu_item.findOne({ _id: menuItemId });
+      if (!detailMenuItem) {
         return res.status(404).json({ error: "Post not found" });
       }
-      const responseData = {
-        menuItemId: detailmenuItem._id,
-        restaurant_name: detailmenuItem.restaurant_name,
-        item_name: detailmenuItem.item_name,
-        category: detailmenuItem.category,
-        price: detailmenuItem.price,
-        imageUrl: detailmenuItem.imageUrl,
 
+      const responseData = {
+        menuItemId: detailMenuItem._id,
+        restaurant_name: detailMenuItem.restaurant_name,
+        item_name: detailMenuItem.item_name,
+        category: detailMenuItem.category,
+        imageUrl: detailMenuItem.imageUrl,
+        price: detailMenuItem.price,
         // ... other fields as needed
       };
+
       return res.status(200).json(responseData);
     } catch (error) {
       console.error(error); // Log for debugging
       return res.status(500).json({ error: "Internal server error" });
     }
+  } else {
+    return res.status(405).json({ error: "Method Not Allowed" }); // 405 Method Not Allowed
   }
 };
 
