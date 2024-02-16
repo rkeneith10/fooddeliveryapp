@@ -18,7 +18,7 @@ export default function MenuItemComponent({
         <CldImage
           src={imageUrl}
           alt={item_name}
-          className="w-full h-[160px] mb-1 "
+          className="w-full h-[130px] mb-1 "
         />
         <h3 className="text-xl font-semibold mb-1">{item_name}</h3>
         <p className="text-gray-700 mb-1">{description}</p>
