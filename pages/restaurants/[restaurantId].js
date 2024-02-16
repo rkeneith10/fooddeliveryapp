@@ -1,17 +1,28 @@
+"use client";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import axios from "axios";
 import Head from "next/head";
+import { useState } from "react";
 import "tailwindcss/tailwind.css";
+import BackgoundImg from "../../public/images/resto.JPG";
 
 function RestaurantDetail({ data, error }) {
+  const [activeCategory, setActiveCategory] = useState(null);
   if (error) {
     return <p>Error loading post: {error}</p>;
   }
 
   if (!data) {
-    return <p>Post not found</p>; // Handle non-existent post as well
+    return <p>Restaurant not found</p>; // Handle non-existent post as well
   }
+
+  const categoriesWithMenus = data.menus.reduce((categories, menu) => {
+    if (!categories.includes(menu.category)) {
+      categories.push(menu.category);
+    }
+    return categories;
+  }, []);
 
   return (
     <div>
@@ -25,7 +36,7 @@ function RestaurantDetail({ data, error }) {
         id="top"
         className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative"
         style={{
-          backgroundImage: `url(${data.imageUrl.src})`,
+          backgroundImage: `url(${BackgoundImg.src})`,
         }}
       >
         {/* Overlay to improve text readability */}
@@ -45,20 +56,41 @@ function RestaurantDetail({ data, error }) {
         </div>
       </div>
 
-      {data.menus.length === 0 ? (
+      {categoriesWithMenus.length === 0 ? (
         <div className="bg-gray-100 p-4 text-center">
           This restaurant currently has no menu available.
         </div>
       ) : (
-        data.menus.map((dt) => (
-          <>
-            <div className="p-5 bg-gray-100">
-              {" "}
-              <p>{dt.item_name}</p>
-              <p>{dt.description}</p>
-            </div>
-          </>
-        ))
+        <div className="flex overflow-x-auto space-x-4 p-4 bg-gray-200">
+          {categoriesWithMenus.map((category, index) => (
+            <button
+              key={index}
+              onClick={() =>
+                setActiveCategory(category === activeCategory ? null : category)
+              }
+              className={`p-2 rounded ${
+                category === activeCategory
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeCategory && (
+        <div>
+          <h2>{activeCategory}</h2>
+          {data.menus
+            .filter((menu) => menu.category === activeCategory)
+            .map((menu, menuIndex) => (
+              <div key={menuIndex} className="p-4 bg-gray-200">
+                <p>{menu.item_name}</p>
+              </div>
+            ))}
+        </div>
       )}
       <Footer />
     </div>
