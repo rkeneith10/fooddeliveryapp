@@ -1,4 +1,3 @@
-import { isValidObjectId } from "mongoose";
 import menu_item from "../models/menu_items";
 import connectDB from "../utils/database";
 
@@ -6,14 +5,15 @@ const handler = async (req, res) => {
   await connectDB();
   if (req.method === "GET") {
     try {
-      const { menuItemId } = req.query;
+      // const { menuItemId } = req.query;
 
-      // Validation de l'ID
-      if (!menuItemId || !isValidObjectId(menuItemId)) {
-        return res.status(400).json({ error: "Invalid menuItem  ID" });
-      }
+      // if (!menuItemId || !isValidObjectId(menuItemId)) {
+      //   return res.status(400).json({ error: "Invalid menuItem  ID" });
+      // }
 
-      const detailMenuItem = await menu_item.findOne({ _id: menuItemId });
+      const detailMenuItem = await menu_item.findOne({
+        _id: "65ce8b1b6a06c804f0bbf4d3",
+      });
       if (!detailMenuItem) {
         return res.status(404).json({ error: "Post not found" });
       }
