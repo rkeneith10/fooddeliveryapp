@@ -5,6 +5,7 @@ export default function MenuItemComponent({
   item_name,
   description,
   price,
+  item_id,
 }) {
   return (
     <div className="bg-white rounded-lg shadow-md p-1 mb-2">
@@ -16,6 +17,7 @@ export default function MenuItemComponent({
       <h3 className="text-xl font-semibold mb-1">{item_name}</h3>
       <p className="text-gray-700 mb-1">{description}</p>
       <p className="text-gray-800 font-semibold">HTG{price}</p>
+      <p>{item_id}</p>
     </div>
   );
 }

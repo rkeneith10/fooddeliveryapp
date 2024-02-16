@@ -101,6 +101,7 @@ function RestaurantDetail({ data, error }) {
                       imageUrl={menu.imageUrl}
                       description={menu.description}
                       price={menu.price}
+                      item_id={menu._id}
                     />
                   </div>
                 ))}
