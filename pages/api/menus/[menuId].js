@@ -1,8 +1,9 @@
 import { isValidObjectId } from "mongoose";
-import menu_item from "../models/menu_items";
+import menuItems from "../models/menu_items";
 import connectDB from "../utils/database";
 
 const handler = async (req, res) => {
+  // Connect to the database
   await connectDB();
   if (req.method === "GET") {
     try {
@@ -11,17 +12,17 @@ const handler = async (req, res) => {
         return res.status(400).json({ error: "Invalid menuItem ID" });
       }
 
-      const detailMenuItem = await menu_item.findOne({ _id: menuItemId });
-      if (!detailMenuItem) {
+      const detailmenuItem = await menuItems.findOne({ _id: menuItemId });
+      if (!detailmenuItem) {
         return res.status(404).json({ error: "Post not found" });
       }
       const responseData = {
-        menuItemId: detailMenuItem._id,
-        restaurant_name: detailMenuItem.restaurant_name,
-        item_name: detailMenuItem.item_name,
-        category: detailMenuItem.category,
-        imageUrl: detailMenuItem.imageUrl,
-        price: detailMenuItem.price,
+        menuItemId: detailmenuItem._id,
+        restaurant_name: detailmenuItem.restaurant_name,
+        item_name: detailmenuItem.item_name,
+        category: detailmenuItem.category,
+        price: detailmenuItem.price,
+        imageUrl: detailmenuItem.imageUrl,
 
         // ... other fields as needed
       };
@@ -32,4 +33,5 @@ const handler = async (req, res) => {
     }
   }
 };
+
 export default handler;
