@@ -67,23 +67,9 @@ const handler = async (req, res) => {
       )
       .end(req.file.buffer);
   } else if (req.method === "GET") {
-    const response = await menu_item.aggregate([
-      {
-        $match: {
-          restaurant_name: req.body.restaurant_name,
-          category: req.body.category,
-        },
-      },
-      {
-        $group: {
-          _id: "$_id",
-          category: { $last: "$category" },
-          item_name: { $last: "$item_name" },
-        },
-      },
-    ]);
+    const response = await menu_item.find({});
     if (response) {
-      res.status(200).json(response);
+      res.status(200).json({ data: response });
     }
   }
 };
