@@ -1,5 +1,6 @@
 "use client";
 import Footer from "@/components/footer";
+import MenuItemComponent from "@/components/menuItemComponent";
 import Navbar from "@/components/navbar";
 import axios from "axios";
 import Head from "next/head";
@@ -74,8 +75,8 @@ function RestaurantDetail({ data, error }) {
               onClick={() => setActiveCategory(category)}
               className={`p-2 rounded ${
                 category === activeCategory
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300"
+                  ? "bg[#4CAF50] text-white"
+                  : "bg-white text-[#4CAF50]"
               }`}
             >
               {category}
@@ -86,14 +87,21 @@ function RestaurantDetail({ data, error }) {
 
       {activeCategory && (
         <div>
-          <h2>{activeCategory}</h2>
-          {data.menus
-            .filter((menu) => menu.category === activeCategory)
-            .map((menu, menuIndex) => (
-              <div key={menuIndex} className="p-4 bg-gray-200">
-                <p>{menu.item_name}</p>
-              </div>
-            ))}
+          {/* <h2>{activeCategory}</h2> */}
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-1">
+            {data.menus
+              .filter((menu) => menu.category === activeCategory)
+              .map((menu, menuIndex) => (
+                <div key={menuIndex} className="p-4 bg-gray-200">
+                  <MenuItemComponent
+                    item_name={menu.item_name}
+                    imageUrl={menu.imageUrl}
+                    description={menu.description}
+                    price={menu.price}
+                  />
+                </div>
+              ))}
+          </div>
         </div>
       )}
       <Footer />
