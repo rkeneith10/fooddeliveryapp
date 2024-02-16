@@ -1,3 +1,4 @@
+import axios from "axios";
 import Layout from "../layout";
 
 function MenuItem({ data, error }) {
@@ -23,14 +24,14 @@ function MenuItem({ data, error }) {
 }
 
 export async function getServerSideProps({ context }) {
-  const { MenuItemId } = context.query || {};
+  const { menuItemId } = context.query || {};
 
   let data = null;
   let error = null;
 
   try {
     const response = await axios.get(
-      `https://fooddelivery-kappa.vercel.app/api/menus?menuItemId=${MenuItemId}`
+      `https://fooddelivery-kappa.vercel.app/api/menus?menuItemId=${menuItemId}`
     );
 
     data = response.data;
