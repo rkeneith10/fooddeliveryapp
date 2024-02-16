@@ -86,13 +86,13 @@ function RestaurantDetail({ data, error }) {
       )}
 
       {activeCategory && (
-        <div>
+        <div className="bg-gray-200">
           {/* <h2>{activeCategory}</h2> */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
             {data.menus
               .filter((menu) => menu.category === activeCategory)
               .map((menu, menuIndex) => (
-                <div key={menuIndex} className="p-4 bg-gray-200">
+                <div key={menuIndex} className="p-4 ">
                   <MenuItemComponent
                     item_name={menu.item_name}
                     imageUrl={menu.imageUrl}
