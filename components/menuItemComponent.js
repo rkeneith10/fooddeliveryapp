@@ -22,7 +22,7 @@ export default function MenuItemComponent({
         />
         <h5 className="text-xl font-semibold mb-1">{item_name}</h5>
         <p className="text-gray-700 mb-1">{description}</p>
-        <p className="text-gray-800 font-semibold">HTG{price}</p>
+        <p className="text-gray-800 font-semibold">HTG {price}</p>
         <p className="hidden">{item_id}</p>
       </div>
     </div>
