@@ -10,7 +10,7 @@ export default function MenuItemComponent({
 }) {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`../menu/${item_id}`);
+    router.push(`/menu/${item_id}`);
   };
   return (
     <div onClick={handleClick}>
