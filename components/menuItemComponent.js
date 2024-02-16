@@ -13,9 +13,9 @@ export default function MenuItemComponent({
         alt={item_name}
         className="w-full h-[160px] mb-1 rounded-lg"
       />
-      <h2 className="text-xl font-bold mb-1">{item_name}</h2>
+      <h3 className="text-xl font-semibold mb-1">{item_name}</h3>
       <p className="text-gray-700 mb-1">{description}</p>
-      <p className="text-gray-800 font-bold">HTG{price}</p>
+      <p className="text-gray-800 font-semibold">HTG{price}</p>
     </div>
   );
 }
