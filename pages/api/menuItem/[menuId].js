@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   await connectDB();
   if (req.method === "GET") {
     try {
-      const { menuItemId } = req.query;
+      const { menuItemId } = req.body;
 
       if (!menuItemId || !isValidObjectId(menuItemId)) {
         return res.status(400).json({ error: "Invalid menuItem  ID" });
