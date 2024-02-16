@@ -7,17 +7,15 @@ export default function MenuItemComponent({
   price,
 }) {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-2 my-2 h-[250px] md:h-[240px]">
-      <div className="px-6 py-2 mt-2">
-        <CldImage src={imageUrl} className="w-[150px] h-[150px] rounded-lg" />
-      </div>
-      <div className="px-6 py-2">
-        <div className=" mb-1 text-center flex">
-          <h5>{item_name}</h5>
-          <p>{description}</p>
-          <p>HTG{price}</p>{" "}
-        </div>
-      </div>
+    <div className="bg-white rounded-lg shadow-md p-4 mb-4">
+      <CldImage
+        src={imageUrl}
+        alt={item_name}
+        className="w-full h-auto mb-4 rounded-lg"
+      />
+      <h2 className="text-xl font-bold mb-2">{item_name}</h2>
+      <p className="text-gray-700 mb-2">{description}</p>
+      <p className="text-gray-800 font-bold">HTG{price}</p>
     </div>
   );
 }

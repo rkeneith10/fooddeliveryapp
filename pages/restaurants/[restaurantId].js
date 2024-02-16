@@ -75,7 +75,7 @@ function RestaurantDetail({ data, error }) {
               onClick={() => setActiveCategory(category)}
               className={`p-2 rounded ${
                 category === activeCategory
-                  ? "bg[#4CAF50] text-white"
+                  ? "bg-[#4CAF50] text-white"
                   : "bg-white text-[#4CAF50]"
               }`}
             >
@@ -88,7 +88,7 @@ function RestaurantDetail({ data, error }) {
       {activeCategory && (
         <div>
           {/* <h2>{activeCategory}</h2> */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {data.menus
               .filter((menu) => menu.category === activeCategory)
               .map((menu, menuIndex) => (
