@@ -36,8 +36,8 @@ function MenuItem({ data, error }) {
                   {data.item_name}
                 </h3>
                 <div className="flex flex-row justify-between mb-4">
-                  <h4 className="font-semibold ">Price</h4>
-                  <p>
+                  <h4 className="font-bold ">Price</h4>
+                  <p className="font-bold">
                     <span className="text-[#4CAF50]">HTG </span>
                     {data.price}
                   </p>
