@@ -76,7 +76,7 @@ function MenuItem({ data, error }) {
                 </div>
 
                 <div className="items-center">
-                  <button className="bg-[#4CAF50] px-20 py-2 text-white ">
+                  <button className="bg-[#4CAF50] w-full py-2 text-white ">
                     Add to Cart
                   </button>
                 </div>
