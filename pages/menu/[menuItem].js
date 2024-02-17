@@ -23,8 +23,8 @@ function MenuItem({ data, error }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const { menuItemId } = query || {};
+export async function getServerSideProps({ context }) {
+  const { menuItemId } = context.query || {};
 
   let data = null;
   let error = null;
