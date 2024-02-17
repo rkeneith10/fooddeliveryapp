@@ -1,5 +1,4 @@
 import { CldImage } from "next-cloudinary";
-import { useRouter } from "next/router";
 
 export default function MenuItemComponent({
   imageUrl,
@@ -8,12 +7,8 @@ export default function MenuItemComponent({
   price,
   item_id,
 }) {
-  const router = useRouter();
-  const handleClick = () => {
-    router.push(`../menu/${item_id}`);
-  };
   return (
-    <div onClick={handleClick} className="cursor-pointer">
+    <div className="cursor-pointer">
       <div className="bg-white rounded-lg shadow-md p-1 mb-2">
         <CldImage
           src={imageUrl}
@@ -22,8 +17,9 @@ export default function MenuItemComponent({
         />
         <h5 className="text-md font-semibold mb-1">{item_name}</h5>
         <p className="text-gray-700 mb-1">{description}</p>
-        <p className="text-gray-800 font-semibold">HTG {price}</p>
-        <p className="hidden">{item_id}</p>
+        <p className="text-gray-800 font-semibold">
+          <span className="text-[#4CAF50]">HTG </span> {price}
+        </p>
       </div>
     </div>
   );

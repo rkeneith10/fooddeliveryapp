@@ -1,9 +1,10 @@
 "use client";
-// import Footer from "@/components/footer";
+
 import MenuItemComponent from "@/components/menuItemComponent";
-// import Navbar from "@/components/navbar";
+
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import BackgoundImg from "../../public/images/resto.JPG";
@@ -40,7 +41,7 @@ function RestaurantDetail({ data, error }) {
           <meta name="description" content={data.restaurant_name} />
           {/* Add other meta tags here */}
         </Head>
-        {/* <Navbar /> */}
+
         <div
           id="top"
           className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative"
@@ -96,19 +97,19 @@ function RestaurantDetail({ data, error }) {
                 .filter((menu) => menu.category === activeCategory)
                 .map((menu, menuIndex) => (
                   <div key={menuIndex} className="p-8 ">
-                    <MenuItemComponent
-                      item_name={menu.item_name}
-                      imageUrl={menu.imageUrl}
-                      description={menu.description}
-                      price={menu.price}
-                      item_id={menu._id}
-                    />
+                    <Link href={`/menu/${menu._id}`}>
+                      <MenuItemComponent
+                        item_name={menu.item_name}
+                        imageUrl={menu.imageUrl}
+                        description={menu.description}
+                        price={menu.price}
+                      />
+                    </Link>
                   </div>
                 ))}
             </div>
           </div>
         )}
-        {/* <Footer /> */}
       </Layout>
     </div>
   );
