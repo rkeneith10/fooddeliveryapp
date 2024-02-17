@@ -5,6 +5,7 @@ import Layout from "../layout";
 
 function MenuItem({ data, error }) {
   const [count, setCount] = useState(1);
+  const [specialRequest, setSpecialRequest] = useState("");
 
   const decrement = () => {
     if (count > 1) {
@@ -15,6 +16,32 @@ function MenuItem({ data, error }) {
   const increment = () => {
     setCount(count + 1);
   };
+
+  const addToCart = () => {
+    const cartItem = {
+      id: data._id, // Ajoutez ici l'identifiant unique de l'élément
+      name: data.item_name,
+      price: data.price,
+      quantity: count,
+      specialRequest: specialRequest,
+    };
+
+    // Récupérez le panier existant depuis le stockage local
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Ajoutez le nouvel élément au panier
+    const updatedCart = [...existingCart, cartItem];
+
+    // Mettez à jour le panier dans le stockage local
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    // Réinitialisez les champs
+    setCount(1);
+    setSpecialRequest("");
+
+    alert("Item added to cart!");
+  };
+
   if (error) {
     return <p>Error loading post: {error}</p>;
   }
@@ -49,6 +76,8 @@ function MenuItem({ data, error }) {
 
                 <div className="mb-3">
                   <textarea
+                    value={specialRequest}
+                    onChange={(e) => setSpecialRequest(e.target.value)}
                     placeholder="Your preferences or requests"
                     class="w-full h-32 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
                   ></textarea>
