@@ -35,10 +35,10 @@ function MenuItem({ data, error }) {
                 <h3 className="font-bold text-xl text-gray-900 mb-2">
                   {data.item_name}
                 </h3>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between mb-4">
                   <h4 className="font-semibold ">Price</h4>
                   <p>
-                    <span className="text-[#4CAF50]">HTG</span>
+                    <span className="text-[#4CAF50]">HTG </span>
                     {data.price}
                   </p>
                 </div>
@@ -54,15 +54,31 @@ function MenuItem({ data, error }) {
                   ></textarea>
                 </div>
 
-                <div className="flex flex-row justify-between">
-                  <button onClick={decrement}>-</button>
+                <div className="flex flex-row justify-between mb-4">
+                  <button
+                    onClick={decrement}
+                    className="bg-gray-300 px-4 py-2 text-white "
+                  >
+                    -
+                  </button>
                   <input
                     type="text"
                     className="px-4 py-2 w-16 text-center border border-gray-300 focus:outline-none"
                     value={count}
                     readOnly
                   />
-                  <button onClick={increment}>+</button>
+                  <button
+                    onClick={increment}
+                    className="bg-[#4CAF50] px-4 py-2 text-white "
+                  >
+                    +
+                  </button>
+                </div>
+
+                <div>
+                  <button className="bg-[#4CAF50] px-10 py-2 text-white">
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>
