@@ -10,13 +10,15 @@ export default function MenuItemComponent({
   return (
     <div className="cursor-pointer">
       <div className="bg-white rounded-lg shadow-md p-1 mb-2">
-        <CldImage
-          src={imageUrl}
-          alt={item_name}
-          width={150}
-          height={150}
-          className=" mb-1 "
-        />
+        <div className="h-100 w-100 relative overflow-hidden  mb-1">
+          <CldImage
+            src={imageUrl}
+            alt={item_name}
+            className="h-full w-full object-cover object-center"
+            priority
+            fill={true}
+          />
+        </div>
         <div className="p-3">
           <h5 className="text-md font-semibold mb-1">{item_name}</h5>
 
