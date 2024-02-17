@@ -24,7 +24,8 @@ function MenuItem({ data, error }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const { menuItemId } = query || {}; // Assurez-vous de récupérer query de context
+  const { menuItemId } = query || {};
+  console.log(menuItemId); // Assurez-vous de récupérer query de context
 
   let data = null;
   let error = null;
