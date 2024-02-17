@@ -27,7 +27,7 @@ export default function Navbar() {
           <Link href="/">FOOD APP</Link>
         </div>
 
-        <ul className="hidden md:flex md:pl-25  font-normal text-xl">
+        <ul className="hidden md:flex md:pl-25  font-normal text-md">
           <li className="mr-4 lg:mr-8 cursor-pointer">
             <Link href="/">Home</Link>
           </li>
@@ -101,7 +101,7 @@ export default function Navbar() {
           }
         >
           <div className="w-full">
-            <ul className="  font-normal text-xl ">
+            <ul className="  font-normal text-md ">
               <li className="py-5 cursor-pointer">
                 <Link href="/" onClick={handleSmalleNavigation}>
                   Home

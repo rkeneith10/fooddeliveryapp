@@ -1,6 +1,8 @@
+"use client";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Montserrat } from "next/font/google";
+import { ProgressLoader } from "nextjs-progressloader";
 
 import "tailwindcss/tailwind.css";
 
@@ -9,6 +11,7 @@ const Layout = ({ children }) => {
   return (
     <html lang="en">
       <body className={montserrat.className}>
+        <ProgressLoader />
         <Navbar />
         {children}
         <Footer />
