@@ -14,14 +14,20 @@ function MenuItem({ data, error }) {
   return (
     <div>
       <Layout>
-        <div className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40 ">
+        <div className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center  ">
           <div className="pt-5 pl-10 pr-5 bg-gray-200 rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
             <div>
               <CldImage src={data.imageUrl} className="w-full h-[200px] mb-4" />
 
-              <p className="font-normal text-md">
-                You are placing an order with {data.restaurant_name}
-              </p>
+              <div className="p-7 lg:p-40">
+                <h3 className="font-bold text-xl text-gray-900">
+                  Information about the order
+                </h3>
+
+                <p className="font-normal text-md">
+                  You are placing an order with {data.restaurant_name}
+                </p>
+              </div>
             </div>
           </div>
         </div>
