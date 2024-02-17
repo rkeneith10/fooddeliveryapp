@@ -19,7 +19,7 @@ function MenuItem({ data, error }) {
             <div>
               <CldImage src={data.imageUrl} className="w-full h-[200px] mb-4" />
 
-              <div className="p-7 lg:p-40">
+              <div className="p-7 lg:p-20">
                 <h3 className="font-bold text-xl text-gray-900">
                   Information about the order
                 </h3>
