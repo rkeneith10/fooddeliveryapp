@@ -15,11 +15,13 @@ export default function MenuItemComponent({
           alt={item_name}
           className="w-full h-[130px] mb-1 "
         />
-        <h5 className="text-md font-semibold mb-1">{item_name}</h5>
-        <p className="text-gray-700 mb-1">{description}</p>
-        <p className="text-gray-800 font-semibold">
-          <span className="text-[#4CAF50]">HTG </span> {price}
-        </p>
+        <div className="p-3">
+          <h5 className="text-md font-semibold mb-1">{item_name}</h5>
+
+          <p className="text-gray-800 font-semibold">
+            <span className="text-[#4CAF50]">HTG </span> {price}
+          </p>
+        </div>
       </div>
     </div>
   );
