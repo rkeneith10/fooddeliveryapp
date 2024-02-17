@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <ProgressLoader />
+        <ProgressLoader color="#4CAF50" />
         <Navbar />
         {children}
         <Footer />
