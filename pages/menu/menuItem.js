@@ -1,6 +1,5 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
-import BackImage1 from "../../public/images/foodapp.PNG";
 import Layout from "../layout";
 
 function MenuItem({ data, error }) {
@@ -15,22 +14,28 @@ function MenuItem({ data, error }) {
   return (
     <div>
       <Layout>
-        <div
-          className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(${BackImage1.src})` }}
-        >
-          <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-lg sm:w-full lg:w-[440px]  h-auto flex flex-col">
+        <div className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200  ">
+          <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
             <div>
               <CldImage src={data.imageUrl} className="w-full h-[200px] mb-4" />
 
               <div className="p-4">
-                <h3 className="font-bold text-xl text-gray-900">
-                  Information about the order
+                <h3 className="font-bold text-xl text-gray-900 mb-2">
+                  {data.item_name}
                 </h3>
+                <div className="flex flex-row justify-between">
+                  <h4>Price</h4>
+                  <p>
+                    <span>HTG</span>
+                    {data.price}
+                  </p>
+                </div>
 
-                <p className="font-normal text-md">
-                  You are placing an order with {data.restaurant_name}
-                </p>
+                <div className="text-md font-semibold">Special request</div>
+
+                <div>
+                  <textarea class="w-full h-32 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                </div>
               </div>
             </div>
           </div>
