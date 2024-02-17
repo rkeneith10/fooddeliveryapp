@@ -116,6 +116,7 @@ function RestaurantDetail({ data, error }) {
 
 export async function getServerSideProps(context) {
   const { restaurantId } = context.query || {};
+  console.log("resto " + restaurantId);
   let data = null;
   let error = null;
 
