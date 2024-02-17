@@ -1,9 +1,20 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
+import { useState } from "react";
 import Layout from "../layout";
-import { useState } from React;
 
 function MenuItem({ data, error }) {
+  const [count, setCount] = useState(1);
+
+  const decrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
+  const increment = () => {
+    setCount(count + 1);
+  };
   if (error) {
     return <p>Error loading post: {error}</p>;
   }
@@ -11,22 +22,6 @@ function MenuItem({ data, error }) {
   if (!data) {
     return <p>Restaurant not found</p>; // Handle non-existent post as well
   }
-
-
-  
-    const [count, setCount] = useState(1);
-  
-    const decrement = () => {
-      if (count > 1) {
-        setCount(count - 1);
-      }
-    };
-  
-    const increment = () => {
-      setCount(count + 1);
-    };
-  
-  
 
   return (
     <div>
