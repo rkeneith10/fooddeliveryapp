@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import Layout from "../layout";
+import { useState } from React;
 
 function MenuItem({ data, error }) {
   if (error) {
@@ -10,6 +11,22 @@ function MenuItem({ data, error }) {
   if (!data) {
     return <p>Restaurant not found</p>; // Handle non-existent post as well
   }
+
+
+  
+    const [count, setCount] = useState(1);
+  
+    const decrement = () => {
+      if (count > 1) {
+        setCount(count - 1);
+      }
+    };
+  
+    const increment = () => {
+      setCount(count + 1);
+    };
+  
+  
 
   return (
     <div>
@@ -24,17 +41,33 @@ function MenuItem({ data, error }) {
                   {data.item_name}
                 </h3>
                 <div className="flex flex-row justify-between">
-                  <h4>Price</h4>
+                  <h4 className="font-semibold ">Price</h4>
                   <p>
-                    <span>HTG</span>
+                    <span className="text-[#4CAF50]">HTG</span>
                     {data.price}
                   </p>
                 </div>
 
+                <div class="border-t border-gray-300 mb-4"></div>
+
                 <div className="text-md font-semibold">Special request</div>
 
-                <div>
-                  <textarea class="w-full h-32 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                <div className="mb-3">
+                  <textarea
+                    placeholder="Your preferences or requests"
+                    class="w-full h-32 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
+                  ></textarea>
+                </div>
+
+                <div className="flex flex-row justify-between">
+                  <button onClick={decrement}>-</button>
+                  <input
+                    type="text"
+                    className="px-4 py-2 w-16 text-center border border-gray-300 focus:outline-none"
+                    value={count}
+                    readOnly
+                  />
+                  <button onClick={increment}>+</button>
                 </div>
               </div>
             </div>
