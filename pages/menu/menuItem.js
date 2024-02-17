@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CldImage } from "next-cloudinary";
 import Layout from "../layout";
 
 function MenuItem({ data, error }) {
@@ -13,11 +14,21 @@ function MenuItem({ data, error }) {
   return (
     <div>
       <Layout>
-        <div className="p-20">
+        <div className="pt-5 pl-10 pr-5 bg-gray-200 rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
+          <div>
+            <CldImage src={data.imageUrl} className="w-full h-[200px] mb-4" />
+
+            <p className="font-normal text-md">
+              You are placing an order with {data.restaurant_name}
+            </p>
+          </div>
+        </div>
+
+        {/* <div className="p-20">
           <p>{data.restaurant_name}</p>
           <p>{data.item_name}</p>
           <p>{data.price}</p>
-        </div>
+        </div> */}
       </Layout>
     </div>
   );
