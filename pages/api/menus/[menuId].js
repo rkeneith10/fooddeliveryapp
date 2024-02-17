@@ -2,7 +2,7 @@ import { isValidObjectId } from "mongoose";
 import menu_item from "../models/menu_items";
 import connectDB from "../utils/database";
 
-const handler = async (req, res, { params }) => {
+const handler = async (req, res) => {
   // Connect to the database
   await connectDB();
 
@@ -10,7 +10,7 @@ const handler = async (req, res, { params }) => {
   if (req.method === "GET") {
     try {
       // Get the menu item ID from the query
-      const menuItemId = params.menuItemId;
+      const { menuItemId } = req.query;
 
       // Validate the ID
       if (!menuItemId || !isValidObjectId(menuItemId)) {
