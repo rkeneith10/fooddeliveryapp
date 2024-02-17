@@ -81,7 +81,7 @@ function RestaurantDetail({ data, error }) {
                 className={`p-2 rounded ${
                   category === activeCategory
                     ? "bg-[#4CAF50] text-white"
-                    : "bg-gray-300 text-[#4CAF50]"
+                    : "border border-[#4CAF50] text-[#4CAF50] bg-white"
                 }`}
               >
                 {category}
