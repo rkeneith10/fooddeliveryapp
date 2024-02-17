@@ -97,7 +97,7 @@ function RestaurantDetail({ data, error }) {
                 .filter((menu) => menu.category === activeCategory)
                 .map((menu, menuIndex) => (
                   <div key={menuIndex} className="p-8 ">
-                    <Link href={`/menu/${menu._id}`}>
+                    <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
                       <MenuItemComponent
                         item_name={menu.item_name}
                         imageUrl={menu.imageUrl}
