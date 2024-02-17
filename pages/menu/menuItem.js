@@ -37,10 +37,9 @@ function MenuItem({ data, error }) {
     setCount(1);
     setSpecialRequest("");
 
-    // alert("Item added to cart!");
-    toast("Item added to cart!");
+    toast.success("Item added to cart!");
   };
-  const notify = () => toast("Wow so easy!");
+
   if (error) {
     return <p>Error loading post: {error}</p>;
   }

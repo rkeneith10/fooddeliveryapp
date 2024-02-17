@@ -11,6 +11,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
@@ -19,6 +20,18 @@ export default function Navbar() {
   const handleSmalleNavigation = () => {
     setIcon(!menuIcon);
   };
+
+  // Fonction pour récupérer le contenu du panier depuis le stockage local
+  const getCartItemCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    setCartItemCount(totalItems);
+  };
+
+  // Mettre à jour la quantité d'articles dans le panier à chaque changement du contenu du panier
+  useEffect(() => {
+    getCartItemCount();
+  }, []);
 
   return (
     <header className="w-full bg-white text-[#4CAF50]">
@@ -79,6 +92,11 @@ export default function Navbar() {
         </ul>
         <div className="pl-[80px]   md:pr-10">
           <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
+          {cartItemCount > 0 && (
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[#4CAF50] rounded-full">
+              {cartItemCount}
+            </span>
+          )}
         </div>
 
         <div onClick={handleSmalleNavigation} className="flex md:hidden ">
