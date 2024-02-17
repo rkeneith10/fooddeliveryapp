@@ -57,7 +57,7 @@ function MenuItem({ data, error }) {
                 <div className="flex flex-row justify-between mb-4">
                   <button
                     onClick={decrement}
-                    className="bg-gray-300 px-4 py-2 text-white text-xl "
+                    className="bg-gray-300 px-4 py-2 text-white text-xl  rounded-sm"
                   >
                     -
                   </button>
@@ -69,14 +69,14 @@ function MenuItem({ data, error }) {
                   />
                   <button
                     onClick={increment}
-                    className="bg-[#4CAF50] px-4 py-2 text-white text-xl"
+                    className="bg-[#4CAF50] px-4 py-2 text-white text-xl rounded-sm"
                   >
                     +
                   </button>
                 </div>
 
                 <div className="items-center">
-                  <button className="bg-[#4CAF50] px-10 py-2 text-white ">
+                  <button className="bg-[#4CAF50] px-20 py-2 text-white ">
                     Add to Cart
                   </button>
                 </div>
