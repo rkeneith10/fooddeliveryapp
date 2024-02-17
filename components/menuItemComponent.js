@@ -10,7 +10,7 @@ export default function MenuItemComponent({
   return (
     <div className="cursor-pointer">
       <div className="bg-white rounded-lg shadow-md p-1 mb-2">
-        <div className="h-100 w-100 relative overflow-hidden  mb-1">
+        <div className="h-[150] w-full relative overflow-hidden  mb-1">
           <CldImage
             src={imageUrl}
             alt={item_name}
