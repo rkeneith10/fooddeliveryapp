@@ -23,15 +23,15 @@ function MenuItem({ data, error }) {
   );
 }
 
-export async function getServerSideProps({ context }) {
-  const { menuItemId } = context.query || {};
+export async function getServerSideProps({ query }) {
+  const { menuItemId } = query || {};
 
   let data = null;
   let error = null;
 
   try {
     const response = await axios.get(
-      `https://fooddelivery-kappa.vercel.app/api/menus/menuId?menuItemId=${menuItemId}`
+      `https://fooddelivery-kappa.vercel.app/api/menus/menuId/${menuItemId}`
     );
 
     data = response.data;

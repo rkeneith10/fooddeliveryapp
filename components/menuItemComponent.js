@@ -13,7 +13,7 @@ export default function MenuItemComponent({
     router.push(`../menu/${item_id}`);
   };
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className="cursor-pointer">
       <div className="bg-white rounded-lg shadow-md p-1 mb-2">
         <CldImage
           src={imageUrl}
