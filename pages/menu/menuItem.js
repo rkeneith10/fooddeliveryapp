@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
+import BackImage1 from "../../public/images/foodapp.PNG";
 import Layout from "../layout";
 
 function MenuItem({ data, error }) {
@@ -14,8 +15,11 @@ function MenuItem({ data, error }) {
   return (
     <div>
       <Layout>
-        <div className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center  ">
-          <div className="pt-5 pl-10 pr-5 bg-gray-200 rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
+        <div
+          className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: `url(${BackImage1.src})` }}
+        >
+          <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-lg sm:w-full lg:w-[440px]  h-auto flex flex-col">
             <div>
               <CldImage src={data.imageUrl} className="w-full h-[200px] mb-4" />
 
