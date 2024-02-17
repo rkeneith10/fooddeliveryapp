@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Montserrat } from "next/font/google";
 //import "./globals.css";
+import "tailwindcss/tailwind.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 const Layout = ({ children }) => {
