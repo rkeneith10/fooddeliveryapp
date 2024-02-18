@@ -34,11 +34,6 @@ export default function Navbar() {
     };
   }, []);
 
-  const getCartItems = () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    return cart;
-  };
-
   return (
     <header className="w-full bg-white text-[#4CAF50]">
       <nav className="max-w-[1366px] h-[100px] flex justify-between p-4 items-center">
