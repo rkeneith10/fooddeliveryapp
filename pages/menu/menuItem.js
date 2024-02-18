@@ -25,6 +25,8 @@ function MenuItem({ data, error }) {
     const cartItem = {
       id: data._id,
       name: data.item_name,
+      restaurant: data.restaurant_name,
+      imageUrl: data.imageUrl,
       price: data.price,
       quantity: count,
       specialRequest: specialRequest,
