@@ -12,6 +12,11 @@ export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [showCartPopUp, setShowCartPopUp] = useState(false);
+
+  const toggleCartPopUp = () => {
+    setShowCartPopUp(!showCartPopUp);
+  };
 
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
@@ -21,14 +26,6 @@ export default function Navbar() {
     setIcon(!menuIcon);
   };
 
-  // Fonction pour récupérer le contenu du panier depuis le stockage local
-  // const getCartItemCount = () => {
-  //   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  //   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  //   setCartItemCount(totalItems);
-  // };
-
-  // Mettre à jour la quantité d'articles dans le panier à chaque changement du contenu du panier
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
@@ -41,6 +38,11 @@ export default function Navbar() {
       window.removeEventListener("cartItemAdded", null);
     };
   }, []);
+
+  const getCartItems = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    return cart;
+  };
 
   return (
     <header className="w-full bg-white text-[#4CAF50]">
@@ -99,12 +101,24 @@ export default function Navbar() {
             )}
           </li>
         </ul>
-        <div className="pl-[80px]   md:pr-10">
+        <div className="pl-[80px]   md:pr-10" onClick={toggleCartPopUp}>
           <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
           {cartItemCount > 0 && (
             <span className="absolute top-10 right-22 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[#4CAF50] rounded-full">
               {cartItemCount}
             </span>
+          )}
+
+          {showCartPopUp && (
+            <div className="absolute top-15 right-28 mt-2 py-2 w-50 bg-white border rounded-lg shadow-xl z-10">
+              <ul>
+                {getCartItems().map((item, index) => (
+                  <li key={index} className="px-4 py-2 border-b">
+                    {item.name}-Quantity :{item.quantity}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
 
