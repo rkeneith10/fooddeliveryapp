@@ -5,21 +5,29 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "../layout";
 
 export default function Orders() {
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [cart, setCart] = useState([]);
 
+  // Fonction pour récupérer les éléments du panier
   const getCartItems = () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    return cart;
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
   };
 
-  // Calcul du prix total
+  // Mettre à jour le panier
+  const updateCart = (newCart) => {
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
+
+  // Calculer le prix total du panier
   const calculateTotalPrice = () => {
-    const cartItems = getCartItems();
-    const total = cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
-    setTotalPrice(total);
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  // Gérer le placement de la commande
+  const handleOrderPlacement = () => {
+    // Logique pour passer la commande
+    console.log("Order placed!");
   };
 
   return (
@@ -33,8 +41,7 @@ export default function Orders() {
             <div>
               <div className="p-4">
                 <h2>Information about the Order</h2>
-                {/* <h3>You are currently placing an order with {user}.</h3> */}
-                {getCartItems().map((item, index) => (
+                {cart.map((item, index) => (
                   <div key={index}>
                     <h2>{item.name}</h2>
                     <div className="flex flex-row justify-between">
@@ -44,13 +51,10 @@ export default function Orders() {
                   </div>
                 ))}
                 <div className="items-center">
-                  {totalPrice > 0 ? (
-                    <button className="bg-[#4CAF50] w-full py-2 text-white">
-                      Place your Order
-                    </button>
-                  ) : (
-                    <p>Your cart is empty</p>
-                  )}
+                  <button className="bg-[#4CAF50] w-full py-2 text-white">
+                    Place your Order
+                  </button>
+                  <p>Total Price: {calculateTotalPrice()}</p>
                 </div>
               </div>
             </div>
