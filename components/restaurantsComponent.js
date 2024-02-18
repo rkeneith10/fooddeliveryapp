@@ -7,7 +7,7 @@ const RestaurantComponent = ({
   imageUrl,
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full flex h-[200px]">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full flex h-[200px]  transition-transform transform hover:-translate-x-1">
       <div className="w-1/3">
         <CldImage className="object-cover h-full w-full" src={imageUrl} />
       </div>

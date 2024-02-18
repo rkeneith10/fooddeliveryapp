@@ -2,7 +2,7 @@ import { CldImage } from "next-cloudinary";
 
 export default function CategoryComponent({ imageUrl, category }) {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-2 my-2 h-[250px] md:h-[240px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-2 my-2 h-[250px] md:h-[240px]  transition-transform transform hover:-translate-x-1">
       <div className="h-[200px] w-full  relative overflow-hidden  mb-1">
         <CldImage
           src={imageUrl}

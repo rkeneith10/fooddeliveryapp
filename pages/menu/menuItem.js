@@ -97,7 +97,7 @@ function MenuItem({ data, error }) {
                     value={specialRequest}
                     onChange={(e) => setSpecialRequest(e.target.value)}
                     placeholder="Your preferences or requests"
-                    class="w-full h-32 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
+                    class="w-full h-20 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
                   ></textarea>
                 </div>
 
