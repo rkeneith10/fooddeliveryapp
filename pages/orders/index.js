@@ -52,6 +52,7 @@ export default function Orders() {
                     </div>
                   </div>
                 ))}
+                <p>Total Price: {calculateTotalPrice()}</p>
                 <div className="items-center">
                   <button
                     className="bg-[#4CAF50] w-full py-2 text-white"
@@ -59,7 +60,6 @@ export default function Orders() {
                   >
                     Place your Order
                   </button>
-                  <p>Total Price: {calculateTotalPrice()}</p>
                 </div>
               </div>
             </div>
