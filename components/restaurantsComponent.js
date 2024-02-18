@@ -1,4 +1,4 @@
-import { LocationMarker, Phone } from "@heroicons/react/24/outline";
+import { OutlineLocationMarker, OutlinePhone } from "@heroicons/react/24";
 import { CldImage } from "next-cloudinary";
 
 const RestaurantComponent = ({
@@ -16,13 +16,13 @@ const RestaurantComponent = ({
         <h2 className="text-xl font-bold mb-2">{restaurant_name}</h2>
         <p className="text-gray-700 mb-2">
           <span>
-            <LocationMarker className="h-7 w-7 text-[#4CAF50]" />
+            <OutlineLocationMarker className="h-7 w-7 text-[#4CAF50]" />
           </span>
           {adress}
         </p>
         <p className="text-gray-700 mb-2">
           <span>
-            <Phone className="h-7 w-7 text-[#4CAF50]" />
+            <OutlinePhone className="h-7 w-7 text-[#4CAF50]" />
           </span>
           {telephone}
         </p>
