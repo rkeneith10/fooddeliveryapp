@@ -6,13 +6,13 @@ export default function CategoryComponent({ imageUrl, category }) {
       <div className="h-[200px] w-full  relative overflow-hidden  mb-1">
         <CldImage
           src={imageUrl}
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-center rounded-full"
           priority
           fill={true}
         />
       </div>
       <div className="px-6 py-2">
-        <div className="font-medium text-medium mb-1 text-center">
+        <div className="font-normal text-medium mb-1 text-center">
           {category}
         </div>
       </div>
