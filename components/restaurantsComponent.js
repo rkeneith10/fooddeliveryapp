@@ -16,11 +16,11 @@ const RestaurantComponent = ({
       <div className="w-2/3 p-4">
         <h2 className="text-xl font-bold mb-2">{restaurant_name}</h2>
         <div className="flex items-center mb-2">
-          <FaLocationDot className="h-5 w-5 text-[#4CAF50] mr-2" />
+          <FaLocationDot className="h-5 w-5 text-gray-800 mr-2" />
           <p className="text-gray-700">{adress}</p>
         </div>
         <div className="flex items-center mb-2">
-          <IoPhonePortraitOutline className="h-5 w-5 text-[#4CAF50] mr-2" />
+          <IoPhonePortraitOutline className="h-5 w-5 text-gray-800 mr-2" />
           <p className="text-gray-700">{telephone}</p>
         </div>
       </div>
