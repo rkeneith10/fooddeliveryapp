@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../layout";
@@ -7,11 +7,13 @@ import Layout from "../layout";
 export default function Orders() {
   const [cart, setCart] = useState([]);
 
-  // Fonction pour récupérer les éléments du panier
-  const getCartItems = () => {
+  // Récupérer les éléments du panier au chargement du composant
+  useEffect(() => {
     const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  };
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
 
   // Mettre à jour le panier
   const updateCart = (newCart) => {
@@ -51,7 +53,10 @@ export default function Orders() {
                   </div>
                 ))}
                 <div className="items-center">
-                  <button className="bg-[#4CAF50] w-full py-2 text-white">
+                  <button
+                    className="bg-[#4CAF50] w-full py-2 text-white"
+                    onClick={handleOrderPlacement}
+                  >
                     Place your Order
                   </button>
                   <p>Total Price: {calculateTotalPrice()}</p>
