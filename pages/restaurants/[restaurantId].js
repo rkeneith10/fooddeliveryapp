@@ -69,7 +69,11 @@ function RestaurantDetail({ data, error }) {
         </div>
 
         {categoriesWithMenus.length === 0 ? (
-          <div className="bg-gray-100 p-4 text-center">
+          <div
+            className={`bg-gray-100 p-4 text-center ${
+              categoriesWithMenus.length === 0 ? "mb-[150px]" : ""
+            }`}
+          >
             This restaurant currently has no menu available.
           </div>
         ) : (
