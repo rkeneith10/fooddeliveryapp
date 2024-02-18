@@ -38,7 +38,7 @@ export default function Navbar() {
     });
 
     return () => {
-      window.removeEventListener("cartItemAdded");
+      window.removeEventListener("cartItemAdded", null);
     };
   }, []);
 

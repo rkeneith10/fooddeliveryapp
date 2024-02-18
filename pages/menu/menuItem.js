@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
@@ -51,7 +52,7 @@ function MenuItem({ data, error }) {
     });
 
     return () => {
-      window.removeEventListener("cartItemAdded");
+      window.removeEventListener("cartItemAdded", null);
     };
   }, []);
 
