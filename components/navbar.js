@@ -101,7 +101,10 @@ export default function Navbar() {
             )}
           </li>
         </ul>
-        <div className="pl-[80px]   md:pr-10" onClick={toggleCartPopUp}>
+        <div
+          className="pl-[80px]  cursor-pointer md:pr-10"
+          onClick={toggleCartPopUp}
+        >
           <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
           {cartItemCount > 0 && (
             <span className="absolute top-10 right-22 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[#4CAF50] rounded-full">
