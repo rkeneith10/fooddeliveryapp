@@ -1,5 +1,6 @@
-import { OutlineLocationMarker, OutlinePhone } from "@heroicons/react/24";
 import { CldImage } from "next-cloudinary";
+import { FaLocationDot } from "react-icons/fa6";
+import { IoPhonePortraitOutline } from "react-icons/io5";
 
 const RestaurantComponent = ({
   restaurant_name,
@@ -14,18 +15,14 @@ const RestaurantComponent = ({
       </div>
       <div className="w-2/3 p-4">
         <h2 className="text-xl font-bold mb-2">{restaurant_name}</h2>
-        <p className="text-gray-700 mb-2">
-          <span>
-            <OutlineLocationMarker className="h-7 w-7 text-[#4CAF50]" />
-          </span>
-          {adress}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <span>
-            <OutlinePhone className="h-7 w-7 text-[#4CAF50]" />
-          </span>
-          {telephone}
-        </p>
+        <div className="flex items-center mb-2">
+          <FaLocationDot className="h-5 w-5 text-[#4CAF50] mr-2" />
+          <p className="text-gray-700">{adress}</p>
+        </div>
+        <div className="flex items-center mb-2">
+          <IoPhonePortraitOutline className="h-5 w-5 text-[#4CAF50] mr-2" />
+          <p className="text-gray-700">{telephone}</p>
+        </div>
       </div>
     </div>
   );
