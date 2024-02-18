@@ -12,11 +12,6 @@ export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [showCartPopUp, setShowCartPopUp] = useState(false);
-
-  const toggleCartPopUp = () => {
-    setShowCartPopUp(!showCartPopUp);
-  };
 
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
@@ -101,29 +96,16 @@ export default function Navbar() {
             )}
           </li>
         </ul>
-        <div
-          className="pl-[80px]  cursor-pointer md:pr-10"
-          onClick={toggleCartPopUp}
-        >
-          <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
-          {cartItemCount > 0 && (
-            <span className="absolute top-10 right-22 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[#4CAF50] rounded-full">
-              {cartItemCount}
-            </span>
-          )}
-
-          {showCartPopUp && (
-            <div className="absolute top-11 right-20 mt-2 py-2 w-50 bg-white border rounded-lg shadow-xl z-10">
-              <ul>
-                {getCartItems().map((item, index) => (
-                  <li key={index} className="px-4 py-2 border-b">
-                    {item.name}-Quantity :{item.quantity}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        <Link href="../orders">
+          <div className="pl-[80px]  cursor-pointer md:pr-10">
+            <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
+            {cartItemCount > 0 && (
+              <span className="absolute top-10 right-22 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-[#4CAF50] rounded-full">
+                {cartItemCount}
+              </span>
+            )}
+          </div>
+        </Link>
 
         <div onClick={handleSmalleNavigation} className="flex md:hidden ">
           {menuIcon ? (
