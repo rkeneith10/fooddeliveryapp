@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../layout";
@@ -8,6 +8,7 @@ import Layout from "../layout";
 function MenuItem({ data, error }) {
   const [count, setCount] = useState(1);
   const [specialRequest, setSpecialRequest] = useState("");
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   const decrement = () => {
     if (count > 1) {
@@ -33,12 +34,26 @@ function MenuItem({ data, error }) {
     const updatedCart = [...existingCart, cartItem];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartItemAdded"));
 
     setCount(1);
     setSpecialRequest("");
 
     toast.success("Item added to cart!");
   };
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    window.addEventListener("cartItemAdded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    });
+
+    return () => {
+      window.removeEventListener("cartItemAdded");
+    };
+  }, []);
 
   if (error) {
     return <p>Error loading post: {error}</p>;

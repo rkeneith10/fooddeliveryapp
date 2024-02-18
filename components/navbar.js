@@ -22,15 +22,24 @@ export default function Navbar() {
   };
 
   // Fonction pour récupérer le contenu du panier depuis le stockage local
-  const getCartItemCount = () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    setCartItemCount(totalItems);
-  };
+  // const getCartItemCount = () => {
+  //   const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  //   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  //   setCartItemCount(totalItems);
+  // };
 
   // Mettre à jour la quantité d'articles dans le panier à chaque changement du contenu du panier
   useEffect(() => {
-    getCartItemCount();
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    window.addEventListener("cartItemAdded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    });
+
+    return () => {
+      window.removeEventListener("cartItemAdded");
+    };
   }, []);
 
   return (
