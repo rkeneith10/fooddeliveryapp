@@ -30,7 +30,7 @@ export default function Orders() {
         <div className="toast-container">
           <ToastContainer />
         </div>
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 max-w-full">
           <div className="max-w-screen-lg mx-auto p-10">
             <table className="w-full sm:overflow-x-auto mx-auto bg-white rounded-sm">
               <thead className="bg-gray-100">
@@ -84,6 +84,35 @@ export default function Orders() {
             <p className="total-price font-bold text-md mt-4 float-right">
               Total Price: <span>HTG</span> {calculateTotalPrice()}
             </p>
+
+            <h3>Buyer Information</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Full Name"
+                  className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Phone Number"
+                  className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-[#4CAF50]"
+                />
+              </div>
+            </div>
+            <h3>Delivery addresses</h3>
+            <div className="mb-2">
+              <textarea
+                placeholder="Your  delivery addresse"
+                class="w-full h-20 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
+              ></textarea>
+            </div>
           </div>
         </div>
       </Layout>
