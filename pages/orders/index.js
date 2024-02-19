@@ -1,14 +1,15 @@
 import { CldImage } from "next-cloudinary";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import moncashImg from "../../public/images/moncash.jpg";
+
 import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
+  const moncashimage =
+    "https://asset.cloudinary.com/dpiizfdue/8b556e2d2dafe48ad2e1e79783fa914c";
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -138,22 +139,29 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-around mb-5">
+            <div className="flex justify-between mb-5">
               <h2>Payment method:</h2>
               <div>
-                <input type="radio" id="pay" name="pay" value="pay" />
+                <input
+                  type="radio"
+                  id="pay"
+                  name="pay"
+                  value="pay"
+                  className="mr-2"
+                />
                 <label for="pay">Payment upon delivery</label>
               </div>
 
               <div>
                 <input
+                  className="mr-2"
                   type="radio"
                   id="moncash"
                   name="moncash"
                   value="moncash"
                 />
                 <label for="moncash">
-                  <Image src={moncashImg} width={80} height={80} />
+                  <CldImage src={moncashimage} width={80} height={80} />
                 </label>
               </div>
             </div>
