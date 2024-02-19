@@ -6,7 +6,7 @@ export default function CategoryComponent({ imageUrl, category }) {
       <div className="h-[200px] w-full  relative overflow-hidden  mb-1 p-20">
         <CldImage
           src={imageUrl}
-          className="h-full w-full object-cover object-center rounded-full"
+          className="h-full w-full object-cover object-center"
           priority
           fill={true}
         />
