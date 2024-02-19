@@ -8,8 +8,7 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const moncashimage =
-    "https://asset.cloudinary.com/dpiizfdue/8b556e2d2dafe48ad2e1e79783fa914c";
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
