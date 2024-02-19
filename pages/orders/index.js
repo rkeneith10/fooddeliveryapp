@@ -1,4 +1,6 @@
+import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
+import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../layout";
@@ -30,7 +32,7 @@ export default function Orders() {
         </div>
         <div className="">
           <div className=" mx-auto p-10">
-            <table className=" sm:overflow-x-auto mx-auto bg-white rounded-sm">
+            <table className="sm:overflow-x-auto mx-auto bg-white rounded-sm">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
