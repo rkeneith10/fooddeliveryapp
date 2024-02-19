@@ -8,7 +8,7 @@ export default function MenuItemComponent({
   item_id,
 }) {
   return (
-    <div className="cursor-pointer  transition-transform transform hover:-translate-x-1 w-[170px]">
+    <div className="cursor-pointer  transition-transform transform hover:-translate-x-1">
       <div className="bg-white  rounded-lg shadow-md p-1 mb-2">
         <div className="h-[200px] w-full relative overflow-hidden  mb-1">
           <CldImage
