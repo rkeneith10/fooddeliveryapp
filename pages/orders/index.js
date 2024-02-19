@@ -34,7 +34,7 @@ export default function Orders() {
         <div className="bg-gray-100">
           <div className="pt-10 pl-20 pr-20">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-              <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
+              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-6 py-3">
@@ -83,6 +83,66 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
+              <p className="total-price font-bold text-md mt-4 float-right">
+                Total Price: <span>HTG</span> {calculateTotalPrice()}
+              </p>
+            </div>
+            <div className="mt-5">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="mb-4">
+                  <label
+                    htmlFor="nom"
+                    className="block text-white text-xl font-bold"
+                  >
+                    FullName
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter your FullName"
+                    id="fullnaame"
+                    name="fullname"
+                    className="border rounded-md w-full p-2"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="nom"
+                    className="block text-white text-xl font-bold"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter your Phone Number"
+                    id="phonenumber"
+                    name="phonenumber"
+                    className="border rounded-md w-full p-2"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="nom"
+                    className="block text-white text-xl font-bold"
+                  >
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter your address"
+                    id="address"
+                    name="address"
+                    className="border rounded-md w-full p-2"
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className={`bg-[#4CAF50] text-white p-4 rounded `}
+                  >
+                    Place order
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
