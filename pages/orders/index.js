@@ -139,9 +139,9 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between mb-5">
-              <h2>Payment method:</h2>
-              <div>
+            <div className="flex justify-between mb-5 items-center">
+              <h2 className="mr-4">Payment method:</h2>
+              <div classNAme="flex ml-auto">
                 <input
                   type="radio"
                   id="pay"
@@ -149,27 +149,17 @@ export default function Orders() {
                   value="pay"
                   className="mr-2"
                 />
-                <label for="pay">Payment upon delivery</label>
+                <label for="pay">Cash on delivery</label>
               </div>
-
-              <div>
+              <div className="flex">
                 <input
-                  className="mr-2"
                   type="radio"
                   id="moncash"
                   name="moncash"
                   value="moncash"
+                  className="mr-2"
                 />
-                <label for="moncash">
-                  <div className="h-10 w-10 relative overflow-hidden">
-                    <CldImage
-                      src={moncashimage}
-                      className="h-full w-full object-cover object-center rounded-full border border-red-400"
-                      priority
-                      fill={true}
-                    />
-                  </div>
-                </label>
+                <label for="moncash">Pay with moncash</label>
               </div>
             </div>
             <div className=" items-end justify-end flex mb-10">
