@@ -134,14 +134,14 @@ export default function Orders() {
                     className="border rounded-md w-full p-2"
                   />
                 </div>
-                <div className="float-right mr-5">
-                  <button
-                    type="submit"
-                    className={`bg-[#4CAF50] text-white p-4 rounded `}
-                  >
-                    Place order
-                  </button>
-                </div>
+              </div>
+              <div className="float-right mr-5">
+                <button
+                  type="submit"
+                  className={`bg-[#4CAF50] text-white p-4 rounded `}
+                >
+                  Place order
+                </button>
               </div>
             </div>
           </div>
