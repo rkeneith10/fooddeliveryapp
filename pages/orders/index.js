@@ -37,8 +37,8 @@ export default function Orders() {
         <div className="bg-gray-100">
           <div className="pt-10 pl-5 pr-5 lg:pl-20 lg:pr-20">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       Image
@@ -161,7 +161,14 @@ export default function Orders() {
                   value="moncash"
                 />
                 <label for="moncash">
-                  <CldImage src={moncashimage} width={80} height={80} />
+                  <div className="h-10 w-10 relative overflow-hidden">
+                    <CldImage
+                      src={moncashimage}
+                      className="h-full w-full object-cover object-center rounded-full border border-red-400"
+                      priority
+                      fill={true}
+                    />
+                  </div>
                 </label>
               </div>
             </div>
