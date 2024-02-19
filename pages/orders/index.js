@@ -142,9 +142,7 @@ export default function Orders() {
               <h2>Payment method:</h2>
               <div>
                 <input type="radio" id="pay" name="pay" value="pay" />
-                <label for="pay">
-                  <Image src={moncashImg} width={80} height={80} />
-                </label>
+                <label for="pay">Payment upon delivery</label>
               </div>
 
               <div>
@@ -154,7 +152,9 @@ export default function Orders() {
                   name="moncash"
                   value="moncash"
                 />
-                <label for="moncash"></label>
+                <label for="moncash">
+                  <Image src={moncashImg} width={80} height={80} />
+                </label>
               </div>
             </div>
             <div className=" items-end justify-end flex mb-10">
