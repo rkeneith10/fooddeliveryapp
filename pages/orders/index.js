@@ -42,7 +42,7 @@ export default function Orders() {
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
           <div className="p-10 bg-white mt-10 mb-20">
-            <table className="w-full overflow-x-scroll max-width-1000px bg-white border border-gray-300 rounded-sm">
+            <table className="w-full overflow-x-scroll max-width-1000px bg-white rounded-sm">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
