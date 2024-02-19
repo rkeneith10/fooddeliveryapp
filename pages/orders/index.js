@@ -85,33 +85,35 @@ export default function Orders() {
               Total Price: <span>HTG</span> {calculateTotalPrice()}
             </p>
 
-            <h3>Buyer Information</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="Full Name"
-                  className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                />
+            <div className="mt-10">
+              <h3>Buyer Information</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Full Name"
+                    className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Phone Number"
+                    className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-[#4CAF50]"
+                  />
+                </div>
               </div>
-              <div>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="Phone Number"
-                  className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:border-[#4CAF50]"
-                />
+              <h3>Delivery addresses</h3>
+              <div className="mb-2">
+                <textarea
+                  placeholder="Your  delivery addresse"
+                  class="w-full h-20 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
+                ></textarea>
               </div>
-            </div>
-            <h3>Delivery addresses</h3>
-            <div className="mb-2">
-              <textarea
-                placeholder="Your  delivery addresse"
-                class="w-full h-20 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
-              ></textarea>
             </div>
           </div>
         </div>
