@@ -41,8 +41,8 @@ export default function Orders() {
           <ToastContainer />
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
-          <div className="p-10 bg-white mt-10 mb-20">
-            <div className="overflow-x-scroll max-w-screen">
+          <div className="p-10 bg-white mt-10 mb-20 rounded-md overflow-x-scroll max-w-screen">
+            <div className="">
               <table className="w-full bg-white rounded-sm">
                 <thead className="bg-gray-100">
                   <tr>
@@ -83,7 +83,7 @@ export default function Orders() {
                         {item.quantity}
                       </td>
                       <td className="text-left py-3 px-4 border-b border-gray-200">
-                        {item.price * item.quantity}
+                        <span>HTG</span> {item.price * item.quantity}
                       </td>
                       <td className="text-left py-3 px-4 border-b border-gray-200">
                         <FaRegTrashCan className="h-5 w-5 cursor-pointer text-red-600" />
@@ -95,7 +95,7 @@ export default function Orders() {
             </div>
 
             <p className="font-bold text-md mt-4 float-right">
-              Total Price: {calculateTotalPrice()}
+              Total Price: <pan>HTG</pan> {calculateTotalPrice()}
             </p>
           </div>
         </div>
