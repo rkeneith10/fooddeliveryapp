@@ -1,4 +1,5 @@
 "use client";
+import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +40,43 @@ export default function Orders() {
           <ToastContainer />
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
-          <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px] h-auto flex flex-col">
+          <div className="p-10">
+            <table className="min-w-full bg-white border border-gray-300 rounded-sm">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b">Items</th>
+                  <th className="py-2 px-4 border-b">Quantity</th>
+                  <th className="py-2 px-4 border-b">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item, index) => (
+                  <tr key={index}>
+                    <td className="py-2 px-4 border-b">
+                      <div className="flex flex-row justify-around">
+                        <div className="h-[100px] w-full  relative overflow-hidden">
+                          <CldImage
+                            src={item.imageUrl}
+                            className="h-full w-full object-cover object-center rounded-full"
+                            priority
+                            fill={true}
+                          />
+                        </div>
+                        <div>{item.name}</div>
+                      </div>
+                    </td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price * item.quantity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="font-bold text-md">
+              Total Price: {calculateTotalPrice()}
+            </p>
+          </div>
+
+          {/* <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px] h-auto flex flex-col">
             <div>
               <div className="p-4">
                 <h2>Information about the Order</h2>
@@ -63,7 +100,7 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     </div>
