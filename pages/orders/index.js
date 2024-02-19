@@ -136,7 +136,7 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="float-right mr-5 mb-20">
+            <div className=" mr-5 mb-20">
               <button
                 type="submit"
                 className={`bg-[#4CAF50] text-white p-4 rounded `}
