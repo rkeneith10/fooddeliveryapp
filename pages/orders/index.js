@@ -44,6 +44,7 @@ export default function Orders() {
             <table className="min-w-full bg-white border border-gray-300 rounded-sm">
               <thead>
                 <tr>
+                  <th className="py-2 px-4 border-b">Image</th>
                   <th className="py-2 px-4 border-b">Items</th>
                   <th className="py-2 px-4 border-b">Quantity</th>
                   <th className="py-2 px-4 border-b">Price</th>
@@ -53,18 +54,16 @@ export default function Orders() {
                 {cart.map((item, index) => (
                   <tr key={index}>
                     <td className="py-2 px-4 border-b">
-                      <div className="flex flex-row justify-around">
-                        <div className="h-[100px] w-[100px]  relative overflow-hidden border border-red-400">
-                          <CldImage
-                            src={item.imageUrl}
-                            className="h-full w-full object-cover object-center rounded-full"
-                            priority
-                            fill={true}
-                          />
-                        </div>
-                        <div>{item.name}</div>
+                      <div className="h-[50px] w-[50px]  relative overflow-hidden ">
+                        <CldImage
+                          src={item.imageUrl}
+                          className="h-full w-full object-cover object-center rounded-full"
+                          priority
+                          fill={true}
+                        />
                       </div>
                     </td>
+                    <td>{item.name}</td>
                     <td>{item.quantity}</td>
                     <td>{item.price * item.quantity}</td>
                   </tr>
