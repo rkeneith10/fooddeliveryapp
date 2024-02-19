@@ -8,7 +8,6 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -17,19 +16,19 @@ export default function Orders() {
     }
   }, []);
 
-  const removeFromCart = (index) => {
-    const updatedCart = [...cart];
-    updatedCart.splice(index, 1);
-    updateCart(updatedCart);
-    toast.success("Item removed from cart");
-    window.dispatchEvent(new Event("cartItemRemoved"));
-  };
-
   const updateCart = (newCart) => {
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
+  const removeFromCart = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    updateCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
 
+    // Emit the event to notify other components
+    window.dispatchEvent(new CustomEvent("cartItemRemoved"));
+  };
   const calculateTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };

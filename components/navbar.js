@@ -29,19 +29,16 @@ export default function Navbar() {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
 
-      const updateCartItemCount = () => {
+      window.addEventListener("cartItemRemoved", () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartItemCount(
           cart.reduce((total, item) => total + item.quantity, 0)
         );
-      };
-
-      window.addEventListener("cartItemRemoved", updateCartItemCount);
+      });
     });
 
     return () => {
       window.removeEventListener("cartItemAdded", null);
-      window.removeEventListener("cartItemRemoved", updateCartItemCount);
     };
   }, []);
 
