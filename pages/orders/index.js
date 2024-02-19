@@ -42,18 +42,26 @@ export default function Orders() {
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
           <div className="p-10">
             <table className="min-w-full bg-white border border-gray-300 rounded-sm">
-              <thead>
+              <thead className="bg-gray-100">
                 <tr>
-                  <th className="py-2 px-4 border-b">Image</th>
-                  <th className="py-2 px-4 border-b">Items</th>
-                  <th className="py-2 px-4 border-b">Quantity</th>
-                  <th className="py-2 px-4 border-b">Price</th>
+                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                    Image
+                  </th>
+                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                    Items
+                  </th>
+                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                    Quantity
+                  </th>
+                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                    Price
+                  </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white">
                 {cart.map((item, index) => (
                   <tr key={index}>
-                    <td className="py-2 px-4 border-b">
+                    <td className="text-left py-3 px-4 border-b border-gray-200">
                       <div className="h-[50px] w-[50px]  relative overflow-hidden ">
                         <CldImage
                           src={item.imageUrl}
@@ -63,9 +71,15 @@ export default function Orders() {
                         />
                       </div>
                     </td>
-                    <td>{item.name}</td>
-                    <td>{item.quantity}</td>
-                    <td>{item.price * item.quantity}</td>
+                    <td className="text-left py-3 px-4 border-b border-gray-200">
+                      {item.name}
+                    </td>
+                    <td className="text-left py-3 px-4 border-b border-gray-200">
+                      {item.quantity}
+                    </td>
+                    <td className="text-left py-3 px-4 border-b border-gray-200">
+                      {item.price * item.quantity}
+                    </td>
                   </tr>
                 ))}
               </tbody>
