@@ -122,7 +122,7 @@ export default function Orders() {
                 <div className="mb-4">
                   <label
                     htmlFor="nom"
-                    className="block text-medium font-semibold"
+                    className="block text-medium font-normal"
                   >
                     Address
                   </label>
@@ -135,14 +135,14 @@ export default function Orders() {
                   />
                 </div>
               </div>
-              <div className="float-right mr-5">
-                <button
-                  type="submit"
-                  className={`bg-[#4CAF50] text-white p-4 rounded `}
-                >
-                  Place order
-                </button>
-              </div>
+            </div>
+            <div className="float-right mr-5">
+              <button
+                type="submit"
+                className={`bg-[#4CAF50] text-white p-4 rounded `}
+              >
+                Place order
+              </button>
             </div>
           </div>
         </div>
