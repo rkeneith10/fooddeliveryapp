@@ -83,7 +83,7 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
-              <p className="total-price font-bold text-md mt-4 float-right">
+              <p className="total-price font-bold text-md mt-4 float-right mr-5">
                 Total Price: <span>HTG</span> {calculateTotalPrice()}
               </p>
             </div>
@@ -92,7 +92,7 @@ export default function Orders() {
                 <div className="mb-4">
                   <label
                     htmlFor="nom"
-                    className="block text-white text-xl font-bold"
+                    className="block  text-medium font-normal"
                   >
                     FullName
                   </label>
@@ -107,7 +107,7 @@ export default function Orders() {
                 <div className="mb-4">
                   <label
                     htmlFor="nom"
-                    className="block text-white text-xl font-bold"
+                    className="block text-medium font-normal"
                   >
                     Phone Number
                   </label>
@@ -122,7 +122,7 @@ export default function Orders() {
                 <div className="mb-4">
                   <label
                     htmlFor="nom"
-                    className="block text-white text-xl font-bold"
+                    className="block text-medium font-semibold"
                   >
                     Address
                   </label>
@@ -134,7 +134,7 @@ export default function Orders() {
                     className="border rounded-md w-full p-2"
                   />
                 </div>
-                <div className="flex justify-end">
+                <div className="float-right mr-5">
                   <button
                     type="submit"
                     className={`bg-[#4CAF50] text-white p-4 rounded `}
