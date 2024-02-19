@@ -30,7 +30,7 @@ export default function Orders() {
         <div className="toast-container">
           <ToastContainer />
         </div>
-        <div className="bg-gray-100 max-w-full">
+        <div className="">
           <div className="max-w-screen-lg mx-auto p-10">
             <table className="w-full sm:overflow-x-auto mx-auto bg-white rounded-sm">
               <thead className="bg-gray-100">
