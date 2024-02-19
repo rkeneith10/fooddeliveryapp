@@ -42,86 +42,62 @@ export default function Orders() {
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
           <div className="p-10 bg-white mt-10 mb-20">
-            <table className="w-full overflow-x-scroll max-width-1000px bg-white rounded-sm">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
-                    Image
-                  </th>
-                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
-                    Items
-                  </th>
-                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
-                    Quantity
-                  </th>
-                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
-                    Price
-                  </th>
-                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                {cart.map((item, index) => (
-                  <tr key={index}>
-                    <td className="text-left py-3 px-4 border-b border-gray-200">
-                      <div className="h-[50px] w-[50px]  relative overflow-hidden ">
-                        <CldImage
-                          src={item.imageUrl}
-                          className="h-full w-full object-cover object-center rounded-full"
-                          priority
-                          fill={true}
-                        />
-                      </div>
-                    </td>
-                    <td className="text-left py-3 px-4 border-b border-gray-200">
-                      {item.name}
-                    </td>
-                    <td className="text-left py-3 px-4 border-b border-gray-200">
-                      {item.quantity}
-                    </td>
-                    <td className="text-left py-3 px-4 border-b border-gray-200">
-                      {item.price * item.quantity}
-                    </td>
-
-                    <td className="text-left py-3 px-4 border-b border-gray-200">
-                      <FaRegTrashCan className="h-5 w-5 cursor-pointer text-red-600" />
-                    </td>
+            <div className="overflow-x-scroll max-width-1000px">
+              <table className="w-full bg-white rounded-sm">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                      Image
+                    </th>
+                    <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                      Items
+                    </th>
+                    <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                      Quantity
+                    </th>
+                    <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                      Price
+                    </th>
+                    <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                      Action
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <p className="font-bold text-md">
+                </thead>
+                <tbody className="bg-white">
+                  {cart.map((item, index) => (
+                    <tr key={index}>
+                      <td className="text-left py-3 px-4 border-b border-gray-200">
+                        <div className="h-16 w-16 relative overflow-hidden">
+                          <CldImage
+                            src={item.imageUrl}
+                            className="h-full w-full object-cover object-center rounded-full"
+                            priority
+                            fill={true}
+                          />
+                        </div>
+                      </td>
+                      <td className="text-left py-3 px-4 border-b border-gray-200">
+                        {item.name}
+                      </td>
+                      <td className="text-left py-3 px-4 border-b border-gray-200">
+                        {item.quantity}
+                      </td>
+                      <td className="text-left py-3 px-4 border-b border-gray-200">
+                        {item.price * item.quantity}
+                      </td>
+                      <td className="text-left py-3 px-4 border-b border-gray-200">
+                        <FaRegTrashCan className="h-5 w-5 cursor-pointer text-red-600" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="font-bold text-md mt-4 justify-end">
               Total Price: {calculateTotalPrice()}
             </p>
           </div>
-
-          {/* <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px] h-auto flex flex-col">
-            <div>
-              <div className="p-4">
-                <h2>Information about the Order</h2>
-                {cart.map((item, index) => (
-                  <div key={index}>
-                    <h2>{item.name}</h2>
-                    <div className="flex flex-row justify-between">
-                      <h3>Price</h3>
-                      <span>{item.price * item.quantity}</span>
-                    </div>
-                  </div>
-                ))}
-                <p>Total Price: {calculateTotalPrice()}</p>
-                <div className="items-center">
-                  <button
-                    className="bg-[#4CAF50] w-full py-2 text-white"
-                    onClick={handleOrderPlacement}
-                  >
-                    Place your Order
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </Layout>
     </div>
