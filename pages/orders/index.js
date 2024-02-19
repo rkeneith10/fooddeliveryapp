@@ -32,7 +32,7 @@ export default function Orders() {
         </div>
 
         <div className="bg-gray-100">
-          <div className="pt-5 pl-10 pr-10">
+          <div className="pt-10 pl-15 pr-15">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -56,7 +56,7 @@ export default function Orders() {
                 </thead>
                 <tbody>
                   {cart.map((item, index) => (
-                    <tr key={index} className="bg-white ">
+                    <tr key={index} className="bg-white hover:bg-gray-50">
                       <td className="text-left py-3 px-4 border-b border-gray-200">
                         <div className="h-16 w-16 relative overflow-hidden">
                           <CldImage
