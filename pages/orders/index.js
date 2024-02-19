@@ -136,10 +136,10 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className=" mr-5 mb-20">
+            <div className=" justify-end mb-10">
               <button
                 type="submit"
-                className={`bg-[#4CAF50] text-white p-4 rounded `}
+                className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
               >
                 Place order
               </button>
