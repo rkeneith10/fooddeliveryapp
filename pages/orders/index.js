@@ -54,7 +54,7 @@ export default function Orders() {
                   <tr key={index}>
                     <td className="py-2 px-4 border-b">
                       <div className="flex flex-row justify-around">
-                        <div className="h-[100px] w-full  relative overflow-hidden border border-red-400">
+                        <div className="h-[100px] w-[100px]  relative overflow-hidden border border-red-400">
                           <CldImage
                             src={item.imageUrl}
                             className="h-full w-full object-cover object-center rounded-full"
