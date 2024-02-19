@@ -1,8 +1,10 @@
 import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import moncashImg from "../../public/images/moncash.jpg";
 import Layout from "../layout";
 
 export default function Orders() {
@@ -134,6 +136,25 @@ export default function Orders() {
                     className="border rounded-md w-full p-2"
                   />
                 </div>
+              </div>
+            </div>
+            <div className="flex justify-around mb-5">
+              <h2>Payment method:</h2>
+              <div>
+                <input type="radio" id="pay" name="pay" value="pay" />
+                <label for="pay">
+                  <Image src={moncashImg} width={80} height={80} />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="moncash"
+                  name="moncash"
+                  value="moncash"
+                />
+                <label for="moncash"></label>
               </div>
             </div>
             <div className=" items-end justify-end flex mb-10">
