@@ -95,8 +95,8 @@ function RestaurantDetail({ data, error }) {
         )}
 
         {activeCategory && (
-          <div className="bg-gray-200">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="bg-gray-50">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
               {data.menus
                 .filter((menu) => menu.category === activeCategory)
                 .map((menu, menuIndex) => (
