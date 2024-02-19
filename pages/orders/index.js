@@ -139,7 +139,7 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between mb-5 items-center">
+            <div className="flex mb-5 items-center">
               <h2 className="mr-4">Payment method:</h2>
               <div classNAme="flex ml-auto">
                 <input
