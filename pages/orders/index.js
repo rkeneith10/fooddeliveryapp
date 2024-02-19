@@ -42,7 +42,7 @@ export default function Orders() {
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
           <div className="p-10 bg-white mt-10 mb-20">
-            <div className="overflow-x-scroll max-width-1000px">
+            <div className="overflow-x-scroll max-w-screen">
               <table className="w-full bg-white rounded-sm">
                 <thead className="bg-gray-100">
                   <tr>
@@ -94,7 +94,7 @@ export default function Orders() {
               </table>
             </div>
 
-            <p className="font-bold text-md mt-4 justify-end">
+            <p className="font-bold text-md mt-4 float-right">
               Total Price: {calculateTotalPrice()}
             </p>
           </div>
