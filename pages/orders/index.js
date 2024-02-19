@@ -8,23 +8,12 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-    window.addEventListener("cartItemAdded", () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-    });
-
-    return () => {
-      window.removeEventListener("cartItemAdded", null);
-    };
   }, []);
 
   const removeFromCart = (index) => {
@@ -32,6 +21,7 @@ export default function Orders() {
     updatedCart.splice(index, 1);
     updateCart(updatedCart);
     toast.success("Item removed from cart");
+    window.dispatchEvent(new Event("cartItemRemoved"));
   };
 
   const updateCart = (newCart) => {

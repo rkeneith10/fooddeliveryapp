@@ -29,8 +29,14 @@ export default function Navbar() {
       setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
     });
 
+    window.addEventListener("cartItemRemoved", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    });
+
     return () => {
       window.removeEventListener("cartItemAdded", null);
+      window.removeEventListener("cartItemRemoved", null);
     };
   }, []);
 
