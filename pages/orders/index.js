@@ -18,6 +18,13 @@ export default function Orders() {
     }
   }, []);
 
+  const removeFromCart = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    updateCart(updatedCart);
+    toast.success("Item removed from cart");
+  };
+
   const updateCart = (newCart) => {
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
@@ -34,7 +41,7 @@ export default function Orders() {
           <ToastContainer />
         </div>
 
-        <div className="bg-gray-100">
+        <div className="bg-gray-50 min-h-screen">
           <div className="pt-10 pl-5 pr-5 lg:pl-20 lg:pr-20">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -80,7 +87,10 @@ export default function Orders() {
                         <span>HTG</span> {item.price * item.quantity}
                       </td>
                       <td className="text-left py-3 px-4 border-b border-gray-200">
-                        <FaRegTrashCan className="h-5 w-5 cursor-pointer text-red-600" />
+                        <FaRegTrashCan
+                          className="h-5 w-5 cursor-pointer text-red-600"
+                          onClick={() => removeFromCart(index)}
+                        />
                       </td>
                     </tr>
                   ))}
