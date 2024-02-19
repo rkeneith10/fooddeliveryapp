@@ -16,6 +16,16 @@ export default function Orders() {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    window.addEventListener("cartItemAdded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+    });
+
+    return () => {
+      window.removeEventListener("cartItemAdded", null);
+    };
   }, []);
 
   const removeFromCart = (index) => {
