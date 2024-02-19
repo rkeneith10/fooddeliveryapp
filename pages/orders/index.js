@@ -1,6 +1,7 @@
 "use client";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
+import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../layout";
@@ -40,7 +41,7 @@ export default function Orders() {
           <ToastContainer />
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
-          <div className="p-10">
+          <div className="p-10 bg-white">
             <table className="min-w-full bg-white border border-gray-300 rounded-sm">
               <thead className="bg-gray-100">
                 <tr>
@@ -55,6 +56,9 @@ export default function Orders() {
                   </th>
                   <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
                     Price
+                  </th>
+                  <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -79,6 +83,10 @@ export default function Orders() {
                     </td>
                     <td className="text-left py-3 px-4 border-b border-gray-200">
                       {item.price * item.quantity}
+                    </td>
+
+                    <td className="text-left py-3 px-4 border-b border-gray-200">
+                      <FaRegTrashCan className="h-7 w-7 text-red-600" />
                     </td>
                   </tr>
                 ))}
