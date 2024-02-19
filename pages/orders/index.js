@@ -41,7 +41,7 @@ export default function Orders() {
           <ToastContainer />
         </div>
         <div className="h-auto max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200">
-          <div className="p-10 bg-white">
+          <div className="p-10 bg-white mt-10 mb-20">
             <table className="min-w-full bg-white border border-gray-300 rounded-sm">
               <thead className="bg-gray-100">
                 <tr>
@@ -86,7 +86,7 @@ export default function Orders() {
                     </td>
 
                     <td className="text-left py-3 px-4 border-b border-gray-200">
-                      <FaRegTrashCan className="h-7 w-7 text-red-600" />
+                      <FaRegTrashCan className="h-5 w-5 cursor-pointer text-red-600" />
                     </td>
                   </tr>
                 ))}
