@@ -136,7 +136,7 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className=" items-end mb-10">
+            <div className=" items-end justify-end flex mb-10">
               <button
                 type="submit"
                 className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
