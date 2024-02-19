@@ -32,7 +32,7 @@ export default function Orders() {
         </div>
 
         <div className="bg-gray-100">
-          <div className="pt-10 pl-20 pr-20">
+          <div className="pt-10 pl-5 pr-5 lg:pl-20 lg:pr-20">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -136,7 +136,7 @@ export default function Orders() {
                 </div>
               </div>
             </div>
-            <div className="float-right mr-5">
+            <div className="float-right mr-5 mb-20">
               <button
                 type="submit"
                 className={`bg-[#4CAF50] text-white p-4 rounded `}
