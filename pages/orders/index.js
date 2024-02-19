@@ -30,7 +30,7 @@ export default function Orders() {
         </div>
         <div className="">
           <div className=" mx-auto p-10">
-            {/* <table className="w-full sm:overflow-x-auto mx-auto bg-white rounded-sm">
+            <table className=" sm:overflow-x-auto mx-auto bg-white rounded-sm">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="text-left py-3 px-4 border-b border-gray-200 font-weight-bold">
@@ -78,7 +78,7 @@ export default function Orders() {
                   </tr>
                 ))}
               </tbody>
-            </table> */}
+            </table>
             <p className="total-price font-bold text-md mt-4 float-right">
               Total Price: <span>HTG</span> {calculateTotalPrice()}
             </p>
