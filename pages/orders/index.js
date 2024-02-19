@@ -15,15 +15,6 @@ export default function Orders() {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-
-    window.addEventListener("cartItemRemoved", () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-    });
-
-    return () => {
-      window.removeEventListener("cartItemRemoved", null);
-    };
   }, []);
 
   const removeFromCart = (index) => {
@@ -31,7 +22,7 @@ export default function Orders() {
     updatedCart.splice(index, 1);
     updateCart(updatedCart);
     toast.success("Item removed from cart");
-    // window.dispatchEvent(new Event("cartItemRemoved"));
+    window.dispatchEvent(new Event("cartItemRemoved"));
   };
 
   const updateCart = (newCart) => {
