@@ -10,6 +10,7 @@ export default function Orders() {
   const [cart, setCart] = useState([]);
   const [isLog, setIsLog] = useState(false);
   const [infouser, setInfoUser] = useState({});
+  const [fullName, setFullName] = useState("");
   //const [decodedToken, setDecodedToken] = useState("");
   //cosnt[(infoOfUser, setInfoOfUser)] = useState("");
 
@@ -22,6 +23,8 @@ export default function Orders() {
     const storeInfoUser = localStorage.getItem("userinfo");
     if (storeInfoUser) {
       setInfoUser(JSON.parse(storeInfoUser));
+      const { firstName, lastName } = JSON.parse(storeInfoUser);
+      setFullName(`${firstName} ${lastName}`);
     }
 
     const storeToken = localStorage.getItem("token");
@@ -169,7 +172,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
-                        value={infouser.firstName}
+                        value={fullName}
                         placeholder="Enter your FullName"
                         id="fullnaame"
                         name="fullname"
