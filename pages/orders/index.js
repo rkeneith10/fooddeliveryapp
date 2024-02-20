@@ -164,7 +164,7 @@ export default function Orders() {
                 </div>
                 <div className="flex justify-end mb-5 items-center">
                   <h2 className="mr-4">Payment method:</h2>
-                  <div classNAme="flex ml-auto">
+                  <div className="flex">
                     <input
                       type="radio"
                       id="pay"
