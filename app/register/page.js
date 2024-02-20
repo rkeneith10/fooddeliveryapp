@@ -3,7 +3,9 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaPhoneSquareAlt, FaUser } from "react-icons/fa";
+import { IoLocation } from "react-icons/io5";
+
 import validator from "validator";
 import BackImage1 from "../../public/images/foodapp.PNG";
 
@@ -14,6 +16,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [password, setPassword] = useState("");
+  const [adress, setAdress] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [disable, setDisable] = useState(false);
@@ -51,6 +54,7 @@ export default function Register() {
             firstName,
             lastName,
             email,
+            adress,
             telephone,
             password,
           })
@@ -88,13 +92,13 @@ export default function Register() {
         </div>
         <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
           <div className="text-gray-900 font-normal text-xl">
-            Connectez a votre compte
+            Create your account
           </div>
 
           <form className="mt-6 mb-10">
             <div className="flex items-center border-b border-[#4CAF50] py-2">
               <label htmlFor="firstName" className="mr-2 text-[#4CAF50]">
-                <FaEnvelope />
+                <FaUser />
               </label>
               <input
                 type="text"
@@ -111,7 +115,7 @@ export default function Register() {
 
             <div className="flex items-center border-b border-[#4CAF50] py-2">
               <label htmlFor="lastName" className="mr-2 text-[#4CAF50]">
-                <FaEnvelope />
+                <FaUser />
               </label>
               <input
                 type="text"
@@ -143,8 +147,24 @@ export default function Register() {
               />
             </div>
             <div className="flex items-center border-b border-[#4CAF50] py-2">
+              <label htmlFor="email" className="mr-2 text-[#4CAF50]">
+                <IoLocation />
+              </label>
+              <input
+                type="text"
+                id="adress"
+                name="adress"
+                placeholder="Address"
+                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                onChange={(e) => {
+                  setAdress(e.target.value);
+                }}
+                value={adress}
+              />
+            </div>
+            <div className="flex items-center border-b border-[#4CAF50] py-2">
               <label htmlFor="telephone" className="mr-2 text-[#4CAF50]">
-                <FaEnvelope />
+                <FaPhoneSquareAlt />
               </label>
               <input
                 type="text"
@@ -180,10 +200,9 @@ export default function Register() {
               type="submit"
               disabled={disable}
               onClick={handleRegister}
-              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-rigth"
+              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center"
             >
-              Create account{" "}
-              {loading && (
+              {loading ? (
                 <svg
                   aria-hidden="true"
                   role="status"
@@ -201,6 +220,8 @@ export default function Register() {
                     fill="#1C64F2"
                   ></path>
                 </svg>
+              ) : (
+                "Create account"
               )}
             </button>
           </form>

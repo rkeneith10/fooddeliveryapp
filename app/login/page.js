@@ -75,7 +75,7 @@ export default function Login() {
         </div>
         <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
           <div className="text-gray-900 font-normal text-xl">
-            Connectez a votre compte
+            Login to your account
           </div>
 
           <form className="mt-6 mb-10">
@@ -115,10 +115,10 @@ export default function Login() {
               type="submit"
               disabled={disable}
               onClick={handleLogin}
-              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline float-rigth"
+              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center"
             >
-              Se Connecter{" "}
-              {loading && (
+              {" "}
+              {loading ? (
                 <svg
                   aria-hidden="true"
                   role="status"
@@ -136,6 +136,8 @@ export default function Login() {
                     fill="#1C64F2"
                   ></path>
                 </svg>
+              ) : (
+                "Login"
               )}
             </button>
           </form>
