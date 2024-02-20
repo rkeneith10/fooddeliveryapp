@@ -57,7 +57,7 @@ export default function Navbar() {
             <Link href="/">Home</Link>
           </li>
           <li className="mr-4 lg:mr-8 cursor-pointer">
-            <Link href="/">Restaurants</Link>
+            <Link href="../restaurants">Restaurants</Link>
           </li>
 
           <li className="mr-4 lg:mr-8 cursor-pointer">
@@ -164,7 +164,7 @@ export default function Navbar() {
               </li>
 
               <li className="py-5 mt-[-30px] cursor-pointer">
-                <Link href="/" onClick={handleSmalleNavigation}>
+                <Link href="../restaurants" onClick={handleSmalleNavigation}>
                   Restaurants
                 </Link>
               </li>
