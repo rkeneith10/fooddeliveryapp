@@ -22,6 +22,8 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    const tokenExist = !!localStorage.getItem("token");
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
 
