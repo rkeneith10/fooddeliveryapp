@@ -44,7 +44,7 @@ function RestaurantDetail({ data, error }) {
 
         <div
           id="top"
-          className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative"
+          className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative z-10"
           style={{
             backgroundImage: `url(${BackgoundImg.src})`,
           }}
