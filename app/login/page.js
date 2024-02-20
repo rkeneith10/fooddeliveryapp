@@ -26,11 +26,11 @@ export default function login() {
     setLoading(true);
     setDisable(true);
     if (email.trim() === "" || password.trim() === "") {
-      setError("Veuillez remplir tous les champs");
+      setError("Fill all the fields");
       setLoading(false);
       setDisable(false);
     } else if (!validator.isEmail(email)) {
-      setError("Veuillez entrer un email valide");
+      setError("Please enter a valid email");
       setLoading(false);
       setDisable(false);
     } else {
@@ -45,7 +45,7 @@ export default function login() {
               setLoading(false);
               setDisable(false);
               localStorage.setItem("token", response.data.token);
-              router.replace("../home");
+              router.replace("../../");
             } else if (!response.data.auth) {
               setError(response.data.msg);
               setLoading(false);
