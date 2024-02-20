@@ -42,9 +42,9 @@ export default function Orders() {
 
   const handlerOrder = () => {
     if (!isLog) {
-      toast("You have to login to place your order");
+      toast.warning("You have to login to place your order");
     }
-    toast("This function will be implemented soon");
+    toast.success("This function will be implemented soon");
   };
 
   return (
