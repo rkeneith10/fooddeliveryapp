@@ -39,7 +39,7 @@ export default function Orders() {
       try {
         const response = await axios.get(
           "https://fooddelivery-kappa.vercel.app/api/users/userinfo",
-          { param: { userid: decodedToken } }
+          { params: { userid: decodedToken } }
         );
         setInfoOfUser(response.data);
       } catch (error) {
