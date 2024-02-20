@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import users from "../../models/users";
 import connectDB from "../../utils/database";
 
@@ -7,7 +8,8 @@ const handler = async (req, res) => {
   if (req.method === "GET") {
     try {
       const { userid } = req.query;
-      const userinfo = await users.findOne({ _id: userid });
+      const userIdObject = new ObjectId(userid);
+      const userinfo = await users.findOne({ _id: userIdObject });
       res.status(200).json({
         success: true,
         data: userinfo,
