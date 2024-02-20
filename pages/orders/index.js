@@ -22,7 +22,7 @@ export default function Orders() {
     if (storeToken) {
       const decodedToken = jwt.decode(storeToken);
       setDecodedToken1(decodedToken);
-      toast.success(decodedToken1);
+      toast.success("decodedToken1");
 
       if (decodedToken.exp < Date.now() / 1000) {
         localStorage.removeItem("token");
