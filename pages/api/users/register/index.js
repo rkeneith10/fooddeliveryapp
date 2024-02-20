@@ -28,6 +28,7 @@ const handler = async (req, res) => {
       res.setHeader("x-access-token", token).status(201).json({
         success: true,
         msg: "User saved",
+        result: newUser,
         token: token,
       });
     } else {
