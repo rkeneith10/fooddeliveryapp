@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import RestaurantComponent from "../../components/restaurantsComponent";
-import Layout from "./layout";
+import Layout from "../layout";
 
 export async function getStaticProps() {
   const response1 = await fetch(
