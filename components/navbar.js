@@ -44,7 +44,6 @@ export default function Navbar() {
       window.removeEventListener("cartItemAdded", null);
     };
   }, []);
-  const tokenExist = !!localStorage.getItem("token");
 
   return (
     <header className="w-full bg-white text-[#4CAF50]">
