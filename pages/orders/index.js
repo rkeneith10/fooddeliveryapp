@@ -1,18 +1,24 @@
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
+  const [isLog, setIsLog] = useState();
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
+    }
+
+    const storeToken = localStorage.getItem("token");
+    if (storeToken) {
+      setIsLog(storeToken);
     }
   }, []);
 
@@ -33,6 +39,13 @@ export default function Orders() {
   };
 
   const totalprice = calculateTotalPrice();
+
+  const handlerOrder = () => {
+    if (!isLog) {
+      toast("You have to login to place your order");
+    }
+    toast("This function will be implemented soon");
+  };
 
   return (
     <div>
@@ -188,6 +201,7 @@ export default function Orders() {
                     <button
                       type="submit"
                       className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
+                      onClick={handlerOrder}
                     >
                       Place order
                     </button>
