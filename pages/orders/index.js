@@ -175,7 +175,7 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end mb-5 items-center">
+                  <div className="flex justify-end mb-5 items-center mr-5">
                     <h2 className="mr-4 font-semibold ">Payment method:</h2>
                     <div className="flex mr-4">
                       <input type="radio" id="pay" name="pay" value="pay" />
@@ -189,7 +189,7 @@ export default function Orders() {
                         value="moncash"
                       />
                       <label for="moncash">
-                        <div className="h-[50px] w-[100px]  relative overflow-hidden ">
+                        <div className="h-[40px] w-[120px]  relative overflow-hidden ">
                           <CldImage
                             src="https://res.cloudinary.com/dpiizfdue/image/upload/v1708454667/x7yarfuns4bsvt8ogcra.jpg"
                             className="h-full w-full object-cover object-center"
