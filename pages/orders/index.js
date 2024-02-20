@@ -9,6 +9,7 @@ import Layout from "../layout";
 export default function Orders() {
   const [cart, setCart] = useState([]);
   const [isLog, setIsLog] = useState(false);
+  const [infouser, setInfoUser] = useState({});
   //const [decodedToken, setDecodedToken] = useState("");
   //cosnt[(infoOfUser, setInfoOfUser)] = useState("");
 
@@ -16,6 +17,11 @@ export default function Orders() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
+    }
+
+    const storeInfoUser = localStorage.getItem("userinfo");
+    if (storeInfoUser) {
+      setInfoUser(JSON.parse(storeInfoUser));
     }
 
     const storeToken = localStorage.getItem("token");
@@ -163,6 +169,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
+                        value={infouser.firstName}
                         placeholder="Enter your FullName"
                         id="fullnaame"
                         name="fullname"
@@ -178,6 +185,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
+                        value={infouser.telephone}
                         placeholder="Enter your Phone Number"
                         id="phonenumber"
                         name="phonenumber"
@@ -193,6 +201,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
+                        value={infouser.adress}
                         placeholder="Enter your address"
                         id="address"
                         name="address"
