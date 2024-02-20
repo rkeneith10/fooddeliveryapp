@@ -46,10 +46,10 @@ export default function Login() {
               setLoading(false);
               setDisable(false);
               localStorage.setItem("token", response.data.token);
-              // localStorage.setItem(
-              //   "userinfo",
-              //   JSON.stringify(response.data.datauser)
-              // );
+              localStorage.setItem(
+                "userinfo",
+                JSON.stringify(response.data.datauser)
+              );
               router.replace("../../");
             } else if (!response.data.auth) {
               setError(response.data.msg);
