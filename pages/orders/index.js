@@ -178,7 +178,6 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
-                        value={infoOfUser.telephone}
                         placeholder="Enter your Phone Number"
                         id="phonenumber"
                         name="phonenumber"
@@ -194,7 +193,6 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
-                        value={infoOfUser.adress}
                         placeholder="Enter your address"
                         id="address"
                         name="address"
