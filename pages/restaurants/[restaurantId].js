@@ -44,27 +44,26 @@ function RestaurantDetail({ data, error }) {
 
         <div
           id="top"
-          className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative z-10"
+          className="h-[220px] max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40 bg-center bg-cover bg-no-repeat relative "
           style={{
             backgroundImage: `url(${BackgoundImg.src})`,
           }}
         >
-          {/* Overlay to improve text readability */}
           <div
             className="absolute inset-0 bg-black opacity-50"
             aria-hidden="true"
-          />
-
-          <div className="max-w-sceen relative z-10">
-            <h1 className="text-3xl text-white font-bold ">
-              {data.restaurant_name}
-            </h1>
-            <br />
-            <h4 className="text-xl text-white font-normal ">{data.adress}</h4>
-            <h4 className="text-xl text-white font-normal ">
-              {data.telephone}
-            </h4>
-            <br />
+          >
+            <div className="max-w-sceen relative">
+              <h1 className="text-3xl text-white font-bold ">
+                {data.restaurant_name}
+              </h1>
+              <br />
+              <h4 className="text-xl text-white font-normal ">{data.adress}</h4>
+              <h4 className="text-xl text-white font-normal ">
+                {data.telephone}
+              </h4>
+              <br />
+            </div>
           </div>
         </div>
 
