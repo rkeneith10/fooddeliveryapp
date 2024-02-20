@@ -32,8 +32,7 @@ export default function Orders() {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  const total = calculateTotalPrice();
-  q;
+  const totalprice = calculateTotalPrice();
 
   return (
     <div>
@@ -104,16 +103,16 @@ export default function Orders() {
                 </tbody>
               </table>
 
-              {total !== 0 && (
+              {totalprice !== 0 && (
                 <p className="total-price font-bold text-md mt-4 float-right mr-5">
-                  Total Price: <span>HTG</span> {total}
+                  Total Price: <span>HTG</span> {totalprice}
                 </p>
               )}
             </div>
 
             {cart.length !== 0 && (
               <>
-                <div className="mt-5">
+                <div className="bg-white shadow-md rounded-sm mt-5 p-4">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                     <div className="mb-4">
                       <label
@@ -161,37 +160,38 @@ export default function Orders() {
                       />
                     </div>
                   </div>
-                </div>
-                <div className="flex justify-end mb-5 items-center">
-                  <h2 className="mr-4">Payment method:</h2>
-                  <div className="flex">
-                    <input
-                      type="radio"
-                      id="pay"
-                      name="pay"
-                      value="pay"
-                      className="mr-2"
-                    />
-                    <label for="pay">Cash on delivery</label>
+
+                  <div className="flex justify-end mb-5 items-center">
+                    <h2 className="mr-4">Payment method:</h2>
+                    <div className="flex">
+                      <input
+                        type="radio"
+                        id="pay"
+                        name="pay"
+                        value="pay"
+                        className="mr-2"
+                      />
+                      <label for="pay">Cash on delivery</label>
+                    </div>
+                    <div className="flex">
+                      <input
+                        type="radio"
+                        id="moncash"
+                        name="moncash"
+                        value="moncash"
+                        className="mr-2"
+                      />
+                      <label for="moncash">Pay with moncash</label>
+                    </div>
                   </div>
-                  <div className="flex">
-                    <input
-                      type="radio"
-                      id="moncash"
-                      name="moncash"
-                      value="moncash"
-                      className="mr-2"
-                    />
-                    <label for="moncash">Pay with moncash</label>
+                  <div className=" items-end justify-end flex mb-10">
+                    <button
+                      type="submit"
+                      className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
+                    >
+                      Place order
+                    </button>
                   </div>
-                </div>
-                <div className=" items-end justify-end flex mb-10">
-                  <button
-                    type="submit"
-                    className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
-                  >
-                    Place order
-                  </button>
                 </div>
               </>
             )}
