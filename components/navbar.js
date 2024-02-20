@@ -22,7 +22,6 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
 
@@ -39,6 +38,7 @@ export default function Navbar() {
       window.removeEventListener("cartItemAdded", null);
     };
   }, []);
+  const tokenExist = !!localStorage.getItem("token");
 
   return (
     <header className="w-full bg-white text-[#4CAF50]">
@@ -77,22 +77,45 @@ export default function Navbar() {
             </div>
             {isDropDown && (
               <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
-                <li>
-                  <Link
-                    href="../login"
-                    className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
-                  >
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="../register"
-                    className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
-                  >
-                    Register
-                  </Link>
-                </li>
+                {tokenExist ? (
+                  <>
+                    <li>
+                      <Link
+                        href="../Profile"
+                        className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="../"
+                        className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link
+                        href="../login"
+                        className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                      >
+                        Login
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="../register"
+                        className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                      >
+                        Register
+                      </Link>
+                    </li>
+                  </>
+                )}
               </div>
             )}
           </li>

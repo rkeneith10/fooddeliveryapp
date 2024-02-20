@@ -66,7 +66,7 @@ export default function Orders() {
                 </thead>
                 <tbody>
                   {cart.length === 0 ? (
-                    <div className="font-semibold text-md italic text-center">
+                    <div className="font-semibold text-md italic text-center flex">
                       No Item yet in the cart
                     </div>
                   ) : (

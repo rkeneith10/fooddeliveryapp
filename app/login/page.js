@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import validator from "validator";
 import BackImage1 from "../../public/images/foodapp.PNG";
-export default function login() {
+
+export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
