@@ -185,18 +185,45 @@ export default function Navbar() {
                 </button>
                 {isDropDown && (
                   <div className="absolute top-0 mt-12 w-full bg-white rounded-lg shadow-lg">
-                    <Link
-                      href="../login"
-                      className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      href="../register"
-                      className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
-                    >
-                      Register
-                    </Link>
+                    {isLogin ? (
+                      <>
+                        <li>
+                          <Link
+                            href="../Profile"
+                            className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                          >
+                            Profile
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="../"
+                            className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                          >
+                            Logout
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link
+                            href="../login"
+                            className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                          >
+                            Login
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="../register"
+                            className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
+                          >
+                            Register
+                          </Link>
+                        </li>
+                      </>
+                    )}
                   </div>
                 )}
               </li>

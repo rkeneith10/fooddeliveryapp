@@ -1,3 +1,4 @@
+import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -11,6 +12,7 @@ export default function Orders() {
   const [cart, setCart] = useState([]);
   const [isLog, setIsLog] = useState(false);
   const [decodedToken, setDecodedToken] = useState("");
+  cosnt[(infoOfUser, setInfoOfUser)] = useState("");
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -31,6 +33,21 @@ export default function Orders() {
         // If valid, set isLog to true
         setIsLog(true);
       }
+    }
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://fooddelivery-kappa.vercel.app/api/users/userinfo",
+          { param: { userid: decodedToken } }
+        );
+        setInfoOfUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (storeToken) {
+      fetchData();
     }
   }, []);
 
@@ -152,6 +169,7 @@ export default function Orders() {
                         placeholder="Enter your FullName"
                         id="fullnaame"
                         name="fullname"
+                        value={infoOfUser.firstName}
                         className="border rounded-md w-full p-2"
                       />
                     </div>
@@ -164,6 +182,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
+                        value={infoOfUser.telephone}
                         placeholder="Enter your Phone Number"
                         id="phonenumber"
                         name="phonenumber"
@@ -179,6 +198,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
+                        value={infoOfUser.adress}
                         placeholder="Enter your address"
                         id="address"
                         name="address"
