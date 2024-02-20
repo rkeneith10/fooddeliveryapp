@@ -12,6 +12,7 @@ export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [isLogin, setIsLogin] = useState("");
 
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
@@ -22,7 +23,10 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const tokenExist = !!localStorage.getItem("token");
+    const tokenExist = localStorage.getItem("token");
+    if (tokenExist) {
+      setIsLogin(tokenExist);
+    }
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
@@ -79,7 +83,7 @@ export default function Navbar() {
             </div>
             {isDropDown && (
               <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
-                {tokenExist ? (
+                {isLogin ? (
                   <>
                     <li>
                       <Link
