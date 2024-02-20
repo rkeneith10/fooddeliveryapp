@@ -10,6 +10,9 @@ const schemaUsers = new mongoose.Schema({
   email: {
     type: String,
   },
+  adress: {
+    type: String,
+  },
 
   telephone: {
     type: String,
