@@ -25,7 +25,7 @@ const handler = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.SECRET_KET, {
           expiresIn: "1h",
         });
-        res.setHeader("x-access-token", token).status(201).json({
+        res.status(201).json({
           auth: true,
           token: token,
           result: user,
