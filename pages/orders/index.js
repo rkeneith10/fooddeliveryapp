@@ -4,11 +4,13 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import jwt from "jsonwebtoken";
 import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
   const [isLog, setIsLog] = useState(false);
+  const [decodedToken, setDecodedToken] = useState("");
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -18,8 +20,17 @@ export default function Orders() {
 
     const storeToken = localStorage.getItem("token");
     if (storeToken) {
-      setIsLog(true);
       toast(storeToken);
+      const decodedToken = jwt.decode(storeToken);
+      setDecodedToken(decodedToken);
+      if (decodedToken.exp < Date.now() / 1000) {
+        // If expired, clear token and set isLog to false
+        localStorage.removeItem("token");
+        setIsLog(false);
+      } else {
+        // If valid, set isLog to true
+        setIsLog(true);
+      }
     }
   }, []);
 

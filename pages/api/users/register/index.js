@@ -5,7 +5,7 @@ import connectDB from "../../utils/database";
 import users from "../../models/users";
 
 const handler = async (req, res) => {
-  connectDB();
+  await connectDB();
   if (req.method === "POST") {
     const { firstName, lastName, email, adress, telephone, password } =
       req.body;
