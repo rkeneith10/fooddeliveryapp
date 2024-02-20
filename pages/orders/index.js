@@ -176,15 +176,9 @@ export default function Orders() {
                   </div>
 
                   <div className="flex justify-end mb-5 items-center">
-                    <h2 className="mr-4">Payment method:</h2>
-                    <div className="flex">
-                      <input
-                        type="radio"
-                        id="pay"
-                        name="pay"
-                        value="pay"
-                        className="mr-2"
-                      />
+                    <h2 className="mr-4 font-semibold ">Payment method:</h2>
+                    <div className="flex mr-4">
+                      <input type="radio" id="pay" name="pay" value="pay" />
                       <label for="pay">Cash on delivery</label>
                     </div>
                     <div className="flex">
@@ -193,9 +187,17 @@ export default function Orders() {
                         id="moncash"
                         name="moncash"
                         value="moncash"
-                        className="mr-2"
                       />
-                      <label for="moncash">Pay with moncash</label>
+                      <label for="moncash">
+                        <div className="h-[50px] w-[100px]  relative overflow-hidden ">
+                          <CldImage
+                            src="https://res.cloudinary.com/dpiizfdue/image/upload/v1708454667/x7yarfuns4bsvt8ogcra.jpg"
+                            className="h-full w-full object-cover object-center"
+                            priority
+                            fill={true}
+                          />
+                        </div>
+                      </label>
                     </div>
                   </div>
                   <div className=" items-end justify-end flex mb-10">
