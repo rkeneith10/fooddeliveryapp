@@ -10,10 +10,7 @@ const handler = async (req, res) => {
       const { userid } = req.query;
       const userIdObject = new ObjectId(userid);
       const userinfo = await users.findOne({ _id: userIdObject });
-      res.status(200).json({
-        success: true,
-        data: userinfo,
-      });
+      res.status(200).json(userinfo);
     } catch (error) {
       console.error("Error fetching data:", error);
       res.status(500).json({ error: "Error fetching data" });
