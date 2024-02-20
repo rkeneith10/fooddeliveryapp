@@ -8,7 +8,7 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const [isLog, setIsLog] = useState();
+  const [isLog, setIsLog] = useState(false);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -18,7 +18,7 @@ export default function Orders() {
 
     const storeToken = localStorage.getItem("token");
     if (storeToken) {
-      setIsLog(storeToken);
+      setIsLog(true);
       toast(storeToken);
     }
   }, []);
