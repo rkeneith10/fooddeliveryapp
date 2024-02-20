@@ -50,7 +50,7 @@ function RestaurantDetail({ data, error }) {
           }}
         >
           <div
-            className="absolute inset-0 bg-black opacity-50"
+            className="absolute inset-0 bg-black opacity-50 p-5"
             aria-hidden="true"
           >
             <div className="max-w-sceen relative">
