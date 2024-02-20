@@ -26,17 +26,19 @@ export default function Orders() {
     updateCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // Emit the event to notify other components
     window.dispatchEvent(new CustomEvent("cartItemRemoved"));
   };
   const calculateTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const total = calculateTotalPrice();
+  q;
+
   return (
     <div>
       <Layout>
-        <div className="toast-container">
+        <div>
           <ToastContainer />
         </div>
 
@@ -64,121 +66,135 @@ export default function Orders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((item, index) => (
-                    <tr key={index} className="bg-white hover:bg-gray-50">
-                      <td className="text-left py-3 px-4 border-b border-gray-200">
-                        <div className="h-16 w-16 relative overflow-hidden">
-                          <CldImage
-                            src={item.imageUrl}
-                            className="h-full w-full object-cover object-center rounded-full"
-                            priority
-                            fill={true}
+                  {cart.length === 0 ? (
+                    <div className="font-semibold text-md italic text-center">
+                      No Item yet in the cart
+                    </div>
+                  ) : (
+                    cart.map((item, index) => (
+                      <tr key={index} className="bg-white hover:bg-gray-50">
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          <div className="h-16 w-16 relative overflow-hidden">
+                            <CldImage
+                              src={item.imageUrl}
+                              className="h-full w-full object-cover object-center rounded-full"
+                              priority
+                              fill={true}
+                            />
+                          </div>
+                        </td>
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          {item.name}
+                        </td>
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          {item.quantity}
+                        </td>
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          <span>HTG</span> {item.price * item.quantity}
+                        </td>
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          <FaRegTrashCan
+                            className="h-5 w-5 cursor-pointer text-red-600"
+                            onClick={() => removeFromCart(index)}
                           />
-                        </div>
-                      </td>
-                      <td className="text-left py-3 px-4 border-b border-gray-200">
-                        {item.name}
-                      </td>
-                      <td className="text-left py-3 px-4 border-b border-gray-200">
-                        {item.quantity}
-                      </td>
-                      <td className="text-left py-3 px-4 border-b border-gray-200">
-                        <span>HTG</span> {item.price * item.quantity}
-                      </td>
-                      <td className="text-left py-3 px-4 border-b border-gray-200">
-                        <FaRegTrashCan
-                          className="h-5 w-5 cursor-pointer text-red-600"
-                          onClick={() => removeFromCart(index)}
-                        />
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
-              <p className="total-price font-bold text-md mt-4 float-right mr-5">
-                Total Price: <span>HTG</span> {calculateTotalPrice()}
-              </p>
+
+              {total !== 0 && (
+                <p className="total-price font-bold text-md mt-4 float-right mr-5">
+                  Total Price: <span>HTG</span> {total}
+                </p>
+              )}
             </div>
-            <div className="mt-5">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                <div className="mb-4">
-                  <label
-                    htmlFor="nom"
-                    className="block  text-medium font-normal"
-                  >
-                    FullName
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your FullName"
-                    id="fullnaame"
-                    name="fullname"
-                    className="border rounded-md w-full p-2"
-                  />
+
+            {cart.length !== 0 && (
+              <>
+                <div className="mt-5">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div className="mb-4">
+                      <label
+                        htmlFor="nom"
+                        className="block  text-medium font-normal"
+                      >
+                        FullName
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter your FullName"
+                        id="fullnaame"
+                        name="fullname"
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="nom"
+                        className="block text-medium font-normal"
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter your Phone Number"
+                        id="phonenumber"
+                        name="phonenumber"
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="nom"
+                        className="block text-medium font-normal"
+                      >
+                        Address
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter your address"
+                        id="address"
+                        name="address"
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="nom"
-                    className="block text-medium font-normal"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your Phone Number"
-                    id="phonenumber"
-                    name="phonenumber"
-                    className="border rounded-md w-full p-2"
-                  />
+                <div className="flex justify-end mb-5 items-center">
+                  <h2 className="mr-4">Payment method:</h2>
+                  <div classNAme="flex ml-auto">
+                    <input
+                      type="radio"
+                      id="pay"
+                      name="pay"
+                      value="pay"
+                      className="mr-2"
+                    />
+                    <label for="pay">Cash on delivery</label>
+                  </div>
+                  <div className="flex">
+                    <input
+                      type="radio"
+                      id="moncash"
+                      name="moncash"
+                      value="moncash"
+                      className="mr-2"
+                    />
+                    <label for="moncash">Pay with moncash</label>
+                  </div>
                 </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="nom"
-                    className="block text-medium font-normal"
+                <div className=" items-end justify-end flex mb-10">
+                  <button
+                    type="submit"
+                    className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
                   >
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your address"
-                    id="address"
-                    name="address"
-                    className="border rounded-md w-full p-2"
-                  />
+                    Place order
+                  </button>
                 </div>
-              </div>
-            </div>
-            <div className="flex justify-end mb-5 items-center">
-              <h2 className="mr-4">Payment method:</h2>
-              <div classNAme="flex ml-auto">
-                <input
-                  type="radio"
-                  id="pay"
-                  name="pay"
-                  value="pay"
-                  className="mr-2"
-                />
-                <label for="pay">Cash on delivery</label>
-              </div>
-              <div className="flex">
-                <input
-                  type="radio"
-                  id="moncash"
-                  name="moncash"
-                  value="moncash"
-                  className="mr-2"
-                />
-                <label for="moncash">Pay with moncash</label>
-              </div>
-            </div>
-            <div className=" items-end justify-end flex mb-10">
-              <button
-                type="submit"
-                className={`bg-[#4CAF50] text-white px-4 py-2 rounded `}
-              >
-                Place order
-              </button>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </Layout>
