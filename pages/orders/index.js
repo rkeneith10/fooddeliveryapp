@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -8,7 +9,7 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const [isLog, setIsLog] = useState();
+  const [isLog, setIsLog] = useState(false);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -18,7 +19,15 @@ export default function Orders() {
 
     const storeToken = localStorage.getItem("token");
     if (storeToken) {
-      setIsLog(storeToken);
+      const decodedToken = jwt.decode(storeToken);
+      toast(decodedToken);
+
+      if (decodedToken.exp < Date.now() / 1000) {
+        localStorage.removeItem("token");
+        setIsLog(false);
+      } else {
+        setIsLog(true);
+      }
     }
   }, []);
 
