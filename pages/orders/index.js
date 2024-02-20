@@ -4,7 +4,6 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import jwt from "jsonwebtoken";
 import Layout from "../layout";
 
 export default function Orders() {
@@ -23,11 +22,11 @@ export default function Orders() {
     if (storeToken) {
       setIsLog(true);
       //toast(storeToken);
-      const decodedToken = jwt.decode(storeToken);
-      setDecodedToken(decodedToken);
+      // const decodedToken = jwt.decode(storeToken);
+      // setDecodedToken(decodedToken);
 
       // if (decodedToken.exp < Date.now() / 1000) {
-      //   // If expired, clear token and set isLog to false
+      //
       //   localStorage.removeItem("token");
       //   setIsLog(false);
       // } else {
