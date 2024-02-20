@@ -1,4 +1,3 @@
-import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -11,8 +10,8 @@ import Layout from "../layout";
 export default function Orders() {
   const [cart, setCart] = useState([]);
   const [isLog, setIsLog] = useState(false);
-  const [decodedToken, setDecodedToken] = useState("");
-  cosnt[(infoOfUser, setInfoOfUser)] = useState("");
+  //const [decodedToken, setDecodedToken] = useState("");
+  //cosnt[(infoOfUser, setInfoOfUser)] = useState("");
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -22,33 +21,32 @@ export default function Orders() {
 
     const storeToken = localStorage.getItem("token");
     if (storeToken) {
-      toast(storeToken);
+      setIsLog(true);
+      //toast(storeToken);
       const decodedToken = jwt.decode(storeToken);
       setDecodedToken(decodedToken);
-      if (decodedToken.exp < Date.now() / 1000) {
-        // If expired, clear token and set isLog to false
-        localStorage.removeItem("token");
-        setIsLog(false);
-      } else {
-        // If valid, set isLog to true
-        setIsLog(true);
-      }
+
+      // if (decodedToken.exp < Date.now() / 1000) {
+      //   // If expired, clear token and set isLog to false
+      //   localStorage.removeItem("token");
+      //   setIsLog(false);
+      // } else {
+      //   // If valid, set isLog to true
+      //   setIsLog(true);
+      // }
     }
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://fooddelivery-kappa.vercel.app/api/users/userinfo",
-          { params: { userid: decodedToken } }
-        );
-        setInfoOfUser(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (storeToken) {
-      fetchData();
-    }
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       "https://fooddelivery-kappa.vercel.app/api/users/userinfo",
+    //       { params: { userid: decodedToken } }
+    //     );
+    //     setInfoOfUser(response.data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
   }, []);
 
   const updateCart = (newCart) => {
@@ -169,7 +167,6 @@ export default function Orders() {
                         placeholder="Enter your FullName"
                         id="fullnaame"
                         name="fullname"
-                        value={infoOfUser.firstName}
                         className="border rounded-md w-full p-2"
                       />
                     </div>

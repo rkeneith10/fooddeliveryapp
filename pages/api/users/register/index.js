@@ -28,7 +28,7 @@ const handler = async (req, res) => {
       res.status(201).json({
         success: true,
         msg: "User saved",
-
+        datauser: newUser,
         token: token,
       });
     } else {
