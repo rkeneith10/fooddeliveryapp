@@ -22,7 +22,7 @@ const handler = async (req, res) => {
         password: await bcrypt.hash(password, 10),
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KET, {
+      const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
       res.status(201).json({
