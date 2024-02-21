@@ -41,8 +41,10 @@ export default function Restaurant({ restaurants }) {
           </Head>
           <div className="min-h-screen bg-gray-50">
             <div className="p-10">
-              <div className="flex text-center font-normal text-md mb-6">
-                The best restaurants in the city
+              <div className="flex  mb-6">
+                <p className="text-center font-medium text-md">
+                  The best restaurants in the city
+                </p>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {restaurants.map((resto) => (
