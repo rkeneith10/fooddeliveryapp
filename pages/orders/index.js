@@ -115,7 +115,7 @@ export default function Orders() {
                 </thead>
                 <tbody>
                   {cart.length === 0 ? (
-                    <div className="flex justify-center pl-15">
+                    <div className="flex justify-center ">
                       <p className="text-center font-semibold text-md italic">
                         No Item yet in the cart
                       </p>
