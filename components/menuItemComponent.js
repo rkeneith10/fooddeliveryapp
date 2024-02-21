@@ -14,7 +14,7 @@ export default function MenuItemComponent({
       stars.push(
         <FaStar
           key={i}
-          className={`${
+          className={`w-3 h-3${
             i < randomRating ? "text-yellow-500" : "text-gray-300"
           }inline-block`}
         />
