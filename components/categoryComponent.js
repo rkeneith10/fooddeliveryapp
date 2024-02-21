@@ -4,14 +4,10 @@ export default function CategoryComponent({ imageUrl, category }) {
   return (
     <div className="container mx-auto px-4 -y-8">
       <div className="flex flex-col items-center">
-        <div className="h-32 w-48  relative overflow-hidden ">
-          <CldImage
-            src={imageUrl}
-            className="h-full w-full object-cover object-center rounded-lg"
-            priority
-            fill={true}
-          />
-        </div>
+        <CldImage
+          src={imageUrl}
+          className="h-32 w-48 object-cover rounded-lg"
+        />
         <div className="text-center mt-4">
           <p className="font-normal text-md">{category}</p>
         </div>
