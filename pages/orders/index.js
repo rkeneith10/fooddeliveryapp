@@ -115,8 +115,11 @@ export default function Orders() {
                 </thead>
                 <tbody>
                   {cart.length === 0 ? (
-                    <div className="font-semibold text-md italic text-center flex pl-15">
-                      No Item yet in the cart
+                    <div className="  flex pl-15">
+                      <p className="text-center font-semibold text-md italic">
+                        {" "}
+                        No Item yet in the cart
+                      </p>
                     </div>
                   ) : (
                     cart.map((item, index) => (
