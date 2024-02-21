@@ -32,6 +32,9 @@ function RestaurantDetail({ data, error }) {
     }
     return categories;
   }, []);
+  const getRandomRating = () => {
+    Math.floor(Math.random() * 3) + 3;
+  };
 
   return (
     <div>
@@ -95,7 +98,7 @@ function RestaurantDetail({ data, error }) {
 
         {activeCategory && (
           <div className="bg-gray-50">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {data.menus
                 .filter((menu) => menu.category === activeCategory)
                 .map((menu, menuIndex) => (
@@ -106,6 +109,7 @@ function RestaurantDetail({ data, error }) {
                         imageUrl={menu.imageUrl}
                         description={menu.description}
                         price={menu.price}
+                        randomRating={getRandomRating()}
                       />
                     </Link>
                   </div>
