@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaLock, FaPhoneSquareAlt, FaUser } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import validator from "validator";
 import BackImage1 from "../../public/images/foodapp.PNG";
@@ -38,13 +40,14 @@ export default function Register() {
       password.trim() === "" ||
       telephone.trim() === "" ||
       firstName.trim() === "" ||
-      lastName.trim() === ""
+      lastName.trim() === "" ||
+      adress.trim() === ""
     ) {
-      setError("Fill all the fields");
+      toast.error("Fill all the fields");
       setLoading(false);
       setDisable(false);
     } else if (!validator.isEmail(email)) {
-      setError("Please enter a valid email");
+      toast.error("Please enter a valid email");
       setLoading(false);
       setDisable(false);
     } else {
@@ -65,7 +68,7 @@ export default function Register() {
               localStorage.setItem("token", response.data.token);
               router.replace("../../");
             } else if (!response.data.auth) {
-              setError(response.data.msg);
+              toast.error(response.data.msg);
               setLoading(false);
               setDisable(false);
             }
@@ -79,16 +82,8 @@ export default function Register() {
         className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
         style={{ backgroundImage: `url(${BackImage1.src})` }}
       >
-        <div className="mb-10">
-          {error && (
-            <div
-              class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-              role="alert"
-            >
-              <span class="block sm:inline">{error}.</span>
-              <span class="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
-            </div>
-          )}
+        <div className="mb-5">
+          <ToastContainer />
         </div>
         <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
           <div className="text-gray-900 font-normal text-xl">
