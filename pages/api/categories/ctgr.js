@@ -10,7 +10,7 @@ const handler = async (req, res) => {
       if (!menuCategory) {
         return res.status(400).json({ error: "Error category" });
       }
-      const menuByCategory = await menu_items.find({ category: menuCategory });
+      const menuByCategory = await menu_items.find({ category: "Sandwiches" });
       if (!menuByCategory) {
         res.status(400).json({ error: "No item found" });
       }
