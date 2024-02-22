@@ -11,7 +11,7 @@ export async function getServerSideProps({ query }) {
 
   try {
     const response = await axios.get(
-      `https://fooddelivery-kappa.vercel.app/api/categories/ctgr?menuCategory=${menuCategory}`
+      `https://fooddelivery-kappa.vercel.app/api/categories/ctgr?menuCategory=Sandwiches`
     );
 
     data = response.data;
@@ -28,11 +28,11 @@ export async function getServerSideProps({ query }) {
 
 export default function MenuByCategory({ data, error }) {
   if (error) {
-    return <p>Error loading post: {error}</p>;
+    return <p>Error loading menu item: {error}</p>;
   }
 
   if (!data) {
-    return <p>Restaurant not found</p>; // Handle non-existent post as well
+    return <p>Menu item not found</p>; // Handle non-existent post as well
   }
   return (
     <div>
