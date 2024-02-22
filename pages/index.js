@@ -17,9 +17,14 @@ export async function getStaticProps() {
   try {
     const responseData = await response.json();
     const responseData1 = await response1.json();
+
+    const categories = responseData.all.map((category) => ({
+      category: category.category,
+      imageUrl: category.imageUrl,
+    }));
     return {
       props: {
-        categories: responseData.all,
+        categories,
         restaurants: responseData1.all,
       },
       revalidate: 3600,
