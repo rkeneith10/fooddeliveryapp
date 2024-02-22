@@ -6,7 +6,7 @@ export default function CategoryComponent({ imageUrl, category }) {
       <div className="flex flex-col items-center">
         <CldImage
           src={imageUrl}
-          className="h-32 w-32 object-cover rounded-full mt-5"
+          className="h-20 w-20 object-cover rounded-full mt-5"
         />
         <div className="text-center mt-4">
           <p className="font-normal text-md">{category}</p>
