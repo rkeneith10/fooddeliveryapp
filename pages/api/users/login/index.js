@@ -28,7 +28,12 @@ const handler = async (req, res) => {
         res.status(200).json({
           auth: true,
           token: token,
-          datauser: user,
+          datauser: {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            adress: user.adress,
+            telephone: user.telephone,
+          },
           msg: "Login successfully",
         });
       }
