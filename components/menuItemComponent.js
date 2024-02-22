@@ -19,11 +19,8 @@ export default function MenuItemComponent({
           src={imageUrl}
           className="h-32 w-32 object-cover rounded-full mt-5"
         />
-      </div>
-      <div className="flex flex-col items-start">
         <h6 className="text-sm font-semibold mb-1">{item_name}</h6>
-
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between ">
           <div className="flex items-center mr-10">
             <p className="text-gray-800 font-semibold text-sm">
               <span className="text-[#4CAF50]">HTG </span> {price}
