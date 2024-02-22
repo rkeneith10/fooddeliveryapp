@@ -24,7 +24,7 @@ export default function MenuItemComponent({
         <h6 className="text-sm font-semibold mb-1">{item_name}</h6>
 
         <div className="flex flex-row justify-between items-center">
-          <div className="flex items-center">
+          <div className="flex items-center mr-10">
             <p className="text-gray-800 font-semibold text-sm">
               <span className="text-[#4CAF50]">HTG </span> {price}
             </p>
