@@ -72,11 +72,26 @@ const handler = async (req, res) => {
 
     case "GET":
       try {
-        const allCategories = await category.find({}).sort({ _id: -1 });
+        // Requête pour récupérer les catégories avec des menus associés
+        const categoriesWithMenus = await category.aggregate([
+          {
+            $lookup: {
+              from: "menu_items",
+              localField: "category",
+              foreignField: "category",
+              as: "menus",
+            },
+          },
+          {
+            $match: {
+              menus: { $ne: [] },
+            },
+          },
+        ]);
 
         res.status(200).json({
           success: true,
-          all: allCategories,
+          categories: categoriesWithMenus,
         });
       } catch (error) {
         console.error(error);
@@ -84,7 +99,6 @@ const handler = async (req, res) => {
           error: "Internal server error",
         });
       }
-
       break;
 
     default:
