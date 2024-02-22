@@ -2,6 +2,7 @@
 import MenuItemComponent from "@/components/menuItemComponent";
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
 import Layout from "../layout";
 export async function getServerSideProps({ query }) {
   const { menuCategory } = query || {};
