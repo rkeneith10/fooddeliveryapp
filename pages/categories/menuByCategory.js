@@ -44,7 +44,7 @@ export default function MenuByCategory({ data, error }) {
           {/* Add other meta tags here */}
         </Head>
         <div className="min-h-screen bg-gray-50">
-          <div className="pl-20 pr-20 p-5">
+          <div className="lg:pl-20 lg:pr-20 sm:pl-10 sm:pr-10 p-5">
             <div className="flex justify-center mb-6">
               <p className="text-center font-medium text-md">
                 Menu for the category...
