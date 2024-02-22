@@ -31,7 +31,7 @@ export default function MenuItemComponent({
         />
       </div>
       <div className="flex flex-col items-start">
-        <h5 className="text-md font-semibold mb-1">{item_name}</h5>
+        <h6 className="text-sm font-normal mb-1">{item_name}</h6>
         <div className="flex justify-between">
           <p className="text-gray-800 font-semibold text-sm">
             <span className="text-[#4CAF50]">HTG </span> {price}
