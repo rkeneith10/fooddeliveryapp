@@ -1,6 +1,5 @@
 import CategoryComponent from "@/components/categoryComponent";
-// import Footer from "@/components/footer";
-// import Navbar from "@/components/navbar";
+
 import RestaurantComponent from "@/components/restaurantsComponent";
 import Head from "next/head";
 import Link from "next/link";
@@ -48,9 +47,8 @@ export default function index({ categories, restaurants }) {
               name="description"
               content="The App that will change your life"
             />
-            {/* Add other meta tags here */}
           </Head>
-          {/* <Navbar /> */}
+
           <div
             id="top"
             className="h-[400px]  max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
@@ -77,14 +75,14 @@ export default function index({ categories, restaurants }) {
             <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
               {categories.map((cat) => (
                 <div key={cat._id}>
-                  {/* <Link
+                  <Link
                     href={`/categories/menuByCategory?menuCategory=${cat.category}`}
-                  > */}
-                  <CategoryComponent
-                    category={cat.category}
-                    imageUrl={cat.imageUrl}
-                  />
-                  {/* </Link> */}
+                  >
+                    <CategoryComponent
+                      category={cat.category}
+                      imageUrl={cat.imageUrl}
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
@@ -109,7 +107,6 @@ export default function index({ categories, restaurants }) {
               ))}
             </div>
           </div>
-          {/* <Footer /> */}
         </div>
       </Layout>
     </>
