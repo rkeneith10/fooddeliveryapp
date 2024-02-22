@@ -70,52 +70,53 @@ function RestaurantDetail({ data, error }) {
           </div>
         </div>
 
-        {categoriesWithMenus.length === 0 ? (
-          <div
-            className={`bg-gray-100 p-4 text-center ${
-              categoriesWithMenus.length === 0 ? "mb-[150px]" : ""
-            }`}
-          >
-            This restaurant currently has no menu available.
-          </div>
-        ) : (
-          <div className="flex overflow-x-auto space-x-4 p-4 ">
-            {categoriesWithMenus.map((category, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveCategory(category)}
-                className={`p-2 rounded ${
-                  category === activeCategory
-                    ? "bg-[#4CAF50] text-white"
-                    : "border border-[#4CAF50] text-[#4CAF50] bg-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {activeCategory && (
-          <div className="bg-gray-50">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {data.menus
-                .filter((menu) => menu.category === activeCategory)
-                .map((menu, menuIndex) => (
-                  <div key={menuIndex} className="p-8 ">
-                    <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
-                      <MenuItemComponent
-                        item_name={menu.item_name}
-                        imageUrl={menu.imageUrl}
-                        description={menu.description}
-                        price={menu.price}
-                      />
-                    </Link>
-                  </div>
-                ))}
+        <div className="min-h-screnn">
+          {categoriesWithMenus.length === 0 ? (
+            <div
+              className={`bg-gray-100 p-4 text-center
+            `}
+            >
+              This restaurant currently has no menu available.
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex overflow-x-auto space-x-4 p-4 ">
+              {categoriesWithMenus.map((category, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveCategory(category)}
+                  className={`p-2 rounded ${
+                    category === activeCategory
+                      ? "bg-[#4CAF50] text-white"
+                      : "border border-[#4CAF50] text-[#4CAF50] bg-white"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {activeCategory && (
+            <div className="bg-gray-50">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {data.menus
+                  .filter((menu) => menu.category === activeCategory)
+                  .map((menu, menuIndex) => (
+                    <div key={menuIndex} className="p-8 ">
+                      <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
+                        <MenuItemComponent
+                          item_name={menu.item_name}
+                          imageUrl={menu.imageUrl}
+                          description={menu.description}
+                          price={menu.price}
+                        />
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
       </Layout>
     </div>
   );
