@@ -79,7 +79,7 @@ export default function index({ categories, restaurants }) {
             </div>
             <div className="flex overflow-x-auto">
               {categories.map((cat) => (
-                <div key={cat._id} className="flex flex-shrink-0 mr-2">
+                <div key={cat._id} className=" flex-shrink-0 mr-2">
                   <Link
                     href={`/categories/menuByCategory?menuCategory=${cat.category}`}
                   >
