@@ -28,13 +28,13 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function MenuByCategory({ data, error }) {
-  if (error) {
-    return <p>Error loading menu item: {error}</p>;
-  }
+  // if (error) {
+  //   return <p>Error loading menu item: {error}</p>;
+  // }
 
-  if (!data) {
-    return <p>Menu item not found</p>; // Handle non-existent post as well
-  }
+  // if (!data) {
+  //   return <p>Menu item not found</p>; // Handle non-existent post as well
+  // }
   return (
     <div>
       <Layout>
