@@ -22,6 +22,7 @@ const handler = async (req, res) => {
         item_name: menuItem.item_name,
         imageUrl: menuItem.imageUrl,
         price: menuItem.price,
+
         restaurant_name: menuItem.restaurant_name,
       }));
 

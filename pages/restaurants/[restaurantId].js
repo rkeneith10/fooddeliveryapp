@@ -32,9 +32,9 @@ function RestaurantDetail({ data, error }) {
     }
     return categories;
   }, []);
-  const getRandomRating = () => {
-    Math.floor(Math.random() * 3) + 3;
-  };
+  // const getRandomRating = () => {
+  //   Math.floor(Math.random() * 3) + 3;
+  // };
 
   return (
     <div>
@@ -109,7 +109,6 @@ function RestaurantDetail({ data, error }) {
                         imageUrl={menu.imageUrl}
                         description={menu.description}
                         price={menu.price}
-                        randomRating={getRandomRating()}
                       />
                     </Link>
                   </div>

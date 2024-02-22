@@ -6,22 +6,14 @@ export default function MenuItemComponent({
   item_name,
   description,
   price,
-  randomRating,
 }) {
-  const renderStarRating = () => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <FaStar
-          key={i}
-          className={`w-3 h-3 ${
-            i < 3 ? "text-yellow-500" : "text-gray-300"
-          } inline-block`}
-        />
-      );
-    }
-    return stars;
+  const generateRandomRating = () => {
+    return (Math.random() * (5 - 3.5) + 3.5).toFixed(1);
   };
+
+  // Call the function to get a random rating
+  const randomRating = generateRandomRating();
+
   return (
     <div className="container mx-auto px-4 -y-8 bg-white shadow-md transition-transform transform hover:-translate-x-1 rounded-md cursor-pointer">
       <div className="flex flex-col items-center">
@@ -31,12 +23,18 @@ export default function MenuItemComponent({
         />
       </div>
       <div className="flex flex-col items-start">
-        <h6 className="text-sm font-normal mb-1">{item_name}</h6>
+        <h6 className="text-sm font-semibold mb-1">{item_name}</h6>
         <div className="flex justify-between">
           <p className="text-gray-800 font-semibold text-sm">
             <span className="text-[#4CAF50]">HTG </span> {price}
           </p>
-          <div className="flex items-center">{renderStarRating()}</div>
+          <div className="flex items-center">
+            {/* Display the random rating followed by star icon */}
+            <span className="text-yellow-500 font-semibold text-sm mr-1">
+              {randomRating}
+            </span>
+            <FaStar className="text-yellow-500 w-3 h-3" />
+          </div>
         </div>
       </div>
     </div>

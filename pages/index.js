@@ -77,10 +77,14 @@ export default function index({ categories, restaurants }) {
             <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
               {categories.map((cat) => (
                 <div key={cat._id}>
-                  <CategoryComponent
-                    category={cat.category}
-                    imageUrl={cat.imageUrl}
-                  />
+                  <Link
+                    href={`/categories/menuByCategory?menuCategory=${cat.category}`}
+                  >
+                    <CategoryComponent
+                      category={cat.category}
+                      imageUrl={cat.imageUrl}
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
