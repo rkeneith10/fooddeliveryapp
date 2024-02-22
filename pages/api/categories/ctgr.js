@@ -10,24 +10,27 @@ const handler = async (req, res) => {
       if (!menuCategory) {
         return res.status(400).json({ error: "Error category" });
       }
-      const menuByCategory = await menu_items.find({ category: "Sandwiches" });
-      if (!menuByCategory) {
-        res.status(400).json({ error: "No item found" });
+
+      const menuByCategory = await menu_items.find({ category: menuCategory });
+
+      if (!menuByCategory || menuByCategory.length === 0) {
+        return res.status(400).json({ error: "No items found" });
       }
-      const responseData = {
-        menuItemId: menuByCategory._id,
-        item_name: menuByCategory.item_name,
-        imageUrl: menuByCategory.imageUrl,
-        price: menuByCategory.price,
-        restaurant_name: menuByCategory.restaurant_name,
-      };
+
+      const responseData = menuByCategory.map((menuItem) => ({
+        menuItemId: menuItem._id,
+        item_name: menuItem.item_name,
+        imageUrl: menuItem.imageUrl,
+        price: menuItem.price,
+        restaurant_name: menuItem.restaurant_name,
+      }));
+
       return res.status(200).json({ all: responseData });
     } catch (error) {
       console.error(error);
-
-      // Return an error response
       return res.status(500).json({ error: "Internal server error" });
     }
   }
 };
+
 export default handler;
