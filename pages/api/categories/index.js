@@ -91,7 +91,7 @@ const handler = async (req, res) => {
 
         res.status(200).json({
           success: true,
-          categories: categoriesWithMenus,
+          all: categoriesWithMenus,
         });
       } catch (error) {
         console.error(error);
