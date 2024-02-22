@@ -51,7 +51,7 @@ export default function MenuByCategory({ data, error }) {
             </div>
             <div className="bg-gray-50">
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {data.ll.map((menuItem) => (
+                {data.all.map((menuItem) => (
                   <Link
                     href={`/menu/menuItem?menuItemId=${menuItem.menuItemId}`}
                   >
