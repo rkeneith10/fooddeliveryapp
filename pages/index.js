@@ -6,7 +6,7 @@ import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import BackImage1 from "../public/images/foodapp.PNG";
 import Layout from "./layout";
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch(
     "https://fooddelivery-kappa.vercel.app/api/categories"
   );
