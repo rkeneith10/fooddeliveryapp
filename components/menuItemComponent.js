@@ -23,15 +23,17 @@ export default function MenuItemComponent({
       <div className="flex flex-col items-start">
         <h6 className="text-sm font-semibold mb-1">{item_name}</h6>
 
-        <div className="flex flex-row justify-between">
-          <p className="text-gray-800 font-semibold text-sm">
-            <span className="text-[#4CAF50]">HTG </span> {price}
-          </p>
+        <div className="flex flex-row justify-between items-center">
           <div className="flex items-center">
-            <span className="text-yellow-500 font-semibold text-sm mr-1">
+            <p className="text-gray-800 font-semibold text-sm">
+              <span className="text-[#4CAF50]">HTG </span> {price}
+            </p>
+          </div>
+          <div className="flex items-center">
+            <FaStar className="text-yellow-500 w-3 h-3" />
+            <span className="text-yellow-500 font-semibold text-sm ml-1">
               {randomRating}
             </span>
-            <FaStar className="text-yellow-500 w-3 h-3" />
           </div>
         </div>
       </div>
