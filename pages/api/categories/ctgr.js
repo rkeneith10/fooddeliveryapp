@@ -21,7 +21,7 @@ const handler = async (req, res) => {
         price: menuByCategory.price,
         restaurant_name: menuByCategory.restaurant_name,
       };
-      return res.status(200).json(responseData);
+      return res.status(200).json({ all: responseData });
     } catch (error) {
       console.error(error);
 
