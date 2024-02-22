@@ -10,8 +10,6 @@ export default function MenuItemComponent({
   const generateRandomRating = () => {
     return (Math.random() * (5 - 3.5) + 3.5).toFixed(1);
   };
-
-  // Call the function to get a random rating
   const randomRating = generateRandomRating();
 
   return (
@@ -28,8 +26,7 @@ export default function MenuItemComponent({
           <p className="text-gray-800 font-semibold text-sm">
             <span className="text-[#4CAF50]">HTG </span> {price}
           </p>
-          <div className="flex items-center">
-            {/* Display the random rating followed by star icon */}
+          <div className="flex">
             <span className="text-yellow-500 font-semibold text-sm mr-1">
               {randomRating}
             </span>
