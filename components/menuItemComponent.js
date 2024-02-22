@@ -29,7 +29,7 @@ export default function MenuItemComponent({
               <span className="text-[#4CAF50]">HTG </span> {price}
             </p>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center justify-end">
             <FaStar className="text-yellow-500 w-3 h-3" />
             <span className="text-yellow-500 font-semibold text-sm ml-1">
               {randomRating}
