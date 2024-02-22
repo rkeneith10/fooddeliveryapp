@@ -27,7 +27,6 @@ export async function getServerSideProps() {
         categories,
         restaurants: responseData1.all,
       },
-      revalidate: 3600,
     };
   } catch (error) {
     console.log("Error fetch data", error);
@@ -36,7 +35,6 @@ export async function getServerSideProps() {
         categories: [],
         restaurants: [],
       },
-      revalidate: 3600,
     };
   }
 }
