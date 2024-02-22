@@ -33,7 +33,7 @@ function RestaurantDetail({ data, error }) {
     return categories;
   }, []);
   const getRandomRating = () => {
-    Math.floor(Math.random() * 5) + 1;
+    Math.floor(Math.random() * 3) + 3;
   };
 
   return (
