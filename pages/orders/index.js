@@ -239,6 +239,9 @@ export default function Orders() {
                         name="paymentMethod"
                         value="pay"
                         checked={paymentMethod === "cash"}
+                        onChange={() =>
+                          handlerPayment({ target: { value: "cash" } })
+                        }
                       />
                       <label for="cash">Cash on delivery</label>
                     </div>
@@ -249,6 +252,9 @@ export default function Orders() {
                         name="paymentMethod"
                         value="moncash"
                         checked={paymentMethod === "moncash"}
+                        onChange={() =>
+                          handlerPayment({ target: { value: "moncash" } })
+                        }
                       />
                       <label for="moncash">
                         <div className="h-[40px] w-[120px]  relative overflow-hidden ">
