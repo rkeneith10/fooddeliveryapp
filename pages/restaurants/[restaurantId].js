@@ -105,7 +105,7 @@ function RestaurantDetail({ data, error }) {
                     <div key={menuIndex} className="p-8 ">
                       <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
                         <MenuItemComponent
-                          item_name={menu.item_name}
+                          item_name={menu.item_name.slice(0, 15)}
                           imageUrl={menu.imageUrl}
                           description={menu.description}
                           price={menu.price}
