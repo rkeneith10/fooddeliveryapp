@@ -112,7 +112,7 @@ export default function Orders() {
                       Items
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Restaurant
+                      Restaurants
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Quantity
@@ -194,6 +194,7 @@ export default function Orders() {
                         id="fullnaame"
                         name="fullname"
                         className="border rounded-md w-full p-2"
+                        readonly
                       />
                     </div>
                     <div className="mb-4">
@@ -209,6 +210,7 @@ export default function Orders() {
                         placeholder="Enter your Phone Number"
                         id="phonenumber"
                         name="phonenumber"
+                        readonly
                         className="border rounded-md w-full p-2"
                       />
                     </div>
