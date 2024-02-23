@@ -149,7 +149,7 @@ export default function Orders() {
                           {item.name}
                         </td>
                         <td className="text-left py-3 px-4 border-b border-gray-200">
-                          {item.restaurant_name}
+                          {item.restaurant}
                         </td>
                         <td className="text-left py-3 px-4 border-b border-gray-200">
                           {item.quantity}
