@@ -103,7 +103,7 @@ export default function index({ categories, restaurants, menus }) {
               <span>Top-sellings Menu items</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {menus.slice(0, 8).map((menu) => (
+              {menus.slice(0, 12).map((menu) => (
                 <div key={menu._id}>
                   <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
                     <MenuItemComponent
@@ -138,9 +138,9 @@ export default function index({ categories, restaurants, menus }) {
             </div>
             <div className="flex items-center justify-end mt-5">
               <Link href="/restaurants">
-                <button className="px-4 py-2 bg-[#4CAF50] text-white">
+                <div className="px-4 py-2 bg-[#4CAF50] text-white rounded-md">
                   See more
-                </button>
+                </div>
               </Link>
             </div>
           </div>
