@@ -99,7 +99,7 @@ export default function index({ categories, restaurants, menus }) {
           </div>
 
           <div className="p-10 bg-gray-100 mb-4">
-            <div className="text-xl font-semibold text-center mb-3">
+            <div className="text-xl font-semibold text-center">
               <span>Top-sellings Menu items</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
