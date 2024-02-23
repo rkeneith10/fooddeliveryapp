@@ -96,7 +96,7 @@ export default function index({ categories, restaurants }) {
               <span>Nearby Restaurants</span>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {restaurants.map((resto) => (
+              {restaurants.slice(0, 4).map((resto) => (
                 <div key={resto._id}>
                   <Link href={`/restaurants/${resto._id}`}>
                     <RestaurantComponent
@@ -108,6 +108,13 @@ export default function index({ categories, restaurants }) {
                   </Link>
                 </div>
               ))}
+            </div>
+            <div className="flex items-center justify-end">
+              <Link href="/restaurants">
+                <button className="px-4 py-2 bg-[#4CAF50] text-white">
+                  See more
+                </button>
+              </Link>
             </div>
           </div>
         </div>

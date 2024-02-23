@@ -11,6 +11,7 @@ export default function Orders() {
   const [isLog, setIsLog] = useState(false);
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("cash");
   //const [decodedToken, setDecodedToken] = useState("");
   //cosnt[(infoOfUser, setInfoOfUser)] = useState("");
 
@@ -75,11 +76,19 @@ export default function Orders() {
 
   const totalprice = calculateTotalPrice();
 
+  const handlerPayment = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+
   const handlerOrder = () => {
     if (!isLog) {
       toast.warning("You have to login to place your order");
     } else {
-      toast.success("This function will be implemented soon");
+      if (paymentMethod === "cash") {
+        toast.success("Cash on delivery-Function to be implemented soon");
+      } else if (paymentMethod === "moncash") {
+        toast.success("Moncash Payment-Function to be implemented soon");
+      }
     }
   };
 
@@ -101,6 +110,9 @@ export default function Orders() {
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Items
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Restaurant
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Quantity
@@ -135,6 +147,9 @@ export default function Orders() {
                         </td>
                         <td className="text-left py-3 px-4 border-b border-gray-200">
                           {item.name}
+                        </td>
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          {item.restaurant_name}
                         </td>
                         <td className="text-left py-3 px-4 border-b border-gray-200">
                           {item.quantity}
@@ -218,15 +233,22 @@ export default function Orders() {
                   <div className="flex justify-end mb-5 items-center ">
                     <h2 className="mr-4 font-semibold ">Payment method:</h2>
                     <div className="flex mr-4">
-                      <input type="radio" id="pay" name="pay" value="pay" />
-                      <label for="pay">Cash on delivery</label>
+                      <input
+                        type="radio"
+                        id="cash"
+                        name="paymentMethod"
+                        value="pay"
+                        checked={handlerPayment}
+                      />
+                      <label for="cash">Cash on delivery</label>
                     </div>
                     <div className="flex">
                       <input
                         type="radio"
                         id="moncash"
-                        name="moncash"
+                        name="paymentMethod"
                         value="moncash"
+                        checked={handlerPayment}
                       />
                       <label for="moncash">
                         <div className="h-[40px] w-[120px]  relative overflow-hidden ">
