@@ -42,7 +42,7 @@ export default function Restaurant({ restaurants }) {
           <div className="min-h-screen bg-gray-50">
             <div className="p-10">
               <div className="flex justify-center mb-6">
-                <p className="text-center font-medium text-md">
+                <p className="text-xl font-semibold text-center ">
                   The best restaurants in the city
                 </p>
               </div>
