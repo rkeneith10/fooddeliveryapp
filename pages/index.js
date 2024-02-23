@@ -46,7 +46,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function index({ categories, restaurants }) {
+export default function index({ categories, restaurants, menus }) {
   return (
     <>
       <Layout>
@@ -100,7 +100,7 @@ export default function index({ categories, restaurants }) {
 
           <div className="p-10 bg-gray-100 mb-4">
             <div className="text-xl font-semibold text-center mb-3">
-              <span>Top-sellings menu items</span>
+              <span>Top-sellings Menu items</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {menus.slice(0, 8).map((menu) => (
