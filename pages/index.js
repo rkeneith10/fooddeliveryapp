@@ -1,5 +1,6 @@
 import CategoryComponent from "@/components/categoryComponent";
 
+import MenuItemComponent from "@/components/menuItemComponent";
 import RestaurantComponent from "@/components/restaurantsComponent";
 import Head from "next/head";
 import Link from "next/link";
@@ -14,9 +15,13 @@ export async function getServerSideProps() {
   const response1 = await fetch(
     "https://fooddelivery-kappa.vercel.app/api/restaurants"
   );
+  const response2 = await fetch(
+    "https://fooddelivery-kappa.vercel.app/api/menus"
+  );
   try {
     const responseData = await response.json();
     const responseData1 = await response1.json();
+    const responseData2 = await response2.json();
 
     const categories = responseData.all.map((category) => ({
       category: category.category,
@@ -26,6 +31,7 @@ export async function getServerSideProps() {
       props: {
         categories,
         restaurants: responseData1.all,
+        menus: responseData2.all,
       },
     };
   } catch (error) {
@@ -34,6 +40,7 @@ export async function getServerSideProps() {
       props: {
         categories: [],
         restaurants: [],
+        menus: [],
       },
     };
   }
@@ -71,7 +78,7 @@ export default function index({ categories, restaurants }) {
               <br />
             </div>
           </div>
-          <div className="p-10 bg-gray-100">
+          <div className="p-10 bg-gray-50">
             <div className="text-xl font-semibold text-center mb-3">
               <span>Popular Categories</span>
             </div>
@@ -84,6 +91,26 @@ export default function index({ categories, restaurants }) {
                     <CategoryComponent
                       category={cat.category}
                       imageUrl={cat.imageUrl}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-10 bg-gray-100 mb-4">
+            <div className="text-xl font-semibold text-center mb-3">
+              <span>Top-sellings menu items</span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {menus.slice(0, 8).map((menu) => (
+                <div key={menu._id}>
+                  <Link href={`/menu/menuItem?menuItemId=${menu._id}`}>
+                    <MenuItemComponent
+                      item_name={menu.item_name}
+                      imageUrl={menu.imageUrl}
+                      description={menu.description}
+                      price={menu.price}
                     />
                   </Link>
                 </div>
@@ -109,7 +136,7 @@ export default function index({ categories, restaurants }) {
                 </div>
               ))}
             </div>
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end mt-5">
               <Link href="/restaurants">
                 <button className="px-4 py-2 bg-[#4CAF50] text-white">
                   See more
