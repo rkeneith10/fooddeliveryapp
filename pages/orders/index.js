@@ -238,7 +238,7 @@ export default function Orders() {
                         id="cash"
                         name="paymentMethod"
                         value="pay"
-                        checked={handlerPayment}
+                        checked={paymentMethod === "cash"}
                       />
                       <label for="cash">Cash on delivery</label>
                     </div>
@@ -248,7 +248,7 @@ export default function Orders() {
                         id="moncash"
                         name="paymentMethod"
                         value="moncash"
-                        checked={handlerPayment}
+                        checked={paymentMethod === "moncash"}
                       />
                       <label for="moncash">
                         <div className="h-[40px] w-[120px]  relative overflow-hidden ">
