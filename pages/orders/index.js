@@ -28,34 +28,19 @@ export default function Orders() {
       setFullName(`${firstName} ${lastName}`);
     }
 
-    const storeToken = localStorage.getItem("token");
-    if (storeToken) {
-      setIsLog(true);
-      //toast(storeToken);
-      // const decodedToken = jwt.decode(storeToken);
-      // setDecodedToken(decodedToken);
+    const fetchLoginStatus = async () => {
+      try {
+        const response = await fetch(
+          "https://fooddelivery-kappa.vercel.app/api/users/loginstatus"
+        );
+        const data = await response.json();
+        setIsLog(data.auth);
+      } catch (error) {
+        console.error("Error fetching login status:", error);
+      }
+    };
 
-      // if (decodedToken.exp < Date.now() / 1000) {
-      //
-      //   localStorage.removeItem("token");
-      //   setIsLog(false);
-      // } else {
-      //   // If valid, set isLog to true
-      //   setIsLog(true);
-      // }
-    }
-
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "https://fooddelivery-kappa.vercel.app/api/users/userinfo",
-    //       { params: { userid: decodedToken } }
-    //     );
-    //     setInfoOfUser(response.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
+    fetchLoginStatus();
   }, []);
 
   const updateCart = (newCart) => {
