@@ -27,19 +27,10 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const fetchLoginStatus = async () => {
-      try {
-        const response = await fetch(
-          "https://fooddelivery-kappa.vercel.app/api/users/loginstatus"
-        );
-        const data = await response.json();
-        setIsLogin(data.auth);
-      } catch (error) {
-        console.error("Error fetching login status:", error);
-      }
-    };
-
-    fetchLoginStatus();
+    const tcheckLogin = localStorage.getItem("isLogin");
+    if (tcheckLogin) {
+      setIsLogin(true);
+    }
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
