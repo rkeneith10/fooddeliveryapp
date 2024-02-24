@@ -1,14 +1,20 @@
 export default async function handler(req, res) {
-  if (req.method === "POST") {
-    // Clear the HTTP-only cookie named 'token'
-    res.setHeader(
-      "Set-Cookie",
-      "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly"
-    );
+  try {
+    if (req.method === "POST") {
+      // Clear the cookie, specifying domain and Secure flag (if applicable)
+      const domain =
+        process.env.COOKIE_DOMAIN || "https://fooddelivery-kappa.vercel.app/"; // Get domain from environment variable or set default
+      res.setHeader(
+        "Set-Cookie",
+        `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Domain=${domain}; Secure`
+      );
 
-    // Respond with a success message
-    res.status(200).json({ message: "Logout successful" });
-  } else {
-    res.status(405).end(); // Method Not Allowed
+      res.status(200).json({ message: "Logout successful" });
+    } else {
+      res.status(405).end(); // Method Not Allowed
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 }
