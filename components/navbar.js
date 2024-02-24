@@ -22,7 +22,7 @@ export default function Navbar() {
       const response = await fetch(
         "https://fooddelivery-kappa.vercel.app/api/users/logout",
         {
-          method: "POST",
+          method: "GET",
         }
       );
       if (response.status === 200) {
