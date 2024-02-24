@@ -25,7 +25,7 @@ export default function Navbar() {
           method: "POST",
         }
       );
-      if (response.ok) {
+      if (response.status === 200) {
         setIsLogin(false);
       } else {
         console.error("Logout failed");
