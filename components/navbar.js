@@ -12,14 +12,27 @@ export default function Navbar() {
   const [menuIcon, setIcon] = useState(false);
   const [isDropDown, setIsDropDown] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [isLogin, setIsLogin] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
 
   const toggleMenu = () => {
     setIsDropDown(!isDropDown);
   };
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userinfo");
+  const logout = async () => {
+    try {
+      const response = await fetch(
+        "https://fooddelivery-kappa.vercel.app/api/users/loginstatus",
+        {
+          method: "POST",
+        }
+      );
+      if (response.ok) {
+        setIsLogin(false);
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   const handleSmalleNavigation = () => {
@@ -27,10 +40,19 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const tokenExist = localStorage.getItem("token");
-    if (tokenExist) {
-      setIsLogin(tokenExist);
-    }
+    const fetchLoginStatus = async () => {
+      try {
+        const response = await fetch(
+          "https://fooddelivery-kappa.vercel.app/api/users/loginstatus"
+        );
+        const data = await response.json();
+        setIsLogin(data.auth);
+      } catch (error) {
+        console.error("Error fetching login status:", error);
+      }
+    };
+
+    fetchLoginStatus();
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));

@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
+import cookie from "cookie";
 import jwt from "jsonwebtoken";
-import connectDB from "../../utils/database";
-
 import users from "../../models/users";
+import connectDB from "../../utils/database";
 
 const handler = async (req, res) => {
   connectDB();
@@ -25,13 +25,25 @@ const handler = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
           expiresIn: "1h",
         });
+
+        // Set cookie with JWT token
+        res.setHeader(
+          "Set-Cookie",
+          cookie.serialize("token", token, {
+            httpOnly: true,
+            maxAge: 3600, // 1 hour in seconds
+            sameSite: "strict", // Better security with strict same-site policy
+            path: "/", // The path for which the cookie is valid
+          })
+        );
+
+        // Return response
         res.status(200).json({
           auth: true,
-          token: token,
           datauser: {
             firstName: user.firstName,
             lastName: user.lastName,
-            adress: user.adress,
+            address: user.address,
             telephone: user.telephone,
           },
           msg: "Login successfully",
@@ -40,4 +52,7 @@ const handler = async (req, res) => {
     }
   }
 };
+
 export default handler;
+
+localStorage.setItem("userinfo", JSON.stringify(response.data.datauser));

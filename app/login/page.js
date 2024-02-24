@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -36,30 +35,34 @@ export default function Login() {
       setDisable(false);
     } else {
       try {
-        axios
-          .post("https://fooddelivery-kappa.vercel.app/api/users/login", {
+        const response = await axios.post(
+          "https://fooddelivery-kappa.vercel.app/api/users/login",
+          {
             email,
             password,
-          })
-          .then((response) => {
-            if (response.data.auth) {
-              setLoading(false);
-              setDisable(false);
-              localStorage.setItem("token", response.data.token);
-              localStorage.setItem(
-                "userinfo",
-                JSON.stringify(response.data.datauser)
-              );
-              router.replace("../../");
-            } else if (!response.data.auth) {
-              setError(response.data.msg);
-              setLoading(false);
-              setDisable(false);
-            }
-          });
-      } catch (error) {}
+          }
+        );
+        if (response.status === 200) {
+          setLoading(false);
+          setDisable(false);
+          localStorage.setItem(
+            "userinfo",
+            JSON.stringify(response.data.datauser)
+          );
+          router.replace("../../");
+        } else {
+          setError("Login failed. Please try again.");
+          setLoading(false);
+          setDisable(false);
+        }
+      } catch (error) {
+        setError("An error occurred. Please try again later.");
+        setLoading(false);
+        setDisable(false);
+      }
     }
   };
+
   return (
     <>
       <div
@@ -93,9 +96,7 @@ export default function Login() {
                 name="email"
                 placeholder="Email"
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -109,9 +110,7 @@ export default function Login() {
                 name="password"
                 placeholder="Mot de passe"
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
