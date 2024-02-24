@@ -31,6 +31,7 @@ const handler = async (req, res) => {
           "Set-Cookie",
           cookie.serialize("token", token, {
             httpOnly: true,
+            secure: true,
             maxAge: 3600, // 1 hour in seconds
             sameSite: "strict", // Better security with strict same-site policy
             path: "/", // The path for which the cookie is valid
