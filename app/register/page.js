@@ -62,12 +62,16 @@ export default function Register() {
             password,
           })
           .then((response) => {
-            if (response.data.auth) {
+            if (response.data.success) {
               setLoading(false);
               setDisable(false);
-              localStorage.setItem("token", response.data.token);
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem(
+                "userinfo",
+                JSON.stringify(response.data.datauser)
+              );
               router.replace("../../");
-            } else if (!response.data.auth) {
+            } else if (!response.data.success) {
               toast.error(response.data.msg);
               setLoading(false);
               setDisable(false);

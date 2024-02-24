@@ -18,9 +18,23 @@ export default function Navbar() {
     setIsDropDown(!isDropDown);
   };
   const logout = async () => {
-    localStorage.removeItem("isLogin");
-    localStorage.removeItem("userinfo");
-    setIsLogin(false);
+    try {
+      const response = await fetch(
+        "https://fooddelivery-kappa.vercel.app/api/users/logout",
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        setIsLogin(false);
+        localStorage.removeItem("isLogin");
+        localStorage.removeItem("userinfo");
+      } else {
+        console.error("Logout failed. Response status:", response.status);
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   const handleSmalleNavigation = () => {

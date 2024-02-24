@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import connectDB from "../../utils/database";
 
@@ -22,13 +23,31 @@ const handler = async (req, res) => {
         password: await bcrypt.hash(password, 10),
       });
       await newUser.save();
+
       const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
+
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 3600, // 1 hour in seconds
+          sameSite: "strict", // Better security with strict same-site policy
+          path: "/", // The path for which the cookie is valid
+        })
+      );
+
       res.status(201).json({
         success: true,
-        msg: "User saved",
-        datauser: newUser,
+
+        datauser: {
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          adress: newUser.adress,
+          telephone: newUser.telephone,
+        },
         token: token,
       });
     } else {
