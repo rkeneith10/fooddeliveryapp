@@ -32,7 +32,7 @@ const handler = async (req, res) => {
           cookie.serialize("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            maxAge: 3600, // 1 hour in seconds
+            maxAge: 1, // 1 hour in seconds
             sameSite: "strict", // Better security with strict same-site policy
             path: "/", // The path for which the cookie is valid
           })
