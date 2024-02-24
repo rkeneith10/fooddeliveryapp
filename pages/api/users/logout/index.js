@@ -2,8 +2,7 @@ export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
       // Clear the cookie, specifying domain and Secure flag (if applicable)
-      const domain =
-        process.env.COOKIE_DOMAIN || "fooddelivery-kappa.vercel.app/"; // Get domain from environment variable or set default
+      const domain = "fooddelivery-kappa.vercel.app/"; // Get domain from environment variable or set default
       res.setHeader(
         "Set-Cookie",
         `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Domain=${domain}; Secure`
