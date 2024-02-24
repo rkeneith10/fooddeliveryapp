@@ -20,7 +20,7 @@ export default function Navbar() {
   const logout = async () => {
     try {
       const response = await fetch(
-        "https://fooddelivery-kappa.vercel.app/api/users/loginstatus",
+        "https://fooddelivery-kappa.vercel.app/api/users/logout",
         {
           method: "POST",
         }
