@@ -5,6 +5,7 @@ export default async function handler(req, res) {
       const serialized = serialize("token", null, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
+        maxAge: 1,
         sameSite: "strict",
         maxAge: -1,
         path: "/",
