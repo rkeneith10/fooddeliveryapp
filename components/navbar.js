@@ -19,6 +19,7 @@ export default function Navbar() {
   };
   const logout = async () => {
     localStorage.removeItem("isLogin");
+    localStorage.removeItem("userinfo");
     setIsLogin(false);
   };
 
