@@ -1,20 +1,16 @@
-import { serialize } from "cookie";
 export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
-      const serialized = serialize("token", null, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 1,
-        sameSite: "strict",
-        maxAge: -1,
-        path: "/",
-      });
-      res.setHeader("Set-Cookie", serialized);
-      res.status(200).json({
-        status: "success",
-        message: "Logged out",
-      });
+      // Changed from "POST" to "GET"
+      // Clear the cookie, specifying domain and Secure flag (if applicable)
+      const domain =
+        process.env.COOKIE_DOMAIN || "fooddelivery-kappa.vercel.app/"; // Get domain from environment variable or set default
+      res.setHeader(
+        "Set-Cookie",
+        `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Domain=${domain}; Secure`
+      );
+
+      res.status(200).json({ message: "Logout successful" });
     } else {
       res.status(405).end(); // Method Not Allowed
     }
