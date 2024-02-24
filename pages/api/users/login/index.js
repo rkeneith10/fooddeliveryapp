@@ -54,5 +54,3 @@ const handler = async (req, res) => {
 };
 
 export default handler;
-
-localStorage.setItem("userinfo", JSON.stringify(response.data.datauser));
