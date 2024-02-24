@@ -18,21 +18,8 @@ export default function Navbar() {
     setIsDropDown(!isDropDown);
   };
   const logout = async () => {
-    try {
-      const response = await fetch(
-        "https://fooddelivery-kappa.vercel.app/api/users/logout",
-        {
-          method: "GET",
-        }
-      );
-      if (response.status === 200) {
-        setIsLogin(false);
-      } else {
-        console.error("Logout failed");
-      }
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
+    localStorage.removeItem("isLogin");
+    setIsLogin(false);
   };
 
   const handleSmalleNavigation = () => {

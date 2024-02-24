@@ -46,6 +46,7 @@ export default function Login() {
         if (response.status === 200) {
           setLoading(false);
           setDisable(false);
+          localStorage.setItem("isLogin", true);
           localStorage.setItem(
             "userinfo",
             JSON.stringify(response.data.datauser)
