@@ -9,6 +9,7 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
+
   const [isLog, setIsLog] = useState(false);
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
@@ -62,14 +63,24 @@ export default function Orders() {
     } else {
       if (paymentMethod === "cash") {
         try {
+          let restaurantNames = [];
+          let menuItemNames = [];
+          let totalQuantity = cart.reduce(
+            (total, item) => total + item.quantity,
+            0
+          );
+          cart.forEach((item) => {
+            restaurantNames.push(item.restaurant);
+            menuItemNames.push(item.name);
+          });
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
-              restaurant_name: "boukanye code",
-              menu_item_name: "manje",
-              quantite: 12,
-              delivery_adress: "userinfo.adress",
-              price: 12,
+              restaurant_name: restaurantNames,
+              menu_item_name: menuItemNames,
+              quantite: totalQuantity,
+              delivery_adress: userinfo.adress,
+              price: totalprice,
             }
           );
           if (response.status === 200) {
