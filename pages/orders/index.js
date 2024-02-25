@@ -66,7 +66,7 @@ export default function Orders() {
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
               restaurant_name: cart.map((item) => item.restaurant),
-              menu_item_name: cart.map((item) => item_name),
+              menu_item_name: cart.map((item) => item.name),
               quantite: cart.reduce((total, item) => total + item.quantity, 0),
               delivery_adress: userinfo.adress,
               price: totalprice,
