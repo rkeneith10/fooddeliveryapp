@@ -66,9 +66,9 @@ export default function Orders() {
               restaurant_name: cart.map((item) => item.restaurant),
               menu_item_name: cart.map((item) => item.name),
               quantite: parseInt(
-                cartOrder.reduce((total, item) => total + item.quantity, 0)
+                cart.reduce((total, item) => total + item.quantity, 0)
               ),
-              delivery_adress: userinfo.adress,
+              delivery_adress: infouser.adress,
               price: parseInt(totalprice),
             }
           );
