@@ -61,17 +61,18 @@ export default function Orders() {
       toast.warning("You have to login to place your order");
     } else {
       if (paymentMethod === "cash") {
-        const tchekCart = localStorage.getItem("cart");
-        if (tchekCart) {
-          setCartOrder(JSON.parse(tchekCart));
-          localStorage.setItem("thecart", JSON.parse(cartOrder));
-        }
-
-        const user = localStorage.getItem("userinfo");
-        if (user) {
-          setUserOrder(JSON.parse(user));
-        }
         try {
+          const tchekCart = localStorage.getItem("cart");
+          if (tchekCart) {
+            setCartOrder(JSON.parse(tchekCart));
+            localStorage.setItem("thecart", "JSON.parse(cartOrder)");
+          }
+
+          const user = localStorage.getItem("userinfo");
+          if (user) {
+            setUserOrder(JSON.parse(user));
+          }
+
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
@@ -245,7 +246,7 @@ export default function Orders() {
                         type="radio"
                         id="cash"
                         name="paymentMethod"
-                        value="pay"
+                        value="cash"
                         checked={paymentMethod === "cash"}
                         onChange={() =>
                           handlerPayment({ target: { value: "cash" } })
