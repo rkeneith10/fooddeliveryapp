@@ -65,6 +65,7 @@ export default function Orders() {
           const tchekCart = localStorage.getItem("cart");
           if (tchekCart) {
             setCartOrder(JSON.parse(tchekCart));
+            localStorage.setItem("thecart", JSON.parse(cartOrder));
           }
 
           const user = localStorage.getItem("userinfo");
@@ -77,12 +78,11 @@ export default function Orders() {
             {
               restaurant_name: cartOrder.map((item) => item.restaurant),
               menu_item_name: cartOrder.map((item) => item.name),
-              quantite: cartOrder.reduce(
-                (total, item) => total + item.quantity,
-                0
+              quantite: parseInt(
+                cartOrder.reduce((total, item) => total + item.quantity, 0)
               ),
               delivery_adress: userOrder.adress,
-              price: totalprice,
+              price: parseInt(totalprice),
             }
           );
           if (response.status === 200) {
