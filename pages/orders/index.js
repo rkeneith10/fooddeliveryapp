@@ -21,6 +21,10 @@ export default function Orders() {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
+    const tcheklog = localStorage.getItem("isLogin");
+    if (tcheklog) {
+      setIsLog(true);
+    }
 
     const storeInfoUser = localStorage.getItem("userinfo");
     if (storeInfoUser) {
