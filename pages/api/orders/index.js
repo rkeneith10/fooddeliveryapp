@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import Orders from "../models/orders";
 import connectDB from "../utils/database";
 
@@ -17,7 +16,7 @@ const handler = async (req, res) => {
       // }
 
       try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        // const decoded = jwt.verify(token, process.env.SECRET_KEY);
         // const user = await users.findById(decoded.id).select("-password");
 
         const newOrder = new Orders({
