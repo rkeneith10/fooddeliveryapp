@@ -1,3 +1,4 @@
+import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -27,20 +28,6 @@ export default function Orders() {
       const { firstName, lastName } = JSON.parse(storeInfoUser);
       setFullName(`${firstName} ${lastName}`);
     }
-
-    const fetchLoginStatus = async () => {
-      try {
-        const response = await fetch(
-          "https://fooddelivery-kappa.vercel.app/api/users/loginstatus"
-        );
-        const data = await response.json();
-        setIsLog(data.auth);
-      } catch (error) {
-        console.error("Error fetching login status:", error);
-      }
-    };
-
-    fetchLoginStatus();
   }, []);
 
   const updateCart = (newCart) => {
@@ -65,12 +52,30 @@ export default function Orders() {
     setPaymentMethod(e.target.value);
   };
 
-  const handlerOrder = () => {
+  const handlerOrder = async () => {
     if (!isLog) {
       toast.warning("You have to login to place your order");
     } else {
       if (paymentMethod === "cash") {
-        toast.success("Cash on delivery-Function to be implemented soon");
+        try {
+          const response = await axios.post(
+            "https://fooddelivery-kappa.vercel.app/api/orders",
+            {
+              restaurant_name: cart.map((item) => item.restaurant),
+              menu_item_name: cart.map((item) => item_name),
+              quantity: cart.reduce((total, item) => total + item.quantity, 0),
+              delivery_adress: userinfo.adress,
+              price: totalprice,
+            }
+          );
+          if (response.status === 200) {
+            toast.success("Cash on delivery-Order placed !");
+          } else {
+            toast.error("Error placing order");
+          }
+        } catch (error) {
+          toast.error("An error occurred. Please try again later.");
+        }
       } else if (paymentMethod === "moncash") {
         toast.success("Moncash Payment-Function to be implemented soon");
       }

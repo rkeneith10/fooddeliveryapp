@@ -7,12 +7,12 @@ const schemaOrders = new mongoose.Schema(
       ref: "User",
     },
     restaurant_name: {
-      type: String,
+      type: [String],
     },
     menu_item_name: {
-      type: String,
+      type: [String],
     },
-    quantite: {
+    quantity: {
       type: Number,
     },
     delivery_adress: {
