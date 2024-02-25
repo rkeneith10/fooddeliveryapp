@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import Orders from "../models/orders";
 import connectDB from "../utils/database";
 
@@ -7,17 +8,28 @@ const handler = async (req, res) => {
 
     if (req.method === "POST") {
       const { restaurant_name, price, menu_item_name, quantite } = req.body;
+      const token = req.cookies.token;
+      if (!token) {
+        return res.status(401).json({ auth: false });
+      }
 
-      const newOrder = new Orders({
-        restaurant_name: restaurant_name,
-        menu_item_name: menu_item_name,
-        quantite: quantite,
-        delivery_adress: req.body.adress,
-        price: price,
-      });
-      await newOrder.save();
+      try {
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-      return res.status(200).json({ success: true, data: newOrder });
+        const userId = decoded.id;
+
+        const newOrder = new Orders({
+          user_id: userId,
+          restaurant_name: restaurant_name,
+          menu_item_name: menu_item_name,
+          quantite: quantite,
+          delivery_adress: req.body.adress,
+          price: price,
+        });
+        await newOrder.save();
+
+        return res.status(200).json({ success: true, data: newOrder });
+      } catch (error) {}
     } else {
       // Handle unsupported HTTP methods
       return res
