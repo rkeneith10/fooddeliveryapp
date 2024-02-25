@@ -24,7 +24,7 @@ const handler = async (req, res) => {
           restaurant_name: restaurant_name,
           menu_item_name: menu_item_name,
           quantite: quantite,
-          delivery_adress: user.adress,
+          delivery_adress: req.body.adress,
           price: price,
         });
         await newOrder.save();
