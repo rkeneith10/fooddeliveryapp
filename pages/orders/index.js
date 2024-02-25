@@ -13,8 +13,6 @@ export default function Orders() {
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [cartOrder, setCartOrder] = useState([]);
-  const [userOrder, setUserOrder] = useState([]);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -62,27 +60,15 @@ export default function Orders() {
     } else {
       if (paymentMethod === "cash") {
         try {
-          toast(cart.map((item) => item.name));
-          const tchekCart = localStorage.getItem("cart");
-          if (tchekCart) {
-            setCartOrder(JSON.parse(tchekCart));
-            localStorage.setItem("thecart", JSON.parse(cartOrder));
-          }
-
-          const user = localStorage.getItem("userinfo");
-          if (user) {
-            setUserOrder(JSON.parse(user));
-          }
-
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
-              restaurant_name: cartOrder.map((item) => item.restaurant),
-              menu_item_name: cartOrder.map((item) => item.name),
+              restaurant_name: cart.map((item) => item.restaurant),
+              menu_item_name: cart.map((item) => item.name),
               quantite: parseInt(
                 cartOrder.reduce((total, item) => total + item.quantity, 0)
               ),
-              delivery_adress: userOrder.adress,
+              delivery_adress: userinfo.adress,
               price: parseInt(totalprice),
             }
           );
