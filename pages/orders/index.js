@@ -62,6 +62,7 @@ export default function Orders() {
     } else {
       if (paymentMethod === "cash") {
         try {
+          toast(cart.map((item) => item.name));
           const tchekCart = localStorage.getItem("cart");
           if (tchekCart) {
             setCartOrder(JSON.parse(tchekCart));
