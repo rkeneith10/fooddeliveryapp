@@ -1,4 +1,3 @@
-import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -73,21 +72,24 @@ export default function Orders() {
             restaurantNames.push(item.restaurant);
             menuItemNames.push(item.name);
           });
-          const response = await axios.post(
-            "https://fooddelivery-kappa.vercel.app/api/orders",
-            {
-              restaurant_name: restaurantNames,
-              menu_item_name: menuItemNames,
-              quantite: totalQuantity,
-              delivery_adress: userinfo.adress,
-              price: totalprice,
-            }
-          );
-          if (response.status === 200) {
-            toast.success("Cash on delivery-Order placed !");
-          } else {
-            toast.error("Error placing order");
-          }
+          toast(restaurantNames);
+          toast(menuItemNames);
+          toast(totalQuantity);
+          // const response = await axios.post(
+          //   "https://fooddelivery-kappa.vercel.app/api/orders",
+          //   {
+          //     restaurant_name: restaurantNames,
+          //     menu_item_name: menuItemNames,
+          //     quantite: totalQuantity,
+          //     delivery_adress: userinfo.adress,
+          //     price: totalprice,
+          //   }
+          // );
+          // if (response.status === 200) {
+          //   toast.success("Cash on delivery-Order placed !");
+          // } else {
+          //   toast.error("Error placing order");
+          // }
         } catch (error) {
           toast.error("An error occurred. Please try again later.");
         }
