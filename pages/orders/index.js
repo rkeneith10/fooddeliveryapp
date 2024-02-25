@@ -65,7 +65,7 @@ export default function Orders() {
           const tchekCart = localStorage.getItem("cart");
           if (tchekCart) {
             setCartOrder(JSON.parse(tchekCart));
-            localStorage.setItem("thecart", JSON.parse(cartOrder));
+            localStorage.setItem("thecart", "JSON.parse(cartOrder)");
           }
 
           const user = localStorage.getItem("userinfo");
