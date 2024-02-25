@@ -64,12 +64,12 @@ export default function Orders() {
         try {
           const tchekCart = localStorage.getItem("cart");
           if (tchekCart) {
-            setCartOrder(tchekCart);
+            setCartOrder(JSON.parse(tchekCart));
           }
 
           const user = localStorage.getItem("userinfo");
           if (user) {
-            setUserOrder(user);
+            setUserOrder(JSON.parse(user));
           }
 
           const response = await axios.post(
