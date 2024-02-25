@@ -78,7 +78,7 @@ export default function Orders() {
             toast.error("Error placing order");
           }
         } catch (error) {
-          toast.error("An error occurred. Please try again later.");
+          toast.error("An error occurred.", error);
         }
       } else if (paymentMethod === "moncash") {
         toast.success("Moncash Payment-Function to be implemented soon");
