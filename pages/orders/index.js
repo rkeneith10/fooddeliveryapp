@@ -13,8 +13,8 @@ export default function Orders() {
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  //const [decodedToken, setDecodedToken] = useState("");
-  //cosnt[(infoOfUser, setInfoOfUser)] = useState("");
+  const [cartOrder, setCartOrder] = useState([]);
+  const [userOrder, setUserOrder] = useState([]);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -62,34 +62,34 @@ export default function Orders() {
     } else {
       if (paymentMethod === "cash") {
         try {
-          let restaurantNames = [];
-          let menuItemNames = [];
-          let totalQuantity = cart.reduce(
-            (total, item) => total + item.quantity,
-            0
+          const tchekCart = localStorage.getItem("cart");
+          if (tchekCart) {
+            setCartOrder(tchekCart);
+          }
+
+          const user = localStorage.getItem("userinfo");
+          if (user) {
+            setUserOrder(user);
+          }
+
+          const response = await axios.post(
+            "https://fooddelivery-kappa.vercel.app/api/orders",
+            {
+              restaurant_name: cartOrder.map((item) => item.restaurant),
+              menu_item_name: cartOrder.map((item) => item.name),
+              quantite: cartOrder.reduce(
+                (total, item) => total + item.quantity,
+                0
+              ),
+              delivery_adress: userOrder.adress,
+              price: totalprice,
+            }
           );
-          cart.forEach((item) => {
-            restaurantNames.push(item.restaurant);
-            menuItemNames.push(item.name);
-          });
-          toast(restaurantNames);
-          toast(menuItemNames);
-          toast(totalQuantity);
-          // const response = await axios.post(
-          //   "https://fooddelivery-kappa.vercel.app/api/orders",
-          //   {
-          //     restaurant_name: restaurantNames,
-          //     menu_item_name: menuItemNames,
-          //     quantite: totalQuantity,
-          //     delivery_adress: userinfo.adress,
-          //     price: totalprice,
-          //   }
-          // );
-          // if (response.status === 200) {
-          //   toast.success("Cash on delivery-Order placed !");
-          // } else {
-          //   toast.error("Error placing order");
-          // }
+          if (response.status === 200) {
+            toast.success("Cash on delivery-Order placed !");
+          } else {
+            toast.error("Error placing order");
+          }
         } catch (error) {
           toast.error("An error occurred. Please try again later.");
         }
