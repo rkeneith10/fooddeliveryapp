@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import Orders from "../models/orders";
-import users from "../models/users";
 import connectDB from "../utils/database";
 
 const handler = async (req, res) => {
@@ -10,19 +9,19 @@ const handler = async (req, res) => {
     if (req.method === "POST") {
       const { restaurant_name, price, menu_item_name, quantite } = req.body;
 
-      const token = req.cookies.token;
-      if (!token) {
-        return res
-          .status(401)
-          .json({ success: false, message: "Unauthorized" });
-      }
+      // const token = req.cookies.token;
+      // if (!token) {
+      //   return res
+      //     .status(401)
+      //     .json({ success: false, message: "Unauthorized" });
+      // }
 
       try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        const user = await users.findById(decoded.id).select("-password");
+        // const user = await users.findById(decoded.id).select("-password");
 
         const newOrder = new Orders({
-          user_id: user._id,
+          // user_id: user._id,
           restaurant_name: restaurant_name,
           menu_item_name: menu_item_name,
           quantite: quantite,
