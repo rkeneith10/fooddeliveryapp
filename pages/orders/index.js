@@ -1,3 +1,4 @@
+import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -54,7 +55,8 @@ export default function Orders() {
     setPaymentMethod(e.target.value);
   };
 
-  const handlerOrder = async () => {
+  const handlerOrder = async (e) => {
+    e.preventDefault();
     if (!isLog) {
       toast.warning("You have to login to place your order");
     } else {
@@ -71,12 +73,12 @@ export default function Orders() {
             }
           );
           if (response.status === 200) {
-            toast.success("Cash on delivery-Order placed !");
+            toast.success("Order place");
           } else {
             toast.error("Error placing order");
           }
         } catch (error) {
-          toast.error("An error occurred.", error);
+          toast.error("Error internal");
         }
       } else if (paymentMethod === "moncash") {
         toast.success("Moncash Payment-Function to be implemented soon");
