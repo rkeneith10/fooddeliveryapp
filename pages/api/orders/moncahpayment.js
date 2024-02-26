@@ -1,7 +1,7 @@
 // import jwt from "jsonwebtoken";
 // import Orders from "../models/orders";
 // import connectDB from "../utils/database";
-import moncash from "nodejs-moncash-sdk";
+import moncash from "../utils/moncash";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
