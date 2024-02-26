@@ -20,9 +20,8 @@ const handler = async (req, res) => {
         console.log(error);
         throw error;
       } else {
-        // console.log("Create Payment Response");
-        // console.log(payment_creator.redirect_uri(payment));
-        // opn(payment_creator.redirect_uri(payment));
+        console.log("Create Payment Response");
+        console.log(payment_creator.redirect_uri(payment));
 
         res.stasus(200).json({
           success: true,
