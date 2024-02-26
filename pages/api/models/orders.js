@@ -4,22 +4,22 @@ const schemaOrders = new mongoose.Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "users",
     },
     restaurant_name: {
-      type: [String],
+      type: String,
     },
     menu_item_name: {
-      type: [String],
+      type: String,
     },
     quantity: {
       type: Number,
     },
-    delivery_adress: {
-      type: String,
-    },
     price: {
       type: Number,
+    },
+    delivery_adress: {
+      type: String,
     },
   },
   { timestamps: true }

@@ -60,17 +60,20 @@ export default function Orders() {
     } else {
       if (paymentMethod === "cash") {
         try {
+          const formattedCartData = cart.map((item) => ({
+            restaurant_name: item.restaurant,
+            menu_item_name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+          }));
+          const delivery_adress = infouser.adress;
+          const dataToSend = {
+            cart: formattedCartData,
+            delivery_adress,
+          };
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
-            {
-              restaurant_name: cart.map((item) => item.restaurant),
-              menu_item_name: cart.map((item) => item.name),
-              quantite: parseInt(
-                cart.reduce((total, item) => total + item.quantity, 0)
-              ),
-              delivery_adress: infouser.adress,
-              price: parseInt(totalprice),
-            }
+            dataToSend
           );
           if (response.status === 200) {
             toast.success("Cash on delivery-Order placed !");
