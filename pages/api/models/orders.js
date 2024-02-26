@@ -2,15 +2,15 @@ import mongoose from "mongoose";
 
 const schemaOrders = new mongoose.Schema(
   {
-    // user_id: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "users",
-    // },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
     restaurant_name: {
-      type: String,
+      type: [String],
     },
     menu_item_name: {
-      type: String,
+      type: [String],
     },
     quantity: {
       type: Number,
