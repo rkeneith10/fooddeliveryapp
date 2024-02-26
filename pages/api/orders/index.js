@@ -7,7 +7,13 @@ const handler = async (req, res) => {
     await connectDB();
 
     if (req.method === "POST") {
-      const { restaurant_name, price, menu_item_name, quantity } = req.body;
+      const {
+        restaurant_name,
+        price,
+        menu_item_name,
+        quantity,
+        delivery_adress,
+      } = req.body;
       const token = req.cookies.token;
       if (!token) {
         return res.status(401).json({ auth: false });
@@ -24,7 +30,7 @@ const handler = async (req, res) => {
           menu_item_name: menu_item_name,
           quantity: quantity,
           price: price,
-          delivery_adress: req.body.adress,
+          delivery_adress,
         });
         await newOrder.save();
 

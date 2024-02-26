@@ -63,8 +63,8 @@ export default function Orders() {
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
-              restaurant_name: "cart.map((item) => item.restaurant)",
-              menu_item_name: "cart.map((item) => item.name)",
+              restaurant_name: "restaurant",
+              menu_item_name: "item.name",
               quantity: 10,
 
               price: 90,
