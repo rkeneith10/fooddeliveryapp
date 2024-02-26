@@ -86,8 +86,8 @@ export default function Orders() {
           const responsemoncash = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders/moncashpayment",
             {
-              amount: totalprice,
-              orderId: Math.floor(Math.random() * 1000),
+              amount: 223,
+              orderId: "444",
             }
           );
           if (responsemoncash.status === 200) {
