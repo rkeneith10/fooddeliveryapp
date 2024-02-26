@@ -90,7 +90,7 @@ export default function Orders() {
               orderId: "444",
             }
           );
-          if (responsemoncash.status === 200) {
+          if (responsemoncash.data.success) {
             window.location.href = responsemoncash.data.link;
           } else if (toast.error("Error moncash"));
         } catch (error) {
