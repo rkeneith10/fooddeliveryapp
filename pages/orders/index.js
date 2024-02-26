@@ -63,12 +63,11 @@ export default function Orders() {
           const response = await axios.post(
             "https://fooddelivery-kappa.vercel.app/api/orders",
             {
-              restaurant_name: "restaurant",
-              menu_item_name: "item.name",
-              quantity: 10,
-
-              price: 90,
-              delivery_adress: "infouser.adress",
+              restaurant_name: "boukanye code",
+              menu_item_name: "manje",
+              quantity: 12,
+              price: 12,
+              delivery_adress: "userinfo.adress",
             }
           );
           if (response.status === 200) {
