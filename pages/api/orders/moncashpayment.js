@@ -6,8 +6,8 @@ import moncash from "../utils/moncash";
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const create_payment_json = {
-      amount: 90,
-      orderId: "90900",
+      amount: req.body.amount,
+      orderId: req.body.orderId,
     };
 
     const payment_creator = moncash.payment;
