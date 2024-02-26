@@ -82,16 +82,20 @@ export default function Orders() {
           toast.error("Error internal");
         }
       } else if (paymentMethod === "moncash") {
-        const responsemoncash = await axios.post(
-          "https://fooddelivery-kappa.vercel.app/api/orders/moncashpayment",
-          {
-            amount: totalprice,
-            orderId: Math.floor(Math.random() * 1000),
-          }
-        );
-        if (responsemoncash.status === 200) {
-          window.location.href = responsemoncash.data.link;
-        } else if (toast.error("Error moncash"));
+        try {
+          const responsemoncash = await axios.post(
+            "https://fooddelivery-kappa.vercel.app/api/orders/moncashpayment",
+            {
+              amount: totalprice,
+              orderId: Math.floor(Math.random() * 1000),
+            }
+          );
+          if (responsemoncash.status === 200) {
+            window.location.href = responsemoncash.data.link;
+          } else if (toast.error("Error moncash"));
+        } catch (error) {
+          toast.error("Error", error);
+        }
 
         // toast.success("Moncash Payment-Function to be implemented soon");
       }
