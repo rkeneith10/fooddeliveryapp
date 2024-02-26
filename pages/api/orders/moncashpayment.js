@@ -24,7 +24,7 @@ const handler = async (req, res) => {
         console.log("Create Payment Response");
         console.log(payment_creator.redirect_uri(payment));
 
-        res.stasus(200).json({
+        res.json({
           success: true,
           link: payment_creator.redirect_uri(payment),
         });
