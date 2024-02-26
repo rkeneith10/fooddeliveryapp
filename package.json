@@ -21,7 +21,7 @@
     "next": "14.1.0",
     "next-cloudinary": "^5.20.0",
     "nextjs-progressloader": "^1.1.0",
-    "nodejs-moncash-sdk": "github:ecelestin/ecelestin-Moncash-sdk-nodejs",
+    "nodejs-moncash-sdk": "git+https://github.com/ecelestin/ecelestin-Moncash-sdk-nodejs.git",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
