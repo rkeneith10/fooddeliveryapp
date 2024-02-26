@@ -70,6 +70,7 @@ export default function Orders() {
               quantity: cart.reduce((total, item) => total + item.quantity, 0),
               price: totalprice,
               delivery_adress: infouser.adress,
+              paymentMethod: "Cash on delivery",
             }
           );
           if (response.status === 200) {

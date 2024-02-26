@@ -1,8 +1,8 @@
-import moncash from "nodejs-moncash-sdk";
+import { moncash } from "nodejs-moncash-sdk";
 
 moncash.configure({
   mode: "sandbox", //sandbox or live
-  client_id: "003a8abc28c613f4383e2faecba8f72a",
+  client_id: "1729d1855906b0549118756f081f4e1a",
   client_secret:
-    "ikXCJu6VRE9DaB-9R76L9YDAiIKon3PcPWSN7LfM3LfCRaYLuhg2NxXIFTonDgqS",
+    "oHrr4tbnB1PH0uz6VQNUvbeqN6eWV-QdIkpuW9xbIjwrqKPO77rFVIqERY0P59AJ",
 });

@@ -13,6 +13,7 @@ const handler = async (req, res) => {
         menu_item_name,
         quantity,
         delivery_adress,
+        paymentMethod,
       } = req.body;
       const token = req.cookies.token;
       if (!token) {
@@ -31,6 +32,7 @@ const handler = async (req, res) => {
           quantity: quantity,
           price: price,
           delivery_adress,
+          paymentMethod,
         });
         await newOrder.save();
 

@@ -21,6 +21,9 @@ const schemaOrders = new mongoose.Schema(
     delivery_adress: {
       type: String,
     },
+    paymentMethod: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
