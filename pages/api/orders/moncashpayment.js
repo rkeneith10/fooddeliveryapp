@@ -5,7 +5,6 @@ import moncash from "../utils/moncash";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    res.send("OK");
     const create_payment_json = {
       amount: 90,
       orderId: "90900",
@@ -23,7 +22,7 @@ const handler = async (req, res) => {
       } else {
         console.log("Create Payment Response");
         console.log(payment_creator.redirect_uri(payment));
-        opn(payment_creator.redirect_uri(payment));
+        // opn(payment_creator.redirect_uri(payment));
 
         res.json({
           success: true,
