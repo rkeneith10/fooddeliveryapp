@@ -67,7 +67,7 @@ export default function Orders() {
               menu_item_name: "cart.map((item) => item.name)",
               quantity: 10,
 
-              price: totalprice,
+              price: 90,
               delivery_adress: "infouser.adress",
             }
           );
