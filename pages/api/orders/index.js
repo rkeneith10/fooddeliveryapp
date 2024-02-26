@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import Orders from "../models/orders";
 import connectDB from "../utils/database";
 
@@ -14,18 +13,18 @@ const handler = async (req, res) => {
         quantity,
         delivery_adress,
       } = req.body;
-      const token = req.cookies.token;
-      if (!token) {
-        return res.status(401).json({ auth: false });
-      }
+      // const token = req.cookies.token;
+      // if (!token) {
+      //   return res.status(401).json({ auth: false });
+      // }
 
       try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        // const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-        const userId = decoded.id;
+        // const userId = decoded.id;
 
         const newOrder = new Orders({
-          user_id: userId,
+          // user_id: userId,
           restaurant_name: restaurant_name,
           menu_item_name: menu_item_name,
           quantity: quantity,
