@@ -65,9 +65,10 @@ export default function Orders() {
             {
               restaurant_name: "cart.map((item) => item.restaurant)",
               menu_item_name: "cart.map((item) => item.name)",
-              quantite: 10,
-              delivery_adress: "infouser.adress",
+              quantity: 10,
+
               price: totalprice,
+              delivery_adress: "infouser.adress",
             }
           );
           if (response.status === 200) {
