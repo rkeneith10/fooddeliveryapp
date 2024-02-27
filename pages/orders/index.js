@@ -327,7 +327,7 @@ export default function Orders() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <p className="text-md text-gray-800 mt-4">
+                  <p className="text-lg text-gray-800 mt-4">
                     {" "}
                     Order placed successfully! Thank you for your purchase .
                   </p>
