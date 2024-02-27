@@ -3,7 +3,9 @@ import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { GrValidate } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "../layout";
@@ -17,6 +19,7 @@ export default function Orders() {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [adressOrder, seAdressOrder] = useState("");
   const [phone, setPhone] = useState("");
+  const [goodMessage, seGoodMessage] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -63,6 +66,15 @@ export default function Orders() {
     setPaymentMethod(e.target.value);
   };
 
+  const handleMessage = () => {
+    localStorage.removeItem("cart");
+    seGoodMessage(false);
+    setFullName("");
+    seAdressOrder("");
+    setPhone("");
+    router.push("../");
+  };
+
   const handlerOrder = async (e) => {
     e.preventDefault();
     if (!isLog) {
@@ -82,12 +94,7 @@ export default function Orders() {
             }
           );
           if (response.status === 200) {
-            toast.success("Order place");
-            localStorage.removeItem("cart");
-            setFullName("");
-            seAdressOrder("");
-            setPhone("");
-            router.push("../");
+            seGoodMessage(true);
           } else {
             toast.error("Error placing order");
           }
@@ -304,6 +311,26 @@ export default function Orders() {
                   </div>
                 </div>
               </>
+            )}
+            {goodMessage && (
+              <div className="pl-5 pr-5">
+                <div className="fixed inset-0 flex items-center justify-center">
+                  <div className="bg-white rounded-lg p-8 shadow-md">
+                    <h2 className="text-xl font-semibold mb-4">
+                      <GrValidate className="text-[#4CAF50] h-13 w-13" />
+                    </h2>
+                    <p>
+                      Order placed successfully! Thank you for your purchase .
+                    </p>
+                    <div
+                      className="mt-4 px-4 py-2 bg-[#4CAF50] text-center text-white rounded"
+                      onClick={handleMessage}
+                    >
+                      Ok
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
