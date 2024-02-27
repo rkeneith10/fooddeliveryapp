@@ -315,9 +315,9 @@ export default function Orders() {
             {goodMessage && (
               <div className="pl-5 pr-5">
                 <div className="fixed inset-0 flex items-center justify-center">
-                  <div className="bg-white rounded-lg p-8 shadow-md">
+                  <div className="bg-white rounded-lg p-8 shadow-md flex items-center justify-center">
                     <h2 className="text-xl font-semibold mb-4">
-                      <GrValidate className="text-[#4CAF50] h-13 w-13" />
+                      <GrValidate className="text-[#4CAF50] h-22 w-22" />
                     </h2>
                     <p>
                       Order placed successfully! Thank you for your purchase .
