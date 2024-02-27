@@ -3,7 +3,6 @@ import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { GrValidate } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -312,22 +311,31 @@ export default function Orders() {
                 </div>
               </>
             )}
+
             {goodMessage && (
-              <div className="pl-5 pr-5">
-                <div className="fixed inset-0 flex items-center justify-center">
-                  <div className="bg-white rounded-lg p-8 shadow-md flex items-center justify-center">
-                    <h2 className="text-xl font-semibold mb-4">
-                      <GrValidate className="text-[#4CAF50] h-9 w-9" />
-                    </h2>
-                    <p>
-                      Order placed successfully! Thank you for your purchase .
-                    </p>
-                    <div
-                      className="mt-4 px-4 py-2 bg-[#4CAF50] text-center text-white rounded"
-                      onClick={handleMessage}
-                    >
-                      Ok
-                    </div>
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
+                <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-12 w-12 text-[#4CAF50] mx-auto"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 12a.75.75 0 01-1.06 1.06l-2.25-2.25a.75.75 0 011.06-1.06L8 10.94l4.69-4.69a.75.75 0 111.06 1.06l-5 5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-md text-gray-800 mt-4">
+                    {" "}
+                    Order placed successfully! Thank you for your purchase .
+                  </p>
+                  <div
+                    className="mt-4 px-4 py-2 bg-[#4CAF50] text-center text-white rounded"
+                    onClick={handleMessage}
+                  >
+                    Ok
                   </div>
                 </div>
               </div>
