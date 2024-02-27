@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,6 +15,7 @@ export default function Orders() {
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const router = useRouter();
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -77,6 +79,7 @@ export default function Orders() {
             toast.success("Order place");
             localStorage.removeItem("cart");
             localStorage.removeItem("infouser");
+            router.push("../");
           } else {
             toast.error("Error placing order");
           }
