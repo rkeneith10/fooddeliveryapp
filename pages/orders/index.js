@@ -15,6 +15,8 @@ export default function Orders() {
   const [infouser, setInfoUser] = useState({});
   const [fullName, setFullName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [adressOrder, seAdressOrder] = useState("");
+  const [phone, setPhone] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +33,11 @@ export default function Orders() {
     if (storeInfoUser) {
       setInfoUser(JSON.parse(storeInfoUser));
       const { firstName, lastName } = JSON.parse(storeInfoUser);
+      const { adress } = JSON.parse(storeInfoUser);
+      const { telephone } = JSON.parse(storeInfoUser);
       setFullName(`${firstName} ${lastName}`);
+      seAdressOrder(adress);
+      setPhone(telephone);
     }
   }, []);
 
@@ -78,7 +84,9 @@ export default function Orders() {
           if (response.status === 200) {
             toast.success("Order place");
             localStorage.removeItem("cart");
-            localStorage.removeItem("infouser");
+            setFullName("");
+            seAdressOrder("");
+            setPhone("");
             router.push("../");
           } else {
             toast.error("Error placing order");
@@ -221,7 +229,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
-                        value={infouser.telephone}
+                        value={phone}
                         placeholder="Enter your Phone Number"
                         id="phonenumber"
                         name="phonenumber"
@@ -238,7 +246,7 @@ export default function Orders() {
                       </label>
                       <input
                         type="text"
-                        value={infouser.adress}
+                        value={adressOrder}
                         placeholder="Enter your address"
                         id="address"
                         name="address"
