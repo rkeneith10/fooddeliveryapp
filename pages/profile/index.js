@@ -42,7 +42,7 @@ export default function Profile() {
             />
           </Head>
           <div className="min-h-screen">
-            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+            <div className=" bg-gray-50 rounded-lg shadow-md p-6 sm:w-full lg:w-[400px] justify-center items-center">
               <div className="p-4">
                 <div className="flex items-center">
                   <CldImage
