@@ -45,7 +45,7 @@ export default function Profile() {
               <div className="flex items-center mb-4">
                 <Image
                   className="w-20 h-20 rounded-full mr-4"
-                  src="https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png" // Replace with your profile image URL
+                  src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`} // Replace with your profile image URL
                   alt="Profile picture"
                 />
                 <div className="text-lg font-medium">{`${userinfo.firstName} ${userinfo.lastName}`}</div>
@@ -54,7 +54,7 @@ export default function Profile() {
                 <div className="font-medium">Email:</div>
                 <div>{userinfo.email}</div>
                 <div className="font-medium">Address:</div>
-                <div>{userinfo.adress}</div>s
+                <div>{userinfo.adress}</div>
                 <div className="font-medium">Phone:</div>
                 <div>{userinfo.telephone}</div>
               </div>
