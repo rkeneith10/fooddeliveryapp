@@ -1,7 +1,8 @@
+import axios from "axios";
 import Head from "next/head";
 //import Link from "next/link";
-
 import Layout from "../layout";
+
 export default function Profile({ userinfo }) {
   const fullname = `${userinfo.firstName} ${userinfo.lastName}`;
   return (
@@ -25,14 +26,14 @@ export default function Profile({ userinfo }) {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
     );
-    const responseData = await response.json();
-    console.log(responseData);
+
+    console.log(response);
     return {
       props: {
-        userinfo: responseData.info,
+        userinfo: response.info,
       },
     };
   } catch (error) {
