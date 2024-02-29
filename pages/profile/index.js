@@ -1,7 +1,7 @@
 import Head from "next/head";
 //import Link from "next/link";
 
-import Layout from "./layout";
+import Layout from "../layout";
 export default function Profile({ userinfo }) {
   const fullname = `${userinfo.firstName} ${userinfo.lastName}`;
   return (
