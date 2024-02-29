@@ -44,7 +44,7 @@ export default function Profile() {
           <div className="min-h-screen">
             <div className=" bg-gray-50 rounded-lg shadow-md p-6 sm:w-full lg:w-[400px] justify-center items-center">
               <div className="p-4">
-                <div className="flex items-center">
+                <div className="flex flex-cols items-center">
                   <CldImage
                     src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`}
                     alt="Avatar"
