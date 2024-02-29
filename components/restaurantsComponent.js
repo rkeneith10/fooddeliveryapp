@@ -11,7 +11,12 @@ const RestaurantComponent = ({
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full flex h-[200px]  transition-transform transform hover:-translate-x-1">
       <div className="w-1/3">
-        <CldImage className="object-cover h-full w-full" src={imageUrl} />
+        <CldImage
+          className="object-cover h-full w-full"
+          src={imageUrl}
+          width="100%"
+          height="100%"
+        />
       </div>
       <div className="w-2/3 p-4">
         <h2 className="text-xl font-bold mb-2">{restaurant_name}</h2>

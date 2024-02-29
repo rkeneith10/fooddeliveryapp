@@ -15,7 +15,9 @@ const handler = async (req, res) => {
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
       const userId = decoded.id;
       const userinfo = await users.findOne({ _id: userId });
-      return res.status(200).json(userinfo);
+      return res.status(200).json({
+        info: userinfo,
+      });
     } catch (error) {
       console.error("Error fetching data:", error);
       res.status(500).json({ error: "Error fetching data" });
