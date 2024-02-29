@@ -17,9 +17,7 @@ export default function MenuItemComponent({
       <div className="flex flex-col items-center">
         <CldImage
           src={imageUrl}
-          width={32}
-          height={32}
-          className=" object-cover rounded-full mt-5"
+          className="h-32 w-32 object-cover rounded-full mt-5"
         />
         <h6 className="text-sm font-semibold mb-1">{item_name}</h6>
         <div className="flex flex-row justify-between ">

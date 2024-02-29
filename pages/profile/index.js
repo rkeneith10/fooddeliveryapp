@@ -31,7 +31,7 @@ export async function getServerSideProps() {
     const responseData = await response.json();
     return {
       props: {
-        userinfo: responseData,
+        userinfo: responseData.info,
       },
     };
   } catch (error) {
