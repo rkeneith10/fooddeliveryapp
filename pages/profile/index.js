@@ -1,11 +1,32 @@
+"use client";
 import axios from "axios";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import Layout from "../layout";
 
-export default function Profile({ userinfo }) {
+export default function Profile() {
+  const [userinfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get(
+          "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
+        );
+        const userinfoData = response.data.info;
+        setUserInfo(userinfoData);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+        // Handle errors here
+      }
+    };
+
+    fetchUserInfo();
+  }, []); // Empty dependency array ensures this effect runs only once after initial render
+
   const fullname = userinfo?.firstName
     ? `${userinfo.firstName} ${userinfo.lastName}`
-    : ""; // Handle missing firstName
+    : "";
 
   return (
     <>
@@ -26,28 +47,4 @@ export default function Profile({ userinfo }) {
       </Layout>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  try {
-    const response = await axios.get(
-      "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
-    );
-
-    const userinfo = response.data.info;
-
-    console.log(userinfo);
-    return {
-      props: {
-        userinfo,
-      },
-    };
-  } catch (error) {
-    console.log("Error fetching data:", error);
-    return {
-      props: {
-        userinfo: {}, // Return an empty object in case of errors
-      },
-    };
-  }
 }
