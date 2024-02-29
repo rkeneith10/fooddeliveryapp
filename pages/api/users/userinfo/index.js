@@ -1,4 +1,4 @@
-//import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import users from "../../models/users";
 import connectDB from "../../utils/database";
 
@@ -6,15 +6,15 @@ const handler = async (req, res) => {
   await connectDB();
 
   if (req.method === "GET") {
-    // const token = req.cookies.token;
-    // if (!token) {
-    //   return res.status(401).json({ auth: false });
-    // }
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ auth: false });
+    }
 
     try {
-      // const decoded = jwt.verify(token, process.env.SECRET_KEY);
-      // const userId = decoded.id;
-      const userinfo = await users.findOne({ _id: "65d4ab4b9f1fd3fcb8050519" });
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      const userId = decoded.id;
+      const userinfo = await users.findOne({ _id: userId });
       return res.status(200).json({
         info: userinfo,
       });
