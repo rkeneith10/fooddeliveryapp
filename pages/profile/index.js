@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
+import { CldImage } from "next-cloudinary";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 
@@ -43,7 +43,7 @@ export default function Profile() {
           <div className="min-h-screen">
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center mb-4">
-                <Image
+                <CldImage
                   className="w-20 h-20 rounded-full mr-4"
                   src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`} // Replace with your profile image URL
                   alt="Profile picture"
