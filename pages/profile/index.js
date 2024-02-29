@@ -1,10 +1,12 @@
 import axios from "axios";
 import Head from "next/head";
-//import Link from "next/link";
 import Layout from "../layout";
 
 export default function Profile({ userinfo }) {
-  const fullname = `${userinfo.firstName} ${userinfo.lastName}`;
+  const fullname = userinfo?.firstName
+    ? `${userinfo.firstName} ${userinfo.lastName}`
+    : ""; // Handle missing firstName
+
   return (
     <>
       <Layout>
@@ -16,8 +18,10 @@ export default function Profile({ userinfo }) {
               content="The App that will change your life"
             />
           </Head>
-          <div>{userinfo.firstName}</div>
-          <div>{userinfo.telephone}</div>
+          <div className="min-h-screen">
+            <div>{userinfo?.firstName || "No First Name Available"}</div>
+            <div>{userinfo?.telephone || "No Telephone Available"}</div>
+          </div>
         </div>
       </Layout>
     </>
@@ -30,17 +34,19 @@ export async function getServerSideProps() {
       "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
     );
 
-    console.log(response.info);
+    const userinfo = response.data.info;
+
+    console.log(userinfo);
     return {
       props: {
-        userinfo: response.info,
+        userinfo,
       },
     };
   } catch (error) {
-    console.log("Error fetch data", error);
+    console.log("Error fetching data:", error);
     return {
       props: {
-        userinfo: {},
+        userinfo: {}, // Return an empty object in case of errors
       },
     };
   }
