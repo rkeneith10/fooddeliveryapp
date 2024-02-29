@@ -105,7 +105,7 @@ export default function Navbar() {
                   <>
                     <li>
                       <Link
-                        href="../Profile"
+                        href="../pages/"
                         className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
                       >
                         Profile
