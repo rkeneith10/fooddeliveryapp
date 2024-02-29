@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { CldImage } from "next-cloudinary";
+//import { CldImage } from "next-cloudinary";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
@@ -41,7 +41,7 @@ export default function Profile() {
             />
           </Head>
           <div className="min-h-screen">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            {/* <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center mb-4">
                 <CldImage
                   className="w-20 h-20 rounded-full mr-4"
@@ -58,7 +58,7 @@ export default function Profile() {
                 <div className="font-medium">Phone:</div>
                 <div>{userinfo.telephone}</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </Layout>
