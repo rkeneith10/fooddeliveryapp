@@ -28,7 +28,7 @@ export async function getServerSideProps() {
     const response = await fetch(
       "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
     );
-    const responseData = response.json();
+    const responseData = await response.json();
     return {
       props: {
         userinfo: responseData,
