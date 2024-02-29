@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Verify the token
+      // Vercify the token
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
       // Extract relevant information from the decoded token
