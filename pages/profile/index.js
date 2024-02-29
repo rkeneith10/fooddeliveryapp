@@ -1,8 +1,7 @@
 "use client";
 import axios from "axios";
-import { CldImage } from "next-cloudinary";
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 
@@ -42,28 +41,22 @@ export default function Profile() {
             />
           </Head>
           <div className="min-h-screen">
-            <div className=" bg-gray-50 rounded-lg shadow-md p-6 sm:w-full lg:w-[400px] justify-center items-center">
-              <div className="p-4">
-                <div className="flex flex-cols items-center">
-                  <CldImage
-                    src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`}
-                    alt="Avatar"
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <h2 className="text-lg font-bold">{fullname}</h2>
-                    <p className="text-gray-600">{userinfo.telephone}</p>
-                    <p className="text-gray-600">{userinfo.email}</p>
-                    <p className="text-gray-600">{userinfo.adress}</p>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Link href="#">
-                    <div className="px-4 py-2 bg-[#4CAF50] text-white rounded-md">
-                      Orders
-                    </div>
-                  </Link>
-                </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex items-center mb-4">
+                <Image
+                  className="w-20 h-20 rounded-full mr-4"
+                  src="https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png" // Replace with your profile image URL
+                  alt="Profile picture"
+                />
+                <div className="text-lg font-medium">{`${userinfo.firstName} ${userinfo.lastName}`}</div>
+              </div>
+              <div className="grid grid-cols-3 gap-4 text-gray-700">
+                <div className="font-medium">Email:</div>
+                <div>{userinfo.email}</div>
+                <div className="font-medium">Address:</div>
+                <div>{userinfo.adress}</div>s
+                <div className="font-medium">Phone:</div>
+                <div>{userinfo.telephone}</div>
               </div>
             </div>
           </div>
