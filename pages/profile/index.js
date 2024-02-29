@@ -29,6 +29,7 @@ export async function getServerSideProps() {
       "https://fooddelivery-kappa.vercel.app/api/users/userinfo"
     );
     const responseData = await response.json();
+    console.log(responseData);
     return {
       props: {
         userinfo: responseData.info,
