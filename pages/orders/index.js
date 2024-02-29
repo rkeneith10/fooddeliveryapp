@@ -332,7 +332,7 @@ export default function Orders() {
                     Order placed successfully! Thank you for your purchase .
                   </p>
                   <div
-                    className="mt-4 px-4 py-2 bg-[#4CAF50] text-center text-white rounded"
+                    className="mt-4 px-4 py-2 bg-[#4CAF50] text-center text-white rounded cursor-pointer"
                     onClick={handleMessage}
                   >
                     Ok
