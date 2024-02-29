@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { CldImage } from "next-cloudinary";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
@@ -40,8 +41,30 @@ export default function Profile() {
             />
           </Head>
           <div className="min-h-screen">
-            <div>{userinfo?.firstName || "No First Name Available"}</div>
-            <div>{userinfo?.telephone || "No Telephone Available"}</div>
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="p-4">
+                <div className="flex items-center">
+                  <CldImage
+                    src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`}
+                    alt="Avatar"
+                    className="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <h2 className="text-lg font-bold">{fullname}</h2>
+                    <p className="text-gray-600">{userinfo.telephone}</p>
+                    <p className="text-gray-600">{userinfo.email}</p>
+                    <p className="text-gray-600">{userinfo.adress}</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Link href="#">
+                    <div className="px-4 py-2 bg-[#4CAF50] text-white rounded-md">
+                      Orders
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Layout>
