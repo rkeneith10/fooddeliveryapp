@@ -50,7 +50,7 @@ export default function Profile() {
                 />
                 <div className="text-lg font-medium">{`${userinfo.firstName} ${userinfo.lastName}`}</div>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-gray-700">
+              <div className="grid grid-cols-2 gap-4 text-gray-700">
                 <div className="font-medium">Email:</div>
                 <div>{userinfo.email}</div>
                 <div className="font-medium">Address:</div>
