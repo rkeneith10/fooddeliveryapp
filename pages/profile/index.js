@@ -57,7 +57,7 @@ export default function Profile() {
                 </div>
 
                 <div className=" flex items-center justify-center  py-2">
-                  <p className="text-sm text-gray-500">{userinfo.email}</p>
+                  <p className="text-sm text-red-500">{userinfo.email}</p>
                 </div>
 
                 <div className=" flex items-center justify-center  py-2">
