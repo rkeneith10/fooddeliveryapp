@@ -25,6 +25,11 @@ export default function Orders() {
     fetchData();
   }, []);
 
+  const formatDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString);
+    return `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`;
+  };
+
   return (
     <div>
       <Layout>
@@ -63,9 +68,9 @@ export default function Orders() {
                     <th scope="col" className="px-6 py-3">
                       Date & Time
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    {/* <th scope="col" className="px-6 py-3">
                       <span className="sr-only">Action</span>
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -98,7 +103,7 @@ export default function Orders() {
                         </td>
 
                         <td className="text-left py-3 px-4 border-b border-gray-200">
-                          {item.createdAt}
+                          {formatDateTime(item.createdAt)}
                         </td>
                       </tr>
                     ))

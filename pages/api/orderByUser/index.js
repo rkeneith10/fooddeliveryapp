@@ -14,7 +14,9 @@ const handler = async (req, res) => {
     try {
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
       const userId = decoded.id;
-      const allOrders = await Orders.find({ user_id: userId });
+      const allOrders = await Orders.find({ user_id: userId }).sort({
+        _id: -1,
+      });
       if (allOrders && allOrders.length > 0) {
         res.status(200).json({
           success: true,
