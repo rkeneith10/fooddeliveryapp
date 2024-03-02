@@ -3,41 +3,31 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 
-const PAGE_SIZE = 5; // Nombre d'éléments par page
-
 export default function Orders() {
   const [ordersData, setOrdersData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `https://fooddelivery-kappa.vercel.app/api/orderByUser?page=${currentPage}&pageSize=${PAGE_SIZE}`
-      );
-      if (response.status !== 200) {
-        throw new Error("Failed to fetch data");
-      }
-      const jsonData = await response.data;
-      setOrdersData(jsonData.all);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://fooddelivery-kappa.vercel.app/api/orderByUser"
+        );
+        if (response.status !== 200) {
+          throw new Error("Failed to fetch data");
+        }
+        const jsonData = await response.data;
+        setOrdersData(jsonData.all);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     fetchData();
-  }, [currentPage]);
+  }, []);
 
   const formatDateTime = (dateTimeString) => {
     const dateTime = new Date(dateTimeString);
     return `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`;
-  };
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   return (
@@ -93,9 +83,16 @@ export default function Orders() {
                   ) : (
                     ordersData.map((item, index) => (
                       <tr key={index} className="bg-white hover:bg-gray-50">
-                        <td className="text-left py-3 px-4 border-b border-gray-200">
-                          {item.restaurant_name.join(", ")}
-                        </td>
+                        {/* Afficher le nom du restaurant uniquement pour la première entrée */}
+                        {index === 0 ||
+                        ordersData[index - 1].restaurant_name.join(", ") !==
+                          item.restaurant_name.join(", ") ? (
+                          <td className="text-left py-3 px-4 border-b border-gray-200">
+                            {item.restaurant_name.join(", ")}
+                          </td>
+                        ) : (
+                          <td className="text-left py-3 px-4 border-b border-gray-200"></td>
+                        )}
                         <td className="text-left py-3 px-4 border-b border-gray-200">
                           {item.menu_item_name.join(", ")}
                         </td>
@@ -120,22 +117,6 @@ export default function Orders() {
                   )}
                 </tbody>
               </table>
-
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={prevPage}
-                  disabled={currentPage === 1}
-                  className="mr-2 px-4 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                >
-                  Previous
-                </button>
-                <button
-                  onClick={nextPage}
-                  className="px-4 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                >
-                  Next
-                </button>
-              </div>
             </div>
           </div>
         </div>
