@@ -3,6 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 //import { CldImage } from "next-cloudinary";
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import avatar from "../../public/images/avatarr.png";
 import Layout from "../layout";
