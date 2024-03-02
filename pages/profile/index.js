@@ -41,9 +41,9 @@ export default function Profile() {
               content="The App that will change your life"
             />
           </Head>
-          <div className="min-h-screen">
+          <div className="min-h-screen bg-gray-50">
             <div className=" max-w-screen-2xl mx-auto flex flex-col justify-center items-center  ">
-              <div className="pt-5 pl-10 pr-5 bg-gray-50 rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
+              <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-md sm:w-full lg:w-[440px]  h-auto flex flex-col ">
                 <div className="flex justify-center items-center border-b border-[#4CAF50] py-2">
                   <CldImage
                     src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`}
@@ -68,8 +68,8 @@ export default function Profile() {
                   <p className="text-sm text-gray-500">{userinfo.adress}</p>
                 </div>
 
-                <Link href="/">
-                  <div className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center">
+                <Link href="/orders">
+                  <div className="mt-6 mb-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center">
                     See all orders
                   </div>
                 </Link>
