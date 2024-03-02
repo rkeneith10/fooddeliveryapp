@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 //import { CldImage } from "next-cloudinary";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import avatar from "../../public/images/avatarr.png";
 import Layout from "../layout";
 
 export default function Profile() {
@@ -41,24 +43,35 @@ export default function Profile() {
             />
           </Head>
           <div className="min-h-screen">
-            {/* <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center mb-4">
-                <CldImage
-                  className="w-20 h-20 rounded-full mr-4"
-                  src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709246890/tfgmdtyuqxy9hzoj9esy.png`} // Replace with your profile image URL
-                  alt="Profile picture"
-                />
-                <div className="text-lg font-medium">{`${userinfo.firstName} ${userinfo.lastName}`}</div>
+            <div className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40  ">
+              <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-[500px] flex flex-col ">
+                <div className="flex items-center border-b border-[#4CAF50] py-2">
+                  <Image src={avatar} width={150} height={150} />
+                </div>
+
+                <div className=" flex items-center  py-2">
+                  <h2 className="text-lg font-medium">{fullname}</h2>
+                </div>
+
+                <div className=" flex items-center border-b border-[#4CAF50] py-2">
+                  <p className="text-sm text-gray-500">{userinfo.email}</p>
+                </div>
+
+                <div className=" flex items-center border-b border-[#4CAF50] py-2">
+                  <p className="text-sm text-gray-500">{userinfo.telephone}</p>
+                </div>
+
+                <div className=" flex items-center border-b border-[#4CAF50] py-2">
+                  <p className="text-sm text-gray-500">{userinfo.adress}</p>
+                </div>
+
+                <Link href="/">
+                  <div className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center">
+                    See all orders
+                  </div>
+                </Link>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-gray-700">
-                <div className="font-medium">Email:</div>
-                <div>{userinfo.email}</div>
-                <div className="font-medium">Address:</div>
-                <div>{userinfo.adress}</div>
-                <div className="font-medium">Phone:</div>
-                <div>{userinfo.telephone}</div>
-              </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </Layout>

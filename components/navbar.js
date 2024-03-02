@@ -145,7 +145,7 @@ export default function Navbar() {
             )}
           </li>
         </ul>
-        <Link href="../orders">
+        <Link href="../cart">
           <div className="pl-[80px]  cursor-pointer md:pr-10">
             <ShoppingCartIcon className="text-[#4CAF50] h-9 w-9" />
             {cartItemCount > 0 && (
@@ -209,7 +209,7 @@ export default function Navbar() {
                       <>
                         <li>
                           <Link
-                            href="../"
+                            href="../profile"
                             className="block px-4 py-2 text-[#4CAF50] hover:bg-gray-300"
                           >
                             Profile
