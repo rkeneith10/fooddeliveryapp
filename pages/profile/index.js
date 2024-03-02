@@ -47,7 +47,7 @@ export default function Profile() {
             <div className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40  ">
               <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-[500px] flex flex-col ">
                 <div className="flex items-center border-b border-[#4CAF50] py-2">
-                  <Image src={avatar} width={150} height={150} />
+                  <Image src={avatar} width={150} height={150} loader={lazy} />
                 </div>
 
                 <div className=" flex items-center  py-2">
