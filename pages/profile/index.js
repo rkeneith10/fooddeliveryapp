@@ -43,12 +43,12 @@ export default function Profile() {
           </Head>
           <div className="min-h-screen bg-gray-50">
             <div className=" max-w-screen-2xl mx-auto flex flex-col justify-center items-center  ">
-              <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-md sm:w-full lg:w-[440px]  h-auto flex flex-col ">
+              <div className="pt-5 pl-10 pr-5 mt-10 bg-white rounded-md shadow-md sm:w-full lg:w-[440px]  h-auto flex flex-col ">
                 <div className="flex justify-center items-center border-b border-[#4CAF50] py-2">
                   <CldImage
                     src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`}
-                    width={150}
-                    height={150}
+                    width={100}
+                    height={100}
                   />
                 </div>
 
@@ -57,7 +57,7 @@ export default function Profile() {
                 </div>
 
                 <div className=" flex items-center justify-center  py-2">
-                  <p className="text-sm text-red-500">{userinfo.email}</p>
+                  <p className="text-sm text-gray-500">{userinfo.email}</p>
                 </div>
 
                 <div className=" flex items-center justify-center  py-2">
