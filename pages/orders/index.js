@@ -83,16 +83,9 @@ export default function Orders() {
                   ) : (
                     ordersData.map((item, index) => (
                       <tr key={index} className="bg-white hover:bg-gray-50">
-                        {/* Afficher le nom du restaurant uniquement pour la première entrée */}
-                        {index === 0 ||
-                        ordersData[index - 1].restaurant_name.join(", ") !==
-                          item.restaurant_name.join(", ") ? (
-                          <td className="text-left py-3 px-4 border-b border-gray-200">
-                            {item.restaurant_name.join(", ")}
-                          </td>
-                        ) : (
-                          <td className="text-left py-3 px-4 border-b border-gray-200"></td>
-                        )}
+                        <td className="text-left py-3 px-4 border-b border-gray-200">
+                          {item.restaurant_name.join(", ")}
+                        </td>
                         <td className="text-left py-3 px-4 border-b border-gray-200">
                           {item.menu_item_name.join(", ")}
                         </td>
