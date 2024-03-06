@@ -54,7 +54,30 @@ export default function Profile() {
                   <h1 className="text-3xl font-bold text-gray-800">
                     {fullname}
                   </h1>
-                  <p className="text-gray-600">{fullname}</p>
+                  <input
+                    type="text"
+                    value={userinfo.email}
+                    id="address"
+                    name="address"
+                    readonly
+                    className="border rounded-md w-full p-2"
+                  />
+                  <input
+                    type="text"
+                    value={userinfo.adress}
+                    id="address"
+                    name="address"
+                    readonly
+                    className="border rounded-md w-full p-2"
+                  />
+                  <input
+                    type="text"
+                    value={userinfo.telephone}
+                    id="address"
+                    name="address"
+                    readonly
+                    className="border rounded-md w-full p-2"
+                  />
                 </div>
               </div>
             </div>
