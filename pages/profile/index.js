@@ -56,37 +56,37 @@ export default function Profile() {
                     {fullname}
                   </h1>
                   <div className="mb-4">
-                    <div className="flex items-center mb-2">
-                      <FaEnvelope className="mr-2 text-[#4CAF50] w-7 h-7" />
+                    <div className="relative flex items-center mb-2">
+                      <FaEnvelope className="absolute left-4 text-[#4CAF50] w-7 h-7 top-1/2 transform -translate-y-1/2" />
                       <input
                         type="text"
                         value={userinfo.email}
                         id="email"
                         name="email"
                         readOnly
-                        className="border rounded-md w-full p-2"
+                        className="border rounded-md pl-10 w-full p-2" // Adjust left padding for icon
                       />
                     </div>
-                    <div className="flex items-center mb-2">
-                      <FaMapMarkerAlt className="mr-2 text-[#4CAF50] h-7 w-7" />
+                    <div className="relative flex items-center mb-2">
+                      <FaMapMarkerAlt className="absolute left-4 text-[#4CAF50] h-7 w-7 top-1/2 transform -translate-y-1/2" />
                       <input
                         type="text"
                         value={userinfo.adress}
                         id="address"
                         name="address"
                         readOnly
-                        className="border rounded-md w-full p-2"
+                        className="border rounded-md pl-10 w-full p-2"
                       />
                     </div>
-                    <div className="flex items-center">
-                      <FaPhone className="mr-2 text-[#4CAF50] h-7 w-7" />
+                    <div className="relative flex items-center">
+                      <FaPhone className="absolute left-4 text-[#4CAF50] h-7 w-7 top-1/2 transform -translate-y-1/2" />
                       <input
                         type="text"
                         value={userinfo.telephone}
                         id="telephone"
                         name="telephone"
                         readOnly
-                        className="border rounded-md w-full p-2"
+                        className="border rounded-md pl-10 w-full p-2"
                       />
                     </div>
                   </div>
