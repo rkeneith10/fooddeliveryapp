@@ -2,6 +2,7 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 
