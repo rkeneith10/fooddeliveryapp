@@ -1,9 +1,9 @@
-"use client";
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import Layout from "../layout";
 
 export default function Profile() {
@@ -55,30 +55,41 @@ export default function Profile() {
                   <h1 className="text-3xl font-bold text-gray-800">
                     {fullname}
                   </h1>
-                  <input
-                    type="text"
-                    value={userinfo.email}
-                    id="address"
-                    name="address"
-                    readonly
-                    className="border rounded-md w-full p-2 mb-4"
-                  />
-                  <input
-                    type="text"
-                    value={userinfo.adress}
-                    id="address"
-                    name="address"
-                    readonly
-                    className="border rounded-md w-full p-2 mb-4"
-                  />
-                  <input
-                    type="text"
-                    value={userinfo.telephone}
-                    id="address"
-                    name="address"
-                    readonly
-                    className="border rounded-md w-full p-2 mb-4"
-                  />
+                  <div className="mb-4">
+                    <div className="flex items-center mb-2">
+                      <FaEnvelope className="mr-2 text-[#4CAF50] w-7 h-7" />
+                      <input
+                        type="text"
+                        value={userinfo.email}
+                        id="email"
+                        name="email"
+                        readOnly
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                    <div className="flex items-center mb-2">
+                      <FaMapMarkerAlt className="mr-2 text-[#4CAF50] h-7 w-7" />
+                      <input
+                        type="text"
+                        value={userinfo.address}
+                        id="address"
+                        name="address"
+                        readOnly
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                    <div className="flex items-center">
+                      <FaPhone className="mr-2 text-[#4CAF50] h-7 w-7" />
+                      <input
+                        type="text"
+                        value={userinfo.telephone}
+                        id="telephone"
+                        name="telephone"
+                        readOnly
+                        className="border rounded-md w-full p-2"
+                      />
+                    </div>
+                  </div>
                   <div className="flex items-center justify-end mt-5">
                     <Link href="/orders">
                       <div className="px-4 py-2 bg-[#4CAF50] text-white rounded-md">
