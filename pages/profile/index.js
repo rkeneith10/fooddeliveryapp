@@ -71,7 +71,7 @@ export default function Profile() {
                       <FaMapMarkerAlt className="mr-2 text-[#4CAF50] h-7 w-7" />
                       <input
                         type="text"
-                        value={userinfo.address}
+                        value={userinfo.adress}
                         id="address"
                         name="address"
                         readOnly
