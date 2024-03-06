@@ -2,12 +2,16 @@
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import Head from "next/head";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 
 export default function Profile() {
   const [userinfo, setUserInfo] = useState({});
+  //   <CldImage
+  //   src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`}
+  //   width={100}
+  //   height={100}
+  // />
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -41,38 +45,46 @@ export default function Profile() {
               content="The App that will change your life"
             />
           </Head>
-          <div className="min-h-screen bg-gray-50">
-            <div className=" max-w-screen-2xl mx-auto flex flex-col justify-center items-center  ">
-              <div className="pt-5 pl-10 pr-5 mt-10 bg-white rounded-md shadow-md sm:w-full lg:w-[440px]  h-auto flex flex-col ">
-                <div className="flex justify-center items-center border-b border-[#4CAF50] py-2">
+          <div className="bg-gray-100 min-h-screen font-sans pb-20">
+            <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+                <div className="w-full sm:w-1/3 flex justify-center items-center">
                   <CldImage
-                    src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`}
-                    width={100}
-                    height={100}
+                    className="rounded-full h-48 w-48 object-cover border border-gray-200"
+                    src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`} // Replace with your profile image
+                    alt="Profile picture"
                   />
                 </div>
-
-                <div className=" flex items-center  justify-center py-2">
-                  <h2 className="text-lg font-medium">{fullname}</h2>
-                </div>
-
-                <div className=" flex items-center justify-center  py-2">
-                  <p className="text-sm text-gray-500">{userinfo.email}</p>
-                </div>
-
-                <div className=" flex items-center justify-center  py-2">
-                  <p className="text-sm text-gray-500">{userinfo.telephone}</p>
-                </div>
-
-                <div className=" flex items-center justify-center  border-b border-[#4CAF50] py-2">
-                  <p className="text-sm text-gray-500">{userinfo.adress}</p>
-                </div>
-
-                <Link href="/orders">
-                  <div className="mt-6 mb-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center">
-                    See all orders
+                <div className="w-full sm:w-2/3 mt-6 sm:mt-0 pl-4 sm:pl-8">
+                  <h1 className="text-3xl font-bold text-gray-800">John Doe</h1>
+                  <p className="text-gray-600">{fullname}</p>
+                  <p className="text-gray-600 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc eget urna et elit gravida blandit.
+                  </p>
+                  <div className="mt-4 flex items-center space-x-4">
+                    <a
+                      href="mailto:johndoe@example.com"
+                      className="inline-flex px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
+                    >
+                      <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 15a4 4 0 0 0 0-8 4 4 0 0 0 0  8zM3 21a6 6 0 0 1 6 6h9a6 6"
+                        />
+                      </svg>
+                      johndoe@example.com
+                    </a>
                   </div>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
