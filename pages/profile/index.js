@@ -50,7 +50,7 @@ export default function Profile() {
                     alt="Profile picture"
                   />
                 </div>
-                <div className="w-full sm:w-2/3 mt-6 sm:mt-0 pl-4 sm:pl-8">
+                <div className="w-full sm:w-2/3 mt-6 sm:mt-0 pl-4 sm:pl-8 sm:items-center sm:justify-center">
                   <h1 className="text-3xl font-bold text-gray-800">
                     {fullname}
                   </h1>
@@ -60,7 +60,7 @@ export default function Profile() {
                     id="address"
                     name="address"
                     readonly
-                    className="border rounded-md w-full p-2"
+                    className="border rounded-md w-full p-2 mb-4"
                   />
                   <input
                     type="text"
@@ -68,7 +68,7 @@ export default function Profile() {
                     id="address"
                     name="address"
                     readonly
-                    className="border rounded-md w-full p-2"
+                    className="border rounded-md w-full p-2 mb-4"
                   />
                   <input
                     type="text"
@@ -76,8 +76,15 @@ export default function Profile() {
                     id="address"
                     name="address"
                     readonly
-                    className="border rounded-md w-full p-2"
+                    className="border rounded-md w-full p-2 mb-4"
                   />
+                  <div className="flex items-center justify-end mt-5">
+                    <Link href="/orders">
+                      <div className="px-4 py-2 bg-[#4CAF50] text-white rounded-md">
+                        See all orders
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
