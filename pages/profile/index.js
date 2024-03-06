@@ -46,7 +46,7 @@ export default function Profile() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                 <div className="w-full sm:w-1/3 flex justify-center items-center">
                   <CldImage
-                    className="rounded-full h-48 w-48 object-cover border border-white"
+                    className="rounded-full h-48 w-48 object-cover border-2 border-white"
                     src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`} // Replace with your profile image
                     alt="Profile picture"
                   />
