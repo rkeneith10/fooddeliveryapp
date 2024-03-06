@@ -44,7 +44,7 @@ export default function Profile() {
           <div className="bg-gray-100 min-h-screen font-sans pb-20">
             <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                <div className="w-full sm:w-1/3 flex justify-center items-center mb-4">
+                <div className="w-full sm:w-1/3 flex justify-center items-center mb-8">
                   <CldImage
                     className="rounded-full h-48 w-48 object-cover border-2 border-white"
                     src={`https://res.cloudinary.com/dpiizfdue/image/upload/v1709340659/uwost15aq98rhgkgqni1.png`} // Replace with your profile image
