@@ -41,7 +41,7 @@ export default function Orders() {
               content="The App that will change your life"
             />
           </Head>
-          <div className="pt-10 pl-5 pr-5 lg:pl-20 lg:pr-20">
+          <div className="pt-10 pl-5 pr-5 lg:pl-20 lg:pr-20 min-h-screen">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
