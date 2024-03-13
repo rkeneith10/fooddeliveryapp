@@ -73,7 +73,7 @@ function MenuItem({ data, error }) {
           {" "}
           <ToastContainer />
         </div>
-        <div className=" h-auto  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200  ">
+        <div className=" min-h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200  ">
           <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
             <div>
               <CldImage src={data.imageUrl} className="w-full h-[200px] mb-2" />
