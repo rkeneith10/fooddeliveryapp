@@ -12,8 +12,6 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
-  const clientId =
-    "AfXNGc0Vt9MNVD2bVS6ybMWS45YNEzBkb8ty0UTfpfq4rw2pamROUzAw861LEm9PRJUBOm8dR2bP9yyg";
 
   const [isLog, setIsLog] = useState(false);
   const [infouser, setInfoUser] = useState({});
@@ -25,6 +23,8 @@ export default function Orders() {
   const router = useRouter();
 
   useEffect(() => {
+    const clientId =
+      "AfXNGc0Vt9MNVD2bVS6ybMWS45YNEzBkb8ty0UTfpfq4rw2pamROUzAw861LEm9PRJUBOm8dR2bP9yyg";
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
@@ -319,8 +319,8 @@ export default function Orders() {
                           purchase_units: [
                             {
                               amount: {
-                                value: { totalprice }, // Montant du paiement
-                                currency_code: "USD", // Code de devise
+                                value: totalprice, // Accès direct à totalprice
+                                currency_code: "USD",
                               },
                             },
                           ],
@@ -328,12 +328,21 @@ export default function Orders() {
                       }}
                       onApprove={(data, actions) => {
                         return actions.order.capture().then((details) => {
-                          // Gérer la transaction réussie
-                          console.log("Payment capture successful:", details);
+                          // Mettre à jour l'état après un paiement réussi
+                          seGoodMessage(true);
+                          localStorage.removeItem("cart"); // Supprimer le panier
+                          setFullName("");
+                          seAdressOrder("");
+                          setPhone("");
+                          router.push("../"); // Rediriger l'utilisateur
                         });
                       }}
                       onError={(err) => {
-                        console.error("PayPal error:", err);
+                        // Gérer les erreurs PayPal avec une notification
+                        toast.error(
+                          "Une erreur s'est produite lors du paiement PayPal"
+                        );
+                        console.error("Erreur PayPal:", err);
                       }}
                     />
                   </PayPalScriptProvider>
