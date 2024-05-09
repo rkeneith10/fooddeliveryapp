@@ -311,41 +311,43 @@ export default function Orders() {
                       Place order
                     </button>
                   </div>
-                  <PayPalScriptProvider>
-                    <PayPalButtons
-                      className="paypal-button"
-                      createOrder={(data, actions) => {
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: {
-                                value: totalprice, // Accès direct à totalprice
-                                currency_code: "USD",
+                  <div className=" items-end justify-end flex w-8">
+                    <PayPalScriptProvider>
+                      <PayPalButtons
+                        className="paypal-button"
+                        createOrder={(data, actions) => {
+                          return actions.order.create({
+                            purchase_units: [
+                              {
+                                amount: {
+                                  value: totalprice, // Accès direct à totalprice
+                                  currency_code: "USD",
+                                },
                               },
-                            },
-                          ],
-                        });
-                      }}
-                      onApprove={(data, actions) => {
-                        return actions.order.capture().then((details) => {
-                          // Mettre à jour l'état après un paiement réussi
-                          seGoodMessage(true);
-                          localStorage.removeItem("cart"); // Supprimer le panier
-                          setFullName("");
-                          seAdressOrder("");
-                          setPhone("");
-                          router.push("../"); // Rediriger l'utilisateur
-                        });
-                      }}
-                      onError={(err) => {
-                        // Gérer les erreurs PayPal avec une notification
-                        toast.error(
-                          "Une erreur s'est produite lors du paiement PayPal"
-                        );
-                        console.error("Erreur PayPal:", err);
-                      }}
-                    />
-                  </PayPalScriptProvider>
+                            ],
+                          });
+                        }}
+                        onApprove={(data, actions) => {
+                          return actions.order.capture().then((details) => {
+                            // Mettre à jour l'état après un paiement réussi
+                            seGoodMessage(true);
+                            localStorage.removeItem("cart"); // Supprimer le panier
+                            setFullName("");
+                            seAdressOrder("");
+                            setPhone("");
+                            router.push("../"); // Rediriger l'utilisateur
+                          });
+                        }}
+                        onError={(err) => {
+                          // Gérer les erreurs PayPal avec une notification
+                          toast.error(
+                            "Une erreur s'est produite lors du paiement PayPal"
+                          );
+                          console.error("Erreur PayPal:", err);
+                        }}
+                      />
+                    </PayPalScriptProvider>
+                  </div>
                 </div>
               </>
             )}
