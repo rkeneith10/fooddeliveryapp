@@ -1,4 +1,3 @@
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/router";
@@ -311,7 +310,7 @@ export default function Orders() {
                       Place order
                     </button>
                   </div>
-                  <div className=" items-end justify-end flex w-8">
+                  {/* <div className=" items-end justify-end flex w-8">
                     <PayPalScriptProvider>
                       <PayPalButtons
                         className="paypal-button"
@@ -347,7 +346,7 @@ export default function Orders() {
                         }}
                       />
                     </PayPalScriptProvider>
-                  </div>
+                  </div> */}
                 </div>
               </>
             )}
