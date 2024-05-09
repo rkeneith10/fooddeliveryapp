@@ -1,3 +1,4 @@
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import axios from "axios";
 import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/router";
@@ -11,6 +12,8 @@ import Layout from "../layout";
 
 export default function Orders() {
   const [cart, setCart] = useState([]);
+  const clientId =
+    "AfXNGc0Vt9MNVD2bVS6ybMWS45YNEzBkb8ty0UTfpfq4rw2pamROUzAw861LEm9PRJUBOm8dR2bP9yyg";
 
   const [isLog, setIsLog] = useState(false);
   const [infouser, setInfoUser] = useState({});
@@ -308,6 +311,32 @@ export default function Orders() {
                       Place order
                     </button>
                   </div>
+                  <PayPalScriptProvider>
+                    <PayPalButtons
+                      className="paypal-button"
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: { totalprice }, // Montant du paiement
+                                currency_code: "USD", // Code de devise
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                      onApprove={(data, actions) => {
+                        return actions.order.capture().then((details) => {
+                          // Gérer la transaction réussie
+                          console.log("Payment capture successful:", details);
+                        });
+                      }}
+                      onError={(err) => {
+                        console.error("PayPal error:", err);
+                      }}
+                    />
+                  </PayPalScriptProvider>
                 </div>
               </>
             )}
