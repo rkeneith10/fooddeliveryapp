@@ -61,7 +61,7 @@ export default function index({ categories, restaurants, menus }) {
 
           <div
             id="top"
-            className="h-[400px]  max-w-screen-2xl mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
+            className="h-[450px] w-full mx-auto flex flex-col justify-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
             style={{ backgroundImage: `url(${BackImage1.src})` }}
           >
             <div className="max-w-sceen">
