@@ -1,12 +1,12 @@
 import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-    ChevronDown,
-    LogOut,
-    Menu,
-    ShoppingBag,
-    User,
-    X
+  ChevronDown,
+  LogOut,
+  Menu,
+  ShoppingBag,
+  User,
+  X
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -80,7 +80,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 font-medium text-slate-600">
           <Link href="/" className="hover:text-emerald-600 transition-colors">Home</Link>
           <Link href="/restaurants" className="hover:text-emerald-600 transition-colors">Restaurants</Link>
-          <Link href="/contact" className="hover:text-emerald-600 transition-colors">Contact</Link>
+          {/* <Link href="/contact" className="hover:text-emerald-600 transition-colors">Contact</Link> */}
           
           <div className="h-6 w-[1px] bg-slate-200 mx-2" />
           
@@ -177,7 +177,7 @@ export default function Navbar() {
             <div className="px-6 py-8 flex flex-col gap-6 font-semibold text-lg">
               <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
               <Link href="/restaurants" onClick={() => setIsMenuOpen(false)}>Restaurants</Link>
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+              {/* <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link> */}
               
               <div className="h-[1px] bg-slate-100 w-full" />
               
