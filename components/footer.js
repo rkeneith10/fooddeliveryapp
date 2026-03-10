@@ -1,15 +1,15 @@
 "use client";
 import {
-    ArrowRight,
-    Facebook,
-    Instagram,
-    Linkedin,
-    Mail,
-    MapPin,
-    Phone,
-    Send,
-    ShoppingBag,
-    Twitter
+  ArrowRight,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  ShoppingBag,
+  Twitter
 } from "lucide-react";
 import Link from "next/link";
 
@@ -112,7 +112,7 @@ const Footer = () => {
             <Link href="/terms" className="hover:text-emerald-500 transition-colors">Termes et Conditions</Link>
           </div>
           <div className="text-slate-600 text-[10px] font-black uppercase tracking-widest">
-            Made with 💚 by <span className="text-slate-200">Keneith Salnave</span>
+            Build and Designed by <span className="text-slate-200">Keneith-Salnave Romain</span>
           </div>
         </div>
       </div>
