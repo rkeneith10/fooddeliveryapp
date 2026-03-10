@@ -1,5 +1,5 @@
-"use client";
 import axios from "axios";
+import { Info, MessageSquare, Minus, Plus, ShoppingCart } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,12 +9,9 @@ import Layout from "../layout";
 function MenuItem({ data, error }) {
   const [count, setCount] = useState(1);
   const [specialRequest, setSpecialRequest] = useState("");
-  const [cartItemCount, setCartItemCount] = useState(0);
 
   const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+    if (count > 1) setCount(count - 1);
   };
 
   const increment = () => {
@@ -33,7 +30,6 @@ function MenuItem({ data, error }) {
     };
 
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const updatedCart = [...existingCart, cartItem];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -41,109 +37,148 @@ function MenuItem({ data, error }) {
 
     setCount(1);
     setSpecialRequest("");
-
-    toast.success("Item added to cart!");
+    toast.success(`${data.item_name} ajouté au panier !`, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-    window.addEventListener("cartItemAdded", () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      setCartItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-    });
-
-    return () => {
-      window.removeEventListener("cartItemAdded", null);
+    const handleCartUpdate = () => {
+      // Logic for cart update if needed
     };
+    window.addEventListener("cartItemAdded", handleCartUpdate);
+    return () => window.removeEventListener("cartItemAdded", handleCartUpdate);
   }, []);
 
   if (error) {
-    return <p>Error loading post: {error}</p>;
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+          <div className="text-center p-8 bg-white rounded-[2rem] shadow-xl border border-red-100 max-w-md">
+            <div className="h-16 w-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Info size={32} />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900 mb-4">Erreur de chargement</h2>
+            <p className="text-slate-500 mb-8 font-medium">Nous n'avons pas pu récupérer les détails de ce plat. Veuillez réessayer plus tard.</p>
+            <button onClick={() => window.location.reload()} className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all">
+              Réessayer
+            </button>
+          </div>
+        </div>
+      </Layout>
+    );
   }
 
   if (!data) {
-    return <p>Restaurant not found</p>; // Handle non-existent post as well
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-400">
+           Chargement en cours...
+        </div>
+      </Layout>
+    );
   }
 
   return (
-    <div>
-      <Layout>
-        <div>
-          {" "}
-          <ToastContainer />
-        </div>
-        <div className=" min-h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center bg-gray-200  ">
-          <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col">
-            <div>
-              <CldImage src={data.imageUrl} className="w-full h-[200px] mb-2" />
+    <Layout>
+      <ToastContainer />
+      <div className="min-h-screen bg-slate-50/50 pt-24 pb-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-[3rem] shadow-2xl shadow-emerald-900/5 border border-slate-100 overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              {/* Left: Image Section */}
+              <div className="relative h-[400px] lg:h-full min-h-[500px] bg-slate-100">
+                <CldImage 
+                  src={data.imageUrl} 
+                  className="w-full h-full object-cover"
+                  alt={data.item_name}
+                  width={800}
+                  height={800}
+                />
+                <div className="absolute top-8 left-8">
+                   <div className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 text-emerald-600 font-black text-[10px] uppercase tracking-widest">
+                      {data.restaurant_name}
+                   </div>
+                </div>
+              </div>
 
-              <div className="p-4">
-                <h3 className="font-bold text-xl text-gray-900 mb-2">
-                  {data.item_name}
-                </h3>
-                <div className="flex flex-row justify-between mb-2">
-                  <h4 className="font-bold ">Price</h4>
-                  <p className="font-bold">
-                    <span className="text-[#4CAF50]">HTG </span>
-                    {data.price}
-                  </p>
+              {/* Right: Details Section */}
+              <div className="p-8 lg:p-16 flex flex-col justify-center">
+                <div className="mb-10">
+                  <h1 className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tighter leading-tight mb-4">
+                    {data.item_name}
+                  </h1>
+                  <div className="flex items-center gap-4">
+                    <div className="text-3xl font-black text-emerald-600 flex items-baseline gap-1">
+                      <span className="text-sm">HTG</span> {data.price}
+                    </div>
+                    <div className="h-4 w-[1px] bg-slate-200" />
+                    <div className="text-slate-400 font-bold text-sm uppercase tracking-widest">
+                      Disponible
+                    </div>
+                  </div>
                 </div>
 
-                <div class="border-t border-gray-300 mb-2"></div>
+                {/* Description - Assuming data.description exists or defaulting */}
+                <p className="text-slate-500 text-lg font-medium leading-relaxed mb-10">
+                  {data.description || "Un délice préparé avec amour par nos meilleurs chefs. Ingrédients frais et saveurs authentiques garanties."}
+                </p>
 
-                <div className="text-md font-semibold">Special request</div>
+                <div className="space-y-10">
+                  {/* Special Request */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-4 text-slate-900">
+                      <MessageSquare size={18} className="text-emerald-500" />
+                      <span className="font-black uppercase text-xs tracking-widest">Instructions spéciales</span>
+                    </div>
+                    <textarea
+                      value={specialRequest}
+                      onChange={(e) => setSpecialRequest(e.target.value)}
+                      placeholder="Ex: Pas d'oignons, bien cuit..."
+                      className="w-full h-24 px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 focus:bg-white transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                    />
+                  </div>
 
-                <div className="mb-2">
-                  <textarea
-                    value={specialRequest}
-                    onChange={(e) => setSpecialRequest(e.target.value)}
-                    placeholder="Your preferences or requests"
-                    class="w-full h-20 px-3 py-2 text-base placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:border-[#4CAF50]"
-                  ></textarea>
-                </div>
+                  {/* Quantity & Add to Cart */}
+                  <div className="flex flex-col sm:flex-row items-stretch gap-4">
+                    <div className="flex items-center bg-slate-100 rounded-2xl p-1 shrink-0">
+                      <button 
+                        onClick={decrement}
+                        className="h-14 w-14 flex items-center justify-center bg-white rounded-xl shadow-sm hover:text-emerald-600 transition-colors"
+                      >
+                        <Minus size={20} />
+                      </button>
+                      <span className="w-16 text-center font-black text-xl text-slate-800">{count}</span>
+                      <button 
+                        onClick={increment}
+                        className="h-14 w-14 flex items-center justify-center bg-white rounded-xl shadow-sm hover:text-emerald-600 transition-colors"
+                      >
+                        <Plus size={20} />
+                      </button>
+                    </div>
 
-                <div className="flex flex-row justify-between mb-2">
-                  <button
-                    onClick={decrement}
-                    className="bg-gray-300 px-4 py-2 text-white text-xl  rounded-sm"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="text"
-                    className="px-4 py-2 w-16 text-center border border-gray-300 focus:outline-none"
-                    value={count}
-                    readOnly
-                  />
-                  <button
-                    onClick={increment}
-                    className="bg-[#4CAF50] px-4 py-2 text-white text-xl rounded-sm"
-                  >
-                    +
-                  </button>
-                </div>
-
-                <div className="items-center">
-                  <button
-                    className="bg-[#4CAF50] w-full py-2 text-white "
-                    onClick={addToCart}
-                  >
-                    Add to Cart
-                  </button>
+                    <button 
+                      onClick={addToCart}
+                      className="flex-grow h-16 bg-emerald-600 text-white rounded-2xl font-black uppercase text-xs tracking-widest flex items-center justify-center gap-4 shadow-xl shadow-emerald-200 hover:bg-emerald-700 hover:-translate-y-1 active:scale-95 transition-all"
+                    >
+                      <ShoppingCart size={18} />
+                      Ajouter au panier
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* <div className="p-20">
-          <p>{data.restaurant_name}</p>
-          <p>{data.item_name}</p>
-          <p>{data.price}</p>
-        </div> */}
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
@@ -154,15 +189,12 @@ export async function getServerSideProps({ query }) {
   let error = null;
 
   try {
-    // On suppose que votre API Django tourne sur http://127.0.0.1:8000
     const response = await axios.get(
       `https://fooddelivery-kappa.vercel.app/api/menus/menuId?menuItemId=${menuItemId}`
-      `http://127.0.0.1:8000/api/menu-items/${menuItemId}/`
     );
-
- 
     data = response.data;
   } catch (err) {
+    console.error("Fetch error:", err.message);
     error = err.message;
   }
 
