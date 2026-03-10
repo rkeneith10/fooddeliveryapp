@@ -2,11 +2,11 @@
 
 import MenuItemComponent from "@/components/menuItemComponent";
 
+import BackgoundImg from "@/public/images/resto.jpg";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import BackgoundImg from "../../public/images/resto.jpg";
 import Layout from "../layout";
 
 function RestaurantDetail({ data, error }) {
