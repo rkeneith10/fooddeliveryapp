@@ -1,160 +1,192 @@
 "use client";
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Loader2, Lock, Mail, ShieldCheck, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaEnvelope, FaLock } from "react-icons/fa";
 import validator from "validator";
-import BackImage1 from "../../public/images/foodapp.PNG";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [disable, setDisable] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => {
-      setError("");
-    }, 1500);
-    return () => clearTimeout(timeOutId);
+    if (error) {
+      const timeOutId = setTimeout(() => setError(""), 3000);
+      return () => clearTimeout(timeOutId);
+    }
   }, [error]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setDisable(true);
-    if (email.trim() === "" || password.trim() === "") {
-      setError("Fill all the fields");
+    
+    if (!email || !password) {
+      setError("Veuillez remplir tous les champs");
       setLoading(false);
-      setDisable(false);
-    } else if (!validator.isEmail(email)) {
-      setError("Please enter a valid email");
+      return;
+    }
+    
+    if (!validator.isEmail(email)) {
+      setError("Veuillez entrer une adresse email valide");
       setLoading(false);
-      setDisable(false);
-    } else {
-      try {
-        const response = await axios.post(
-          "https://fooddelivery-kappa.vercel.app/api/users/login",
-          {
-            email,
-            password,
-          }
-        );
-        if (response.status === 200) {
-          setLoading(false);
-          setDisable(false);
-          localStorage.setItem("isLogin", true);
-          localStorage.setItem(
-            "userinfo",
-            JSON.stringify(response.data.datauser)
-          );
-          router.replace("../../");
-        } else {
-          setError("Login failed. Please try again.");
-          setLoading(false);
-          setDisable(false);
-        }
-      } catch (error) {
-        setError("An error occurred. Please try again later.");
-        setLoading(false);
-        setDisable(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "https://fooddelivery-kappa.vercel.app/api/users/login",
+        { email, password }
+      );
+      
+      if (response.status === 200) {
+        localStorage.setItem("isLogin", "true");
+        localStorage.setItem("userinfo", JSON.stringify(response.data.datauser));
+        router.push("/");
       }
+    } catch (err) {
+      setError(err.response?.data?.message || "Identifiants invalides");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <>
-      <div
-        className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
-        style={{ backgroundImage: `url(${BackImage1.src})` }}
-      >
-        <div className="mb-10">
-          {error && (
-            <div
-              class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-              role="alert"
-            >
-              <span class="block sm:inline">{error}.</span>
-              <span class="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
-            </div>
-          )}
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-slate-50 font-sans">
+      {/* Left Decoration - Desktop Only */}
+      <div className="hidden lg:flex relative overflow-hidden bg-emerald-600 items-center justify-center p-20">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
-        <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
-          <div className="text-gray-900 font-normal text-xl">
-            Login to your account
+        
+        <div className="relative z-10 text-white space-y-8 max-w-lg">
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="w-16 h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center mb-12"
+          >
+            <ShoppingBag size={32} strokeWidth={2.5} />
+          </motion.div>
+          <h1 className="text-6xl font-black leading-tight tracking-tighter">
+            L'Excellence <br /><span className="text-emerald-200 underline decoration-4 underline-offset-8">À Votre Porte.</span>
+          </h1>
+          <p className="text-xl text-emerald-50 font-medium leading-relaxed">
+            Rejoignez des milliers de gourmets et profitez d'une expérience culinaire sans égale.
+          </p>
+          <div className="pt-10 flex items-center gap-6">
+            <div className="flex -space-x-3">
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="h-12 w-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-emerald-700">
+                  <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" />
+                </div>
+              ))}
+            </div>
+            <span className="text-sm font-black uppercase tracking-widest text-emerald-100">+12k Membres Actifs</span>
+          </div>
+        </div>
+
+        {/* Floating food image decoration */}
+        <motion.div 
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl"
+        />
+      </div>
+
+      {/* Right Form */}
+      <div className="flex items-center justify-center p-8 lg:p-24">
+        <div className="w-full max-w-md space-y-12">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
+            <div className="lg:hidden w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-200 mb-6">
+              <ShoppingBag size={24} />
+            </div>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tighter">Bienvenue de nouveau</h2>
+            <p className="text-slate-500 font-medium">Entrez vos identifiants pour continuer votre voyage culinaire.</p>
           </div>
 
-          <form className="mt-6 mb-10">
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="email" className="mr-2 text-[#4CAF50]">
-                <FaEnvelope />
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => setEmail(e.target.value)}
-              />
+          <AnimatePresence>
+            {error && (
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-sm font-bold"
+              >
+                <div className="h-2 w-2 bg-red-500 rounded-full animate-pulse" />
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Email Professionnel</label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors">
+                  <Mail size={20} />
+                </div>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="nom@exemple.com"
+                  className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300"
+                />
+              </div>
             </div>
 
-            <div className=" flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="password" className="mr-2 text-[#4CAF50]">
-                <FaLock />
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Mot de passe"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className="space-y-2">
+              <div className="flex justify-between items-center ml-1">
+                <label className="text-xs font-black uppercase tracking-widest text-slate-400">Mot de Passe</label>
+                <Link href="#" className="text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Oublié ?</Link>
+              </div>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors">
+                  <Lock size={20} />
+                </div>
+                <input 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300"
+                />
+              </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={disable}
-              onClick={handleLogin}
-              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center"
+            <button 
+              disabled={loading}
+              className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl hover:bg-emerald-600 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50"
             >
-              {" "}
-              {loading ? (
-                <svg
-                  aria-hidden="true"
-                  role="status"
-                  class="inline mr-2 w-4 h-4 text-white animate-spin "
-                  viewBox="0 0 100 101"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                    fill="#1C64F2"
-                  ></path>
-                </svg>
-              ) : (
-                "Login"
-              )}
+              {loading ? <Loader2 className="animate-spin" /> : <>Connexion <ArrowRight size={20} /></>}
             </button>
           </form>
 
-          <div className="mb-10 text-center text-sm font-bold">
-            No account yet?{" "}
-            <span className="hover:text-[#2D8A34]">
-              <Link href="./register">Create one</Link>
-            </span>
+          <div className="flex flex-col items-center space-y-8 pt-4">
+            <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-widest">
+              <ShieldCheck size={14} /> Sécurisé par FOODAPP-AUTH
+            </div>
+            
+            <div className="h-[1px] w-full bg-slate-200" />
+            
+            <p className="text-sm font-bold text-slate-500">
+              Pas encore de compte ? {" "}
+              <Link href="/register" className="text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4">Créer un compte</Link>
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

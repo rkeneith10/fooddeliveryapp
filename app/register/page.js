@@ -1,238 +1,204 @@
 "use client";
 import axios from "axios";
+import { motion } from "framer-motion";
+import {
+    ArrowRight,
+    CheckCircle2,
+    Loader2,
+    Lock,
+    Mail,
+    MapPin,
+    Phone,
+    User,
+    UserPlus
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaEnvelope, FaLock, FaPhoneSquareAlt, FaUser } from "react-icons/fa";
-import { IoLocation } from "react-icons/io5";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import validator from "validator";
-import BackImage1 from "../../public/images/foodapp.PNG";
 
 export default function Register() {
   const router = useRouter();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [password, setPassword] = useState("");
-  const [adress, setAdress] = useState("");
-
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    telephone: "",
+    adress: "",
+    password: ""
+  });
   const [loading, setLoading] = useState(false);
-  const [disable, setDisable] = useState(false);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const timeOutId = setTimeout(() => {
-      setError("");
-    }, 1500);
-    return () => clearTimeout(timeOutId);
-  }, [error]);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setDisable(true);
-    if (
-      email.trim() === "" ||
-      password.trim() === "" ||
-      telephone.trim() === "" ||
-      firstName.trim() === "" ||
-      lastName.trim() === "" ||
-      adress.trim() === ""
-    ) {
-      toast.error("Fill all the fields");
+
+    const { firstName, lastName, email, telephone, adress, password } = formData;
+
+    if (!firstName || !lastName || !email || !telephone || !adress || !password) {
+      toast.error("Veuillez remplir tous les champs");
       setLoading(false);
-      setDisable(false);
-    } else if (!validator.isEmail(email)) {
-      toast.error("Please enter a valid email");
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      toast.error("Veuillez entrer un email valide");
       setLoading(false);
-      setDisable(false);
-    } else {
-      try {
-        axios
-          .post("https://fooddelivery-kappa.vercel.app/api/users/register", {
-            firstName,
-            lastName,
-            email,
-            adress,
-            telephone,
-            password,
-          })
-          .then((response) => {
-            if (response.data.success) {
-              setLoading(false);
-              setDisable(false);
-              localStorage.setItem("isLogin", true);
-              localStorage.setItem(
-                "userinfo",
-                JSON.stringify(response.data.datauser)
-              );
-              router.replace("../../");
-            } else if (!response.data.success) {
-              toast.error(response.data.msg);
-              setLoading(false);
-              setDisable(false);
-            }
-          });
-      } catch (error) {}
+      return;
+    }
+
+    try {
+      const response = await axios.post("https://fooddelivery-kappa.vercel.app/api/users/register", formData);
+      if (response.data.success) {
+        localStorage.setItem("isLogin", "true");
+        localStorage.setItem("userinfo", JSON.stringify(response.data.datauser));
+        toast.success("Compte créé avec succès !");
+        setTimeout(() => router.push("/"), 2000);
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (err) {
+      toast.error("Une erreur est survenue lors de l'inscription");
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
-    <>
-      <div
-        className=" h-screen  max-w-screen-2xl mx-auto flex flex-col justify-center items-center p-7 lg:p-40  bg-center bg-cover bg-no-repeat "
-        style={{ backgroundImage: `url(${BackImage1.src})` }}
-      >
-        <div className="mb-5">
-          <ToastContainer />
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-slate-50 font-sans">
+      <ToastContainer position="top-right" theme="colored" />
+      
+      {/* Left Decoration */}
+      <div className="hidden lg:flex relative overflow-hidden bg-emerald-600 items-center justify-center p-20">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+          </svg>
         </div>
-        <div className="pt-5 pl-10 pr-5 bg-white rounded-md shadow-sm sm:w-full lg:w-[440px]  h-auto flex flex-col ">
-          <div className="text-gray-900 font-normal text-xl">
-            Create your account
+        
+        <div className="relative z-10 text-white space-y-12 max-w-lg">
+          <div className="space-y-6">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center">
+              <UserPlus size={32} strokeWidth={2.5} />
+            </div>
+            <h1 className="text-6xl font-black leading-[0.9] tracking-tighter">
+              Commencez <br /><span className="text-emerald-200 underline decoration-4 underline-offset-8">Vôtre Aventure</span> Gastronomique.
+            </h1>
           </div>
 
-          <form className="mt-6 mb-10">
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="firstName" className="mr-2 text-[#4CAF50]">
-                <FaUser />
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="Firstname"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-                value={firstName}
-              />
-            </div>
-
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="lastName" className="mr-2 text-[#4CAF50]">
-                <FaUser />
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Lastname"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-                value={lastName}
-              />
-            </div>
-
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="email" className="mr-2 text-[#4CAF50]">
-                <FaEnvelope />
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                value={email}
-              />
-            </div>
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="email" className="mr-2 text-[#4CAF50]">
-                <IoLocation />
-              </label>
-              <input
-                type="text"
-                id="adress"
-                name="adress"
-                placeholder="Address"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setAdress(e.target.value);
-                }}
-                value={adress}
-              />
-            </div>
-            <div className="flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="telephone" className="mr-2 text-[#4CAF50]">
-                <FaPhoneSquareAlt />
-              </label>
-              <input
-                type="text"
-                id="telephone"
-                name="telephone"
-                placeholder="Phone Number"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setTelephone(e.target.value);
-                }}
-                value={telephone}
-              />
-            </div>
-
-            <div className=" flex items-center border-b border-[#4CAF50] py-2">
-              <label htmlFor="password" className="mr-2 text-[#4CAF50]">
-                <FaLock />
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Mot de passe"
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                value={password}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={disable}
-              onClick={handleRegister}
-              className="mt-6 bg-[#4CAF50] hover:bg-[#2D8A34] text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline text-center"
-            >
-              {loading ? (
-                <svg
-                  aria-hidden="true"
-                  role="status"
-                  class="inline mr-2 w-4 h-4 text-white animate-spin"
-                  viewBox="0 0 100 101"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                    fill="#1C64F2"
-                  ></path>
-                </svg>
-              ) : (
-                "Create account"
-              )}
-            </button>
-          </form>
-
-          <div className="mb-10 text-center text-sm font-bold">
-            Do you already have an account?{" "}
-            <span className="hover:text-[#2D8A34]">
-              <Link href="./login">Login</Link>
-            </span>
+          <div className="space-y-8">
+            {[
+              { title: "Accès Illimité", desc: "Plus de 200 restaurants partenaires à Haiti." },
+              { title: "Livraison Priority", desc: "Les membres bénéficient de livraisons plus rapides." },
+              { title: "Offres Exclusives", desc: "Promotions hebdomadaires réservées aux membres." }
+            ].map((feature, i) => (
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: i * 0.1 }}
+                key={i} 
+                className="flex gap-4"
+              >
+                <div className="mt-1 h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                  <CheckCircle2 size={14} />
+                </div>
+                <div>
+                  <h4 className="font-black text-lg text-white mb-1 uppercase tracking-tighter">{feature.title}</h4>
+                  <p className="text-emerald-100 text-sm font-medium">{feature.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
-    </>
+
+      {/* Right Form */}
+      <div className="flex items-center justify-center p-8 lg:p-24 overflow-y-auto">
+        <div className="w-full max-w-xl space-y-12 py-10">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
+            <h2 className="text-4xl font-black text-slate-900 tracking-tighter">Créer votre profil</h2>
+            <p className="text-slate-500 font-medium">Rejoignez la plus grande communauté de foodies en Haiti.</p>
+          </div>
+
+          <form onSubmit={handleRegister} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* First Name */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Prénom</label>
+              <div className="relative group">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="firstName" onChange={handleChange} placeholder="Jean" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            {/* Last Name */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Nom</label>
+              <div className="relative group">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="lastName" onChange={handleChange} placeholder="Dupont" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Email</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="email" type="email" onChange={handleChange} placeholder="jean.dupont@email.com" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Adresse de livraison</label>
+              <div className="relative group">
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="adress" onChange={handleChange} placeholder="123 Rue de la Boucherie, Delmas" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Téléphone</label>
+              <div className="relative group">
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="telephone" onChange={handleChange} placeholder="+509 XXXX XXXX" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Mot de passe</label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={18} />
+                <input name="password" type="password" onChange={handleChange} placeholder="••••••••" className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all font-bold placeholder:text-slate-300" />
+              </div>
+            </div>
+
+            <button disabled={loading} className="md:col-span-2 py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl hover:bg-emerald-600 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50 mt-4">
+              {loading ? <Loader2 className="animate-spin" /> : <>Créer mon compte <ArrowRight size={20} /></>}
+            </button>
+          </form>
+
+          <div className="text-center pt-8 border-t border-slate-200">
+            <p className="text-sm font-bold text-slate-500">
+              Déjà membre ? {" "}
+              <Link href="/login" className="text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4">Connectez-vous</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

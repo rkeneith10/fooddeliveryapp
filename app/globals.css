@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: #059669;
+  --primary-foreground: #ffffff;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #059669;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --primary: #10b981;
+  --primary-foreground: #020617;
+  --background: #020617;
+  --foreground: #f8fafc;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #10b981;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50;
+  }
+
+  .premium-button {
+    @apply relative px-6 py-3 bg-emerald-600 text-white rounded-xl font-semibold 
+           transition-all duration-300 hover:bg-emerald-700 hover:shadow-lg 
+           hover:shadow-emerald-200 active:scale-95 disabled:opacity-50;
+  }
+
+  .food-card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl 
+           transition-all duration-500 hover:-translate-y-1 overflow-hidden;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}

@@ -6,8 +6,7 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import "tailwindcss/tailwind.css";
-import BackgoundImg from "../../public/images/resto.JPG";
+import BackgoundImg from "../../public/images/resto.jpg";
 import Layout from "../layout";
 
 function RestaurantDetail({ data, error }) {
@@ -86,8 +85,8 @@ function RestaurantDetail({ data, error }) {
                   onClick={() => setActiveCategory(category)}
                   className={`p-2 rounded ${
                     category === activeCategory
-                      ? "bg-[#4CAF50] text-white"
-                      : "border border-[#4CAF50] text-[#4CAF50] bg-white"
+                      ? "bg-emerald-600 text-white"
+                      : "border border-emerald-600 text-emerald-600 bg-white"
                   }`}
                 >
                   {category}

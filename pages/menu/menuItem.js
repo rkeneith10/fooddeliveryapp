@@ -154,10 +154,13 @@ export async function getServerSideProps({ query }) {
   let error = null;
 
   try {
+    // On suppose que votre API Django tourne sur http://127.0.0.1:8000
     const response = await axios.get(
       `https://fooddelivery-kappa.vercel.app/api/menus/menuId?menuItemId=${menuItemId}`
+      `http://127.0.0.1:8000/api/menu-items/${menuItemId}/`
     );
 
+ 
     data = response.data;
   } catch (err) {
     error = err.message;
