@@ -5,7 +5,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Food App Delivery",
-  description: "Food Restaurant application",
+  description: "Food Restaurant Application",
 };
 
 export default function RootLayout({ children }) {
